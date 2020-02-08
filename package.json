@@ -1,0 +1,18 @@
+{
+  "name": "discord.bio",
+  "version": "1.0.0",
+  "description": "a node.js wrapper of the discord.bio api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick Chan#0001",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.0",
+    "typescript": "^3.7.5"
+  }
+}
