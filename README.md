@@ -51,7 +51,6 @@ Returns:`Promise<`[UserConnections](###UserConnections)`>`
 key|type
 ---|---
 success|`boolean`
-id|`number`
 settings|[ProfileSettings](###ProfileSettings)
 discord|[User](###User)
 
