@@ -14,7 +14,7 @@ Returns: `Promise<`[Profile](###Porfile)`>`
 
 Fetches discord connections by user id or slug 
 
-Returns: `Promise<`[DiscordConnection](###DiscordConnection)`>`
+Returns: `Promise<`[DiscordConnection[]](###DiscordConnection)`>`
 
 ### .fetchUserConnections(slugOrID)
 
