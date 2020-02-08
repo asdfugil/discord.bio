@@ -1,6 +1,6 @@
 {
   "name": "discord.bio",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a node.js wrapper of the discord.bio api",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,9 @@
   "dependencies": {
     "node-fetch": "^2.6.0"
   },
-  "keywords":["discord.bio"],
+  "keywords": [
+    "discord.bio"
+  ],
   "devDependencies": {
     "@types/node": "^13.7.0",
     "typescript": "^3.7.5"
