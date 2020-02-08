@@ -2,9 +2,11 @@
   "name": "discord.bio",
   "version": "1.0.5",
   "description": "a node.js wrapper of the discord.bio api",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "Nick Chan#0001",
   "license": "ISC",
@@ -16,6 +18,7 @@
   ],
   "devDependencies": {
     "@types/node": "^13.7.0",
+    "@types/node-fetch": "^2.5.4",
     "typescript": "^3.7.5"
   },
   "repository": "github:Assfugil/discord.bio.js"

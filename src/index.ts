@@ -1,10 +1,11 @@
-import * as fetch from 'node-fetch'
+import fetch from 'node-fetch'
+
 export = {
     /**
      * Fetch profile by user id or slug
      */
     fetchProfile: async (slugOrID: string): Promise<Profile> => {
-        const profile: Profile = await fetch(`https://api.discord.bio/v1/getUserDetails/${slugOrID}`).then(response => response.json())
+        const profile = await fetch(`https://api.discord.bio/v1/getUserDetails/${slugOrID}`).then(response => response.json())
         if (profile.success) return profile
         else throw new Error('Unknown slug or user ID.')
     },
@@ -17,6 +18,7 @@ export = {
      */
     fetchUserConnections: async (slugOrID: string): Promise<UserConnections> => await fetch(`https://api.discord.bio/v1/getDiscordConnections/${slugOrID}`).then(response => response.json())
 }
+
 type ProfileSettings = {
     id: number
     name: string
@@ -32,17 +34,20 @@ type ProfileSettings = {
     email: string | null
     occupation: string | null
 }
+
 type User = {
     id: string
     username: string
     avatar: string
     discriminator: string
 }
+
 type Profile = {
     success: boolean
     settings:ProfileSettings
     discord: User
 }
+
 type DiscordConnection = {
     id: number
     connection_type: string,
@@ -50,6 +55,7 @@ type DiscordConnection = {
     url: string | null,
     icon: string
 }
+
 type UserConnections = {
     github: UserConnection,
     website: UserConnection,
@@ -57,4 +63,5 @@ type UserConnections = {
     snapchat: UserConnection,
     linkedin: UserConnection
 }
+
 type UserConnection = { name: string | null }
