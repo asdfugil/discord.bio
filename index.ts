@@ -19,7 +19,7 @@ export = {
     /**
      * Fetch user connections by slug or user id
      */
-    fetchUserConnections: async (slugOrID: string): Promise<UserConnections> => await fetch(`https://api.discord.bio/v1/getDiscordConnections/${slugOrID}`).then(response => response.json())
+    fetchUserConnections: async (slugOrID: string): Promise<UserConnections> => await fetch(`https://api.discord.bio/v1/getUserConnections/${slugOrID}`).then(response => response.json())
 }
 /**A Twitter snowflake, except the epoch is 2015-01-01T00:00:00.000Z */
 type Snowflake = string
