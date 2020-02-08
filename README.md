@@ -5,7 +5,7 @@ Node.js wrapper for https://discord.bio
 To install: 
 
 ```bash
-npm i discord-bio --only=prod
+npm i discord.bio --only=prod
 ```
 
 ## Functions
