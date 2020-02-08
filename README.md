@@ -31,46 +31,61 @@ Returns:`Promise<`[UserConnections](###UserConnections)`>`
 ## Type definitions
 
 ### ProfileSettings
-  key|type
-  ---|---
-  id| `number` 
-  name| `string` 
-  user_id| `string` 
-  created_at| `string` or  `null` 
-  view_count| `number` 
-  slug_id |`string`
-  status| `string` or `null` 
-  description| `string` or `null` 
-  location| `string` or  `null` 
-  gender| `string`  or `null` 
-  birthday| `string` or `null` 
-  email| `string` or `null` 
-  occupation| `string` or  `null` 
+
+The profile settings
+
+  key|type|Meaning
+  ---|---|---
+  id| `number` | ID of the profile. 
+  name| `string` | The slug. 
+  user_id| `string` | User ID of the profile's user. 
+  created_at| `string` or  `null` | The time the profile is created. 
+  view_count| `number`            | View count of this profile.      
+  slug_id |`number`|The ID of the slug.
+  status| `string` or `null` | The status of the user. 
+  description| `string` or `null` | The description of the user. 
+  location| `string` or  `null` | The location of the user. 
+  gender| `string`  or `null` | Gender of the user. 
+  birthday| `string` or `null` | The birthday of the user. 
+  email| `string` or `null` | The email of the user. 
+  occupation| `string` or  `null` | The occupation of the user. 
 
 ### Profile
-key|type
----|---
-success|`boolean`
-settings|[ProfileSettings](###ProfileSettings)
-discord|[User](###User)
+
+Represent a discord.bio profile 
+
+key|type|Meaning
+---|---|---
+success|`boolean`|Whether the profile is fetched successfully.
+settings|[ProfileSettings](###ProfileSettings)|The settings of this profile.
+discord|[User](###User)|The user that this profile represents.
 
 ### User
-key|type
----|---
-id| `string`
-username| `string`
-avatar| `string`
-discriminator| `string`
+
+Represent a discord user. 
+
+key|type|Meaning
+---|---|---
+id| [Snowflake](###Snowflake) | The user id of the user. 
+username| `string`| The username of the user. 
+avatar| `string`| The avatar hash of the user. 
+discriminator| `string`| The discriminator of the user. 
 
 ### DiscordConnection
-key|type
----|---
-id| `number`
-connection_type| `string`
-name| `string` 
-url| `string` or  `null`
-icon| `string`
+
+Represent a discord user connection
+
+key|type|Meaning
+---|---|---
+id| `number`| The ID of the connection. 
+connection_type| `string`| The type of the connection. 
+name| `string` | The name of the connection. 
+url| `string` or  `null`| The url of the connection. 
+icon| `string`| Unknown. a non-empty string. 
 ### UserConnections
+
+An object containing discord.bio connections.The property name is the type of connection.
+
 key|type
 ---|---
 github| [UserConnection](###UserConnection)
@@ -80,6 +95,22 @@ snapchat| [UserConnection](###UserConnection)
 linkedin| [UserConnection](###UserConnection)
 
 ### UserConnection
-key|type
----|---
-name|`string`
+
+Represent a connection on discord.bio.
+
+key|type|Meaning
+---|---|---
+name|`string`|The name of the connection.
+
+### Snowflake
+
+A Twitter snowflake, except the epoch is 2015-01-01T00:00:00.000Z 
+
+```
+If we have a snowflake '266241948824764416' we can represent it as binary:
+
+64                                          22     17     12          0
+ 000000111011000111100001101001000101000000  00001  00000  000000000000
+      number of ms since Discord epoch       worker  pid    increment
+```
+
