@@ -1,4 +1,4 @@
-# discord.bio.js
+# discord.bio
 
 Node.js wrapper for https://discord.bio
 
