@@ -33,7 +33,7 @@ Returns:`Promise<`[UserConnections](###UserConnections)`>`
 ### ProfileSettings
   key|type
   ---|---
-  id| `string` 
+  id| `number` 
   name| `string` 
   user_id| `string` 
   created_at| `string` or  `null` 
