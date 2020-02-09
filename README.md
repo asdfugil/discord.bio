@@ -5,7 +5,8 @@ Node.js wrapper for https://discord.bio
 To install: 
 
 ```bash
-npm i discord.bio --only=prod
+npm i @types/node-fetch
+npm i discord.bio 
 ```
 
 ## Functions
