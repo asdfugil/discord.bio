@@ -16,7 +16,7 @@ export = {
     /**
      * Fetch user connections by slug or user id
      */
-    fetchUserConnections: async (slugOrID: string): Promise<UserConnections> => await fetch(`https://api.discord.bio/v1/getUserConnections/${slugOrID}`).then(response => response.json())
+    fetchUserConnections: async (slugOrID: string): Promise<UserConnections> => await fetch(`https://api.discord.bio/v1/getDiscordConnections/${slugOrID}`).then(response => response.json())
 }
 
 type ProfileSettings = {
