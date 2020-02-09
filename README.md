@@ -115,3 +115,10 @@ If we have a snowflake '266241948824764416' we can represent it as binary:
       number of ms since Discord epoch       worker  pid    increment
 ```
 
+## FAQs
+
+**Q: I get  `error TS7016: Could not find a declaration file for module 'node-fetch'.`  and 3 more TS errors when installing?**
+**Reason:** You didn't install `@types/node-fetch`
+
+**Solution:** run `npm i @types/node-fetch`
+This should solve other TS**** errors
