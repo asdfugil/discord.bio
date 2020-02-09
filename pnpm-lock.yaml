@@ -1,0 +1,36 @@
+dependencies:
+  node-fetch: 2.6.0
+devDependencies:
+  '@types/node': 13.7.0
+  '@types/node-fetch': 2.5.4
+  typescript: 3.7.5
+lockfileVersion: 5.1
+packages:
+  /@types/node-fetch/2.5.4:
+    dependencies:
+      '@types/node': 13.7.0
+    dev: true
+    resolution:
+      integrity: sha512-Oz6id++2qAOFuOlE1j0ouk1dzl3mmI1+qINPNBhi9nt/gVOz0G+13Ao6qjhdF0Ys+eOkhu6JnFmt38bR3H0POQ==
+  /@types/node/13.7.0:
+    dev: true
+    resolution:
+      integrity: sha512-GnZbirvmqZUzMgkFn70c74OQpTTUcCzlhQliTzYjQMqg+hVKcDnxdL19Ne3UdYzdMA/+W3eb646FWn/ZaT1NfQ==
+  /node-fetch/2.6.0:
+    dev: false
+    engines:
+      node: 4.x || >=6.0.0
+    resolution:
+      integrity: sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+  /typescript/3.7.5:
+    dev: true
+    engines:
+      node: '>=4.2.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
+specifiers:
+  '@types/node': ^13.7.0
+  '@types/node-fetch': ^2.5.4
+  node-fetch: ^2.6.0
+  typescript: ^3.7.5

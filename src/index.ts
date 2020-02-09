@@ -1,4 +1,5 @@
-import * as fetch from 'node-fetch'
+import fetch from 'node-fetch'
+
 export = {
     /**
      * Fetch profile by user id or slug
@@ -21,6 +22,7 @@ export = {
      */
     fetchUserConnections: async (slugOrID: string): Promise<UserConnections> => await fetch(`https://api.discord.bio/v1/getUserConnections/${slugOrID}`).then(response => response.json())
 }
+
 /**A Twitter snowflake, except the epoch is 2015-01-01T00:00:00.000Z */
 type Snowflake = string
 /**The profile settings. */
