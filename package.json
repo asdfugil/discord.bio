@@ -1,6 +1,6 @@
 {
   "name": "discord.bio",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "a node.js wrapper of the discord.bio api",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -12,6 +12,7 @@
   "author": "Nick Chan#0001",
   "license": "ISC",
   "dependencies": {
+    "@types/node-fetch": "^2.5.4",
     "node-fetch": "^2.6.0",
     "typescript": "^3.7.5"
   },
@@ -19,11 +20,7 @@
     "discord.bio"
   ],
   "devDependencies": {
-    "@types/node": "^13.7.0",
-    "@types/node-fetch": "^2.5.4"
-  },
-  "peerDependencies": {
-    "@types/node-fetch": "^2.5.4"
+    "@types/node": "^13.7.0"
   },
   "repository": "github:Assfugil/discord.bio.js"
 }
