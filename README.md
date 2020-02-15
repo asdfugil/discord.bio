@@ -33,7 +33,7 @@ Returns:`Promise<`[UserConnections](###UserConnections)`>`
 
 Login by OAuth2 access token
 
-Returns the access token used to login
+Returns the `Promise<string>`
 
 ## Type definitions
 
