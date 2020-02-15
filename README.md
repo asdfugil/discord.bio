@@ -11,23 +11,29 @@ npm i discord.bio
 
 ## Functions
 
-### .fetchProfile(slugOrID)
+### .fetchProfile(slugOrID?)
 
-Fetches profile by user id or slug 
+Fetches profile by user id or slug ,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
 Returns: `Promise<`[Profile](###Porfile)`>`
 
-### .fetchDiscordConnections(slugOrID)
+### .fetchDiscordConnections(slugOrID?)
 
-Fetches discord connections by user id or slug 
+Fetches discord connections by user id or slug ,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
 Returns: `Promise<`[DiscordConnection](###DiscordConnection)`[]>`
 
-### .fetchUserConnections(slugOrID)
+### .fetchUserConnections(slugOrID?)
 
-Fetches User connections by user id or slug
+Fetches User connections by user id or slug,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
 Returns:`Promise<`[UserConnections](###UserConnections)`>`
+
+### .login(accessToken)
+
+Login by OAuth2 access token
+
+Returns the access token used to login
 
 ## Type definitions
 
@@ -50,6 +56,7 @@ The profile settings
   birthday| `string` or `null` | The birthday of the user. 
   email| `string` or `null` | The email of the user. 
   occupation| `string` or  `null` | The occupation of the user. 
+ banner | `string` or `null` | The URL to the profile banner. 
 
 ### Profile
 

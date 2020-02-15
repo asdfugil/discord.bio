@@ -1,11 +1,12 @@
-import fetch from 'node-fetch'
+ import fetch from 'node-fetch'
 
 export = {
     /**
-     * Fetch profile by user id or slug
+     * Fetch profile by user id or slug,if sulgOrID is not provided,it will retrun the details of the logged in user.
      */
-    fetchProfile: async (slugOrID: string): Promise<Profile> => {
+    fetchProfile: async (slugOrID?: string): Promise<Profile> => {
         const profile = await fetch(`https://api.discord.bio/v1/getUserDetails/${slugOrID}`).then(response => response.json())
+        if (profile.message) throw new Error(profile.message)
         if (profile.success) {
             if (profile.settings.gender === 1) profile.settings.gender = 'male'
             else if (profile.settings.gender === 2) profile.settings.gender = 'female'
@@ -14,13 +15,29 @@ export = {
         else throw new Error('Unknown slug or user ID.')
     },
     /**
-     * Fetch discord connections by slug or user id
+     * Fetch discord connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
      */
-    fetchDiscordConnections: async (slugOrID: string): Promise<Array<DiscordConnection>> => await fetch(`https://api.discord.bio/v1/getDiscordConnections/${slugOrID}`).then(response => response.json()),
+    fetchDiscordConnections: async (slugOrID?: string): Promise<Array<DiscordConnection>> => {
+        const result = await fetch(`https://api.discord.bio/v1/getDiscordConnections/${slugOrID}`).then(response => response.json())
+        if (result.message) throw new Error(result.message)
+        return result
+    },
     /**
-     * Fetch user connections by slug or user id
+     * Fetch user connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
      */
-    fetchUserConnections: async (slugOrID: string): Promise<UserConnections> => await fetch(`https://api.discord.bio/v1/getUserConnections/${slugOrID}`).then(response => response.json())
+    fetchUserConnections: async (slugOrID?: string): Promise<UserConnections> => {
+        const result = await fetch(`https://api.discord.bio/v1/getUserConnections/${slugOrID}`).then(response => response.json())
+        if (result.message) throw new Error(result.message)
+        return result
+    },
+    /**
+     * Login by OAuth2 Access Token
+     * @returns { string } The access token used to login
+     */
+    login:async (accessToken:string):Promise<string> => {
+        await fetch('https://api.discord.bio/v1/callback/?code='+accessToken)
+        return accessToken
+    }
 }
 
 /**A Twitter snowflake, except the epoch is 2015-01-01T00:00:00.000Z */
@@ -53,6 +70,8 @@ type ProfileSettings = {
     email: string | null
     /**The occupation of the user. */
     occupation: string | null
+    /**The url to the banner on the profile */
+    banner:string | null
 }
 /**Represent a discord user. */
 type User = {
