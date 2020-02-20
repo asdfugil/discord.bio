@@ -9,31 +9,53 @@ npm i @types/node-fetch
 npm i discord.bio 
 ```
 
-## Functions
+## Classes
 
-### .fetchProfile(slugOrID?)
+### Bio
+
+#### .accessToken?
+
+Authorization token used by this bio instance.
+
+#### .baseURL 
+
+The base url of hte api. Defaults to `https://api.discord.bio/v1`.
+
+#### .fetchProfile(slugOrID?)
 
 Fetches profile by user id or slug ,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
 Returns: `Promise<`[Profile](###Porfile)`>`
 
-### .fetchDiscordConnections(slugOrID?)
+#### .fetchDiscordConnections(slugOrID?)
 
 Fetches discord connections by user id or slug ,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
 Returns: `Promise<`[DiscordConnection](###DiscordConnection)`[]>`
 
-### .fetchUserConnections(slugOrID?)
+#### .fetchUserConnections(slugOrID?)
 
 Fetches User connections by user id or slug,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
-Returns:`Promise<`[UserConnections](###UserConnections)`>`
+Returns:`Promise<`[UserConnections](###UserConnections)`>` 
 
-### .login(accessToken)
+#### .login(accessToken)
 
 Login by OAuth2 access token
 
-Returns the `Promise<string>`
+Returns: `Promise<string>`   The access token used
+
+#### .fetchTotalUsers()
+
+Fetches the total number of users using discord.bio
+
+Returns: `Promise<number>`  Total number of users using discord.bio
+
+#### .fetchAPIVersion()
+
+Fetches the API Version
+
+Returns: `Promise<string>` The API Version
 
 ## Type definitions
 

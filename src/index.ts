@@ -1,11 +1,23 @@
  import fetch from 'node-fetch'
 
-export = {
+ /**The main hub for interacting with the discord.bio API. */
+class Bio {
+    /**
+     * Authorization token used by this Bio instance
+     */
+    private accessToken?:string
+    baseURL:string
+    /**
+     * @param baseURL - The API base URL
+     */
+    constructor(baseURL?:string){
+       this.baseURL = baseURL || `https://api.discord.bio/v1`
+    }
     /**
      * Fetch profile by user id or slug,if sulgOrID is not provided,it will retrun the details of the logged in user.
      */
-    fetchProfile: async (slugOrID?: string): Promise<Profile> => {
-        const profile = await fetch(`https://api.discord.bio/v1/getUserDetails/${slugOrID}`).then(response => response.json())
+    async fetchProfile (slugOrID?: string): Promise<Profile> {
+        const profile = await fetch(`${this.baseURL}/UserDetails/${slugOrID}`).then(response => response.json())
         if (profile.message) throw new Error(profile.message)
         if (profile.success) {
             if (profile.settings.gender === 1) profile.settings.gender = 'male'
@@ -13,33 +25,43 @@ export = {
             return profile
         }
         else throw new Error('Unknown slug or user ID.')
-    },
+    }
     /**
      * Fetch discord connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
      */
-    fetchDiscordConnections: async (slugOrID?: string): Promise<Array<DiscordConnection>> => {
-        const result = await fetch(`https://api.discord.bio/v1/getDiscordConnections/${slugOrID}`).then(response => response.json())
+    async fetchDiscordConnections (slugOrID?: string): Promise<Array<DiscordConnection>> {
+        const result = await fetch(`${this.baseURL}/DiscordConnections/${slugOrID}`).then(response => response.json())
         if (result.message) throw new Error(result.message)
         return result
-    },
+    }
     /**
      * Fetch user connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
      */
-    fetchUserConnections: async (slugOrID?: string): Promise<UserConnections> => {
-        const result = await fetch(`https://api.discord.bio/v1/getUserConnections/${slugOrID}`).then(response => response.json())
+    async fetchUserConnections (slugOrID?: string): Promise<UserConnections> {
+        const result = await fetch(`${this.baseURL}/UserConnections/${slugOrID}`).then(response => response.json())
         if (result.message) throw new Error(result.message)
         return result
-    },
+    }
     /**
      * Login by OAuth2 Access Token
-     * @returns { string } The access token used to login
      */
-    login:async (accessToken:string):Promise<string> => {
-        await fetch('https://api.discord.bio/v1/callback/?code='+accessToken)
+    async login(accessToken:string):Promise<string> {
+        await fetch(`${this.baseURL}/callback/?code=`+accessToken)
+        this.accessToken = accessToken
         return accessToken
     }
+    /**Fetches the total number of users using discord.bio */
+    async fetchTotalUsers () :Promise<number> {
+        const result = await fetch(`${this.baseURL}/totalUsers`).then(response => response.json())
+        return result.count
+    }
+    /**Fetches the API Version */
+    async fetchAPIVersion ():Promise<string> {
+        const result = await fetch(`${this.baseURL}`).then(response => response.json())
+        return result.version
+    }
 }
-
+export = Bio
 /**A Twitter snowflake, except the epoch is 2015-01-01T00:00:00.000Z */
 type Snowflake = string
 /**The profile settings. */
