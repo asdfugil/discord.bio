@@ -33,7 +33,7 @@ Authorization token used by this bio instance.
 
 The base url of hte api. Defaults to `https://api.discord.bio/v1`.
 
-#### .fetchProfile(slugOrID?)
+#### .fetchUserDetails(slugOrID?)
 
 Fetches profile by user id or slug ,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
@@ -86,11 +86,15 @@ The profile settings
   status| `string` or `null` | The status of the user. 
   description| `string` or `null` | The description of the user. 
   location| `string` or  `null` | The location of the user. 
-  gender| `string`  or `null` | Gender of the user. 
+  gender| `"male"` , `"female"` or `null` | Gender of the user. 
   birthday| `string` or `null` | The birthday of the user. 
   email| `string` or `null` | The email of the user. 
   occupation| `string` or  `null` | The occupation of the user. 
  banner | `string` or `null` | The URL to the profile banner. 
+ upvotes | `number` | R 
+ premium | `boolean` | Whether the user has discord.bio premium. 
+ verified | `boolean` | Whether the user has verified. 
+ flags | `number` | I don't know. 
 
 ### Profile
 

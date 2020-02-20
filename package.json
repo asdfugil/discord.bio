@@ -1,6 +1,6 @@
 {
   "name": "discord.bio",
-  "version": "2.0.0-beta1",
+  "version": "2.0.0-beta4",
   "description": "a node.js wrapper of the discord.bio api",
   "main": "dist/index.js",
   "types": "types/index.d.ts",

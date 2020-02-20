@@ -6,6 +6,7 @@ class Bio {
      * Authorization token used by this Bio instance
      */
     private accessToken?:string
+    /**The base URL used in making API requests */
     baseURL:string
     /**
      * @param baseURL - The API base URL
@@ -16,15 +17,18 @@ class Bio {
     /**
      * Fetch profile by user id or slug,if sulgOrID is not provided,it will retrun the details of the logged in user.
      */
-    async fetchProfile (slugOrID?: string): Promise<Profile> {
+    async fetchUserDetails (slugOrID?: string): Promise<Profile> {
         const profile = await fetch(`${this.baseURL}/UserDetails/${slugOrID}`).then(response => response.json())
         if (profile.message) throw new Error(profile.message)
         if (profile.success) {
+            profile.settings.verified = Boolean(profile.settings.verified) 
+            profile.settings.premium = Boolean(profile.settings.premium_status)
+            delete profile.settings.premium_status
             if (profile.settings.gender === 1) profile.settings.gender = 'male'
-            else if (profile.settings.gender === 2) profile.settings.gender = 'female'
+            else if (profile.settings.gender === 2) profile.settings.gender = 'female';
             return profile
         }
-        else throw new Error('Unknown slug or user ID.')
+        else throw new Error('Unknown error.')
     }
     /**
      * Fetch discord connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
@@ -85,7 +89,7 @@ type ProfileSettings = {
     /**The location of the user. */
     location: string | null
     /**Gender of the user.*/
-    gender: string | null
+    gender: "male" | "female" | null
     /**The birthday of the user. */
     birthday: string | null
     /**The email of the user. */
@@ -94,6 +98,14 @@ type ProfileSettings = {
     occupation: string | null
     /**The url to the banner on the profile */
     banner:string | null
+    /**Whether the user has discord.bio premium */
+    premium:boolean
+    /**The number of upvotes the user has got */
+    upvotes:number,
+    /**I don't know what this is */
+    flags:number
+    /**Whether the user is verified */
+    verified:boolean
 }
 /**Represent a discord user. */
 type User = {
