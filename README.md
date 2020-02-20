@@ -8,7 +8,7 @@ To install:
 npm i @types/node-fetch
 npm i discord.bio 
 ```
-## Example
+## Examples
 Example 1
 ```js
 const Bio = require("discord.bio")
