@@ -8,7 +8,20 @@ To install:
 npm i @types/node-fetch
 npm i discord.bio 
 ```
-
+## Example
+Example 1
+```js
+const Bio = require("discord.bio")
+const bio = new Bio()
+bio.fetchProfile("nickchan").then(console.log)
+```
+Example 2
+```js
+const Bio = require("discord.bio")
+const bio = new Bio()
+bio.login("some-oauth2-access-token")
+bio.fetchProfile().then(console.log)
+```
 ## Class
 
 ### Bio
