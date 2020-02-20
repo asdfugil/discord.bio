@@ -19,8 +19,7 @@ Example 2
 ```js
 const Bio = require("discord.bio")
 const bio = new Bio()
-bio.login("some-oauth2-access-token")
-bio.fetchProfile().then(console.log)
+bio.login("some-oauth2-access-token").then(() => bio.fetchProfile()).then(console.log)
 ```
 ## Class
 
