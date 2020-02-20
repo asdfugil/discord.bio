@@ -9,7 +9,7 @@ npm i @types/node-fetch
 npm i discord.bio 
 ```
 
-## Classes
+## Class
 
 ### Bio
 
