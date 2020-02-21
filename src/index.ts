@@ -102,7 +102,7 @@ type ProfileSettings = {
     premium:boolean
     /**The number of upvotes the user has got */
     upvotes:number,
-    /**I don't know what this is */
+    /**The flags on the user's account. https://discordapp.com/developers/docs/resources/user#user-object-user-flags */
     flags:number
     /**Whether the user is verified */
     verified:boolean
