@@ -13,13 +13,13 @@ Example 1
 ```js
 const Bio = require("discord.bio")
 const bio = new Bio()
-bio.fetchProfile("nickchan").then(console.log)
+bio.fetchUserDetails("nickchan").then(console.log)
 ```
 Example 2
 ```js
 const Bio = require("discord.bio")
 const bio = new Bio()
-bio.login("some-oauth2-access-token").then(() => bio.fetchProfile()).then(console.log)
+bio.login("some-oauth2-access-token").then(() => bio.fetchUserDetails()).then(console.log)
 ```
 ## Class
 
@@ -91,10 +91,10 @@ The profile settings
   email| `string` or `null` | The email of the user. 
   occupation| `string` or  `null` | The occupation of the user. 
  banner | `string` or `null` | The URL to the profile banner. 
- upvotes | `number` | R 
+ upvotes | `number` | The number of upvotes the user have got. 
  premium | `boolean` | Whether the user has discord.bio premium. 
  verified | `boolean` | Whether the user has verified. 
- flags | `number` | I don't know. 
+ flags | `number` | the [flags](https://discordapp.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
 
 ### Profile
 
