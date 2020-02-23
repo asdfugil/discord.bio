@@ -28,6 +28,7 @@ class Bio {
             else if (profile.settings.gender === 2) profile.settings.gender = 'female';
             return profile
         }
+        if (!profile.success) return null;
         else throw new Error('Unknown error.')
     }
     /**
