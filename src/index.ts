@@ -21,11 +21,11 @@ class Bio {
         const profile = await fetch(`${this.baseURL}/UserDetails/${slugOrID}`).then(response => response.json())
         if (profile.message) throw new Error(profile.message)
         if (profile.success) {
-            profile.settings.verified = Boolean(profile.settings.verified) 
-            profile.settings.premium = Boolean(profile.settings.premium_status)
-            delete profile.settings.premium_status
-            if (profile.settings.gender === 1) profile.settings.gender = 'male'
-            else if (profile.settings.gender === 2) profile.settings.gender = 'female';
+            profile.payload.settings.verified = Boolean(profile.payload.settings.verified) 
+            profile.payload.settings.premium = Boolean(profile.payload.settings.premium_status)
+            delete profile.payload.settings.premium_status
+            if (profile.payload.settings.gender === 1) profile.payload.settings.gender = 'male'
+            else if (profile.payload.settings.gender === 2) profile.payload.settings.gender = 'female';
             return profile
         }
         else throw new Error('Unknown error.')
