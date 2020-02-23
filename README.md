@@ -102,7 +102,6 @@ Represent a discord.bio profile
 
 key|type|Meaning
 ---|---|---
-success|`boolean`|Whether the profile is fetched successfully.
 settings|[ProfileSettings](###ProfileSettings)|The settings of this profile.
 discord|[User](###User)|The user that this profile represents.
 

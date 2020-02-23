@@ -59,7 +59,8 @@ class Bio {
     /**Fetches the total number of users using discord.bio */
     async fetchTotalUsers () :Promise<number> {
         const result = await fetch(`${this.baseURL}/totalUsers`).then(response => response.json())
-        return result.count
+        if (!result.success) throw new Error("Unsuccessful response.")
+        return result.payload
     }
     /**Fetches the API Version */
     async fetchAPIVersion ():Promise<string> {
