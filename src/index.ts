@@ -21,14 +21,14 @@ class Bio {
         const profile = await fetch(`${this.baseURL}/UserDetails/${slugOrID}`).then(response => response.json())
         if (profile.message) throw new Error(profile.message)
         if (profile.success) {
-            profile.settings.verified = Boolean(profile.settings.verified) 
-            profile.settings.premium = Boolean(profile.settings.premium_status)
-            delete profile.settings.premium_status
-            if (profile.settings.gender === 1) profile.settings.gender = 'male'
-            else if (profile.settings.gender === 2) profile.settings.gender = 'female';
-            return profile
+            profile.payload.settings.verified = Boolean(profile.payload.settings.verified) 
+            profile.payload.settings.premium = Boolean(profile.payload.settings.premium_status)
+            delete profile.payload.settings.premium_status
+            if (profile.payload.settings.gender === 1) profile.payload.settings.gender = 'male'
+            else if (profile.payload.settings.gender === 2) profile.payload.settings.gender = 'female';
+            return profile.payload
         }
-        else throw new Error('Unknown error.')
+        else throw new Error('unsuccessful response')
     }
     /**
      * Fetch discord connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
@@ -36,7 +36,8 @@ class Bio {
     async fetchDiscordConnections (slugOrID?: string): Promise<Array<DiscordConnection>> {
         const result = await fetch(`${this.baseURL}/DiscordConnections/${slugOrID}`).then(response => response.json())
         if (result.message) throw new Error(result.message)
-        return result
+        if (!result.success) throw new Error("unsuccessful response")
+        return result.payload
     }
     /**
      * Fetch user connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
@@ -44,7 +45,8 @@ class Bio {
     async fetchUserConnections (slugOrID?: string): Promise<UserConnections> {
         const result = await fetch(`${this.baseURL}/UserConnections/${slugOrID}`).then(response => response.json())
         if (result.message) throw new Error(result.message)
-        return result
+        if (!result.success) throw new Error("unsuccessful response")
+        return result.payload
     }
     /**
      * Login by OAuth2 Access Token
@@ -120,8 +122,6 @@ type User = {
 }
 /**Represent a discord.bio profile */
 type Profile = {
-    /**Whether the profile is fetched successfully. */
-    success: boolean
     /**The settings of this profile. */
     settings: ProfileSettings
     /**The user that this profile represents. */
