@@ -1,0 +1,14 @@
+/**Represent a discord user connection*/
+type DiscordConnection = {
+    /** The ID of the connection.*/
+    id: number
+    /**The type of the connection. */
+    connection_type: string,
+    /**The name of the connection. */
+    name: string,
+    /**The url of the connection. */
+    url: string | null,
+    /**Unknown. a non-empty string. */
+    icon: string
+}
+export = DiscordConnection
