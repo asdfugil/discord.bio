@@ -12,18 +12,24 @@ npm i discord.bio
 Example 1
 ```js
 const Bio = require("discord.bio")
-const bio = new Bio()
+const bio = new Bio.Bio()
 bio.fetchUserDetails("nickchan").then(console.log)
 ```
 Example 2
 ```js
 const Bio = require("discord.bio")
-const bio = new Bio()
-bio.login("some-oauth2-access-token").then(() => bio.fetchUserDetails()).then(console.log)
+const bio = new Bio.Bio()
+bio.login("some-cookie").then(() => bio.fetchUserDetails()).then(console.log)
 ```
 ## Class
 
 ### Bio
+
+#### Constructor
+
+```ts
+new Bio.Bio(baseURL?:string)
+```
 
 #### .cookie
 
@@ -59,7 +65,7 @@ Returns:`Promise<`[UserConnections](###UserConnections)`>`
 
 Login by cookie
 
-Returns: `Promise<string>`   The access token used
+Returns: `Promise<`[ClientUser](###ClientUser)`>`   The logged user
 
 #### .fetchTotalUsers()
 
@@ -72,6 +78,11 @@ Returns: `Promise<number>`  Total number of users using discord.bio
 Fetches the API Version
 
 Returns: `Promise<string>` The API Version
+
+#### .fetchTopUpvoted()
+
+Fetches the most upvoted users.
+Returns:`Promise<Array<`[PartialProfile](###PartialProfile)`>>`
 
 #### .createSlug(slug)
 
@@ -101,6 +112,14 @@ Returns:`Promise<void>`
 Upvote someone
 
 Returns: `Promise<void>`
+
+### User
+
+### RawUser  [ABSTRACT]
+
+### ClientUser
+
+
 
 ## Type definitions
 
