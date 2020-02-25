@@ -1,6 +1,7 @@
 import DiscordConnection from './structures/DiscordConnection'
 import Profile from './structures/Profile'
 import User from './structures/User'
+import PartialProfile from './structures/PartialProfile'
 import ClientUser from './structures/ClientUser'
 import fetchUserDetails from './endpoints/fetchUserDetails'
 import fetchDiscordConnections from './endpoints/fetchDiscordConnections'
@@ -31,7 +32,7 @@ class Bio {
     deleteProfile:(this:Bio,) => Promise<void>
     createSlug:(this:Bio,slug:string) => Promise<void>
     joinServer: (this: Bio) => Promise<void>
-    fetchTopUpvoted: (this:Bio) => Promise<Array<User>>
+    fetchTopUpvoted: (this:Bio) => Promise<Array<PartialProfile>>
     upvote: (this: Bio, slugOrID: string) => Promise<void>
     login: (this: Bio, cookie: string) => Promise<ClientUser>
     /**
