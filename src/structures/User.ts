@@ -1,9 +1,13 @@
 import RawUser from  './RawUser'
 /**Represent A User */
 class User extends RawUser {
+    /**The DiscordTag#1234 tag of the user */
     tag: string
+    /**The avatar URL of the user */
     avatarURL: string | null
+    /**The link to the user's avatr URL,or their default one if they don't have one. */
     displayAvatarURL: string
+    /**The link to the user's default avatar URL */
     defaultAvatarURL:string
     /**
      * @param rawUser Thee raw user returned by the API
