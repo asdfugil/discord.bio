@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import Bio from '..'
+import { Bio } from '..'
 async function createSlug(this:Bio,slug: string): Promise<void> {
     console.warn("This endpoint no longer works for users that already have a slug.")
     const result = await fetch(`${this.baseURL}/createSlug/`, {

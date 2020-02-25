@@ -1,4 +1,4 @@
-import Bio from '..'
+import { Bio } from '..'
 import fetch from 'node-fetch'
 /**Joins a user to the offical server. */
 async function joinServer(this:Bio): Promise<void> {

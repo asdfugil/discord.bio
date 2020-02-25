@@ -1,6 +1,6 @@
   import DiscordConnection from '../structures/DiscordConnection'
   import fetch from 'node-fetch'
-  import Bio from '..'
+  import { Bio } from '..'
   /**
      * Fetch discord connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
      */

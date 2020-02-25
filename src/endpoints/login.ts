@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import Bio from '..'
+import { Bio } from '..'
 import ClientUser from '../structures/ClientUser'
 import RawClientUser from '../structures/RawClientUser'
 async function login(this:Bio,cookie:string):Promise<ClientUser> {

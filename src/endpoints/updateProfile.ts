@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import Bio from '..'
+import { Bio } from '..'
 /**Upate discord.bio profile
  * @param cookie - Session cookie
  * @param settings - The new profile settings

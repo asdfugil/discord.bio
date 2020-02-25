@@ -2,6 +2,8 @@ import DiscordConnection from './structures/DiscordConnection'
 import Profile from './structures/Profile'
 import PartialProfile from './structures/PartialProfile'
 import ClientUser from './structures/ClientUser'
+import User from './structures/User'
+import RawUser from './structures/RawUser'
 import fetchUserDetails from './endpoints/fetchUserDetails'
 import fetchDiscordConnections from './endpoints/fetchDiscordConnections'
 import fetchUserConnections from './endpoints/fetchUserConnections'
@@ -15,7 +17,7 @@ import fetchTopUpvoted from './endpoints/fetchTopUpvoted'
 import upvote from './endpoints/upvote'
 import login from './endpoints/login'
 /**The main hub for interacting with the discord.bio API. */
-class Bio {
+export class Bio {
     /**The base URL used in making API requests */
     baseURL: string
     /**Authorization cookie. */
@@ -65,4 +67,4 @@ class Bio {
         this.cookie = ''
     }
 }
-export = Bio
+export { User,ClientUser,RawUser }

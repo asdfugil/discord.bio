@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import Bio from '..'
+import { Bio } from '..'
 async function deleteProfile(this:Bio): Promise<void> {
     const result = await fetch(`${this.baseURL}/deleteProfile/`, {
         method: "POST",

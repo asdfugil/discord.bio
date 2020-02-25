@@ -33,6 +33,10 @@ Authorization cookie used by this bio instance.
 
 The base url of hte api. Defaults to `https://api.discord.bio/v1`.
 
+#### .user
+
+The logged in user. Type [ClientUser](###ClientUser)
+
 #### .fetchUserDetails(slugOrID?)
 
 Fetches profile by user id or slug ,if sulgOrID is not provided,it will retrun the details of the logged in user.
@@ -69,7 +73,34 @@ Fetches the API Version
 
 Returns: `Promise<string>` The API Version
 
+#### .createSlug(slug)
 
+> This no longer works for users that already have a slug
+
+Create a slug for the logged in user.
+
+Returns: `Promise<void>`
+
+#### .deleteProfile()
+
+> Please think twice before using this.
+
+Deletes the logged in user's discord.bio account.
+
+Returns: `Promise<void>`
+
+#### .updateProfile(settings)
+
+Update thelogged in user's profile
+
+`settings` is the new profile.
+Returns:`Promise<void>`
+
+#### .upvote(slugOrID)
+
+Upvote someone
+
+Returns: `Promise<void>`
 
 ## Type definitions
 

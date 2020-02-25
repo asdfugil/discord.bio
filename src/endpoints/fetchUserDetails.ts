@@ -1,7 +1,6 @@
-import fetchOptions from '../structures/fetchOptions'
 import Profile from '../structures/Profile'
 import fetch from 'node-fetch'
-import Bio from '../'
+import { Bio } from '..'
 /**
  * Fetch profile by user id or slug,if sulgOrID is not provided,it will retrun the details of the logged in user.
  */

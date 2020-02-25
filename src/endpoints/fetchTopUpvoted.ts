@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import Bio from '..'
+import { Bio } from '..'
 import User from '../structures/User'
 import PartialProfile from '../structures/PartialProfile'
 async function fetchTopUpvoted(this:Bio):Promise<Array<PartialProfile>> {

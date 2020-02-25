@@ -1,7 +1,6 @@
-import fetchOptions from '../structures/fetchOptions'
 import UserConnections from '../structures/UserConnections'
 import fetch from 'node-fetch'
-import Bio from '..'
+import { Bio } from '..'
 /**
  * Fetch user connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
  */
