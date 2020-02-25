@@ -8,7 +8,7 @@
     async function fetchDiscordConnections(this:Bio,options: fetchOptions): Promise<Array<DiscordConnection>> {
         const result = await fetch(`${this.baseURL}/DiscordConnections/${options.slugOrID}`, {
             headers: {
-                cookie: options.cookie || ''
+                cookie: this.cookie
             }
         }).then(response => response.json())
         if (!result.success) throw new Error(result.message || "Unsuccessful response.")

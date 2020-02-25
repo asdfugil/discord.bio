@@ -4,12 +4,12 @@ import Bio from '..'
  * @param cookie - Session cookie
  * @param settings - The new profile settings
  */
-async function updateProfile(this:Bio,cookie: string, settings: any): Promise<void> {
+async function updateProfile(this:Bio, settings: any): Promise<void> {
     const result = await fetch(`${this.baseURL}/updateProfile/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=UTF-8",
-            cookie: cookie
+            cookie: this.cookie
         },
         body: JSON.stringify(settings)
     }).then(response => response.json())

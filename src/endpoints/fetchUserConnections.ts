@@ -8,7 +8,7 @@ import Bio from '..'
 async function fetchUserConnections(this:Bio,options: fetchOptions): Promise<UserConnections> {
     const result = await fetch(`${this.baseURL}/UserConnections/${options.slugOrID}`, {
         headers: {
-            cookie: options.cookie || ''
+            cookie: this.cookie
         }
     }).then(response => response.json())
     if (result.message) throw new Error(result.message)

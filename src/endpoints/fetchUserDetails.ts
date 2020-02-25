@@ -8,7 +8,7 @@ import Bio from '../'
 async function fetchUserDetails(this:Bio,options: fetchOptions): Promise<Profile> {
     const profile = await fetch(`${(this).baseURL}/UserDetails/${options.slugOrID || ''}`, {
         headers: {
-            cookie: options.cookie || ''
+            cookie: this.cookie
         }
     }).then(response => response.json())
     if (profile.success) {
