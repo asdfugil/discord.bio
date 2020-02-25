@@ -1,5 +1,5 @@
 type Snowflake = string
-abstract class RawUser {
+class RawUser {
     /**The user id of the user. */
     id: Snowflake
     /**The username of the user. */
