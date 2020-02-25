@@ -31,60 +31,62 @@ bio.login("some-cookie").then(() => bio.fetchUserDetails()).then(console.log)
 new Bio.Bio(baseURL?:string)
 ```
 
-#### .cookie
+#### Properties
+
+##### .cookie
 
 Authorization cookie used by this bio instance.
 
-#### .baseURL 
+##### .baseURL 
 
 The base url of hte api. Defaults to `https://api.discord.bio/v1`.
 
-#### .user
+##### .user
 
 The logged in user. Type [ClientUser](###ClientUser)
+#### Methods
 
-#### .fetchUserDetails(slugOrID?)
+##### .fetchUserDetails(slugOrID?:string)
 
 Fetches profile by user id or slug ,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
 Returns: `Promise<`[Profile](###Porfile)`>`
 
-#### .fetchDiscordConnections(slugOrID?)
+##### .fetchDiscordConnections(slugOrID?:string)
 
 Fetches discord connections by user id or slug ,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
 Returns: `Promise<`[DiscordConnection](###DiscordConnection)`[]>`
 
-#### .fetchUserConnections(slugOrID?)
+##### .fetchUserConnections(slugOrID?:string)
 
 Fetches User connections by user id or slug,if sulgOrID is not provided,it will retrun the details of the logged in user.
 
 Returns:`Promise<`[UserConnections](###UserConnections)`>` 
 
-#### .login(cookie)
+##### .login(cookie)
 
 Login by cookie
 
 Returns: `Promise<`[ClientUser](###ClientUser)`>`   The logged user
-
-#### .fetchTotalUsers()
+##### .fetchTotalUsers()
 
 Fetches the total number of users using discord.bio
 
 Returns: `Promise<number>`  Total number of users using discord.bio
 
-#### .fetchAPIVersion()
+##### .fetchAPIVersion()
 
 Fetches the API Version
 
 Returns: `Promise<string>` The API Version
 
-#### .fetchTopUpvoted()
+##### .fetchTopUpvoted()
 
 Fetches the most upvoted users.
 Returns:`Promise<Array<`[PartialProfile](###PartialProfile)`>>`
 
-#### .createSlug(slug)
+##### .createSlug(slug:string)
 
 > This no longer works for users that already have a slug
 
@@ -92,7 +94,7 @@ Create a slug for the logged in user.
 
 Returns: `Promise<void>`
 
-#### .deleteProfile()
+##### .deleteProfile()
 
 > Please think twice before using this.
 
@@ -100,26 +102,86 @@ Deletes the logged in user's discord.bio account.
 
 Returns: `Promise<void>`
 
-#### .updateProfile(settings)
+##### .updateProfile(settings)
 
 Update thelogged in user's profile
 
 `settings` is the new profile.
 Returns:`Promise<void>`
 
-#### .upvote(slugOrID)
+##### .upvote(slugOrID:string)
 
 Upvote someone
-
 Returns: `Promise<void>`
 
-### User
+### User     *extends [RawUser](###RawUser)*
 
-### RawUser  [ABSTRACT]
+Represent a user 
 
-### ClientUser
+#### Properties
 
+##### .avatarURL 
 
+The URL to the users's avatar. 
+Type: `string` or `null`
+
+##### .displayAvatarURL
+
+The URL to the user's avatar if they have one,or their default one if they don't have one.
+Type: `string`
+
+##### .defaultAvatarURL
+
+Th URL to the user's default avatar.
+Type: `string`
+
+### RawUser   
+Represent an unprocessed user returned by the api
+#### Properties
+##### .id
+
+The User ID of the user
+Type:`Snowflake`
+
+##### .username
+
+The username of the user
+Type:`string`
+
+##### .avatar
+
+The avatar hash of the user
+Type:`string`
+
+##### .discriminator
+
+The discriminator of the user
+Type:`string`
+
+### ClientUser     *extends [User](###RawUser)*
+
+Represent the logged in user.
+
+#### Properties
+
+##### .mfa_enabled
+
+Whether the user have their multi-factor authentication enabled.
+
+##### .connections
+
+I really don't know what this is...
+Type: `unknown`
+
+##### .flags
+
+The [flags](https://discordapp.com/developers/docs/resources/user#user-object-user-flags) on the user's account.
+Type:`number`
+
+##### .premium_type
+
+I don't know.
+Type: `number`
 
 ## Type definitions
 
@@ -157,16 +219,44 @@ key|type|Meaning
 settings|[ProfileSettings](###ProfileSettings)|The settings of this profile.
 discord|[User](###User)|The user that this profile represents.
 
-### User
-
-Represent a discord user. 
-
-key|type|Meaning
+### PartialProfile
+Represent an incomplete profile
+key|type|meaning
 ---|---|---
-id| [Snowflake](###Snowflake) | The user id of the user. 
-username| `string`| The username of the user. 
-avatar| `string`| The avatar hash of the user. 
-discriminator| `string`| The discriminator of the user. 
+id| number                                              |The discord.bio ID of the profile.
+user| [PartialProfileSettings](###PartialProfileSettings) |The settings of this profile.
+discord| [User](###User)                                     |The user of this profile
+
+### PartialProfileSettings
+
+The settings of an incomplete profile
+
+| key            | type                      | meaning                             |
+| -------------- | ------------------------- | ----------------------------------- |
+| user_id        | [Snowflake](###Snowflake) | The user ID of the profile's user   |
+| upvotes        | number                    | The number of upvote on the profile |
+| verified       | boolean                   | Whether the user has verified.      |
+| description    | `string` or `null`        | The description of the profile      |
+| premium_status | number                    | I don't know                        |
+| name           | string                    | The slug of the profile.            |
+
+### RawClientUser
+
+The unprocessed client user returned by the API
+
+| key           | type                      | meaning                            |
+| ------------- | ------------------------- | ---------------------------------- |
+| id            | [Snowflake](###Snowflake) | The user id of the user.           |
+| username      | string                    | The username of the user.          |
+| avatar        | `string` or `null`        | The avatar hash of the user.       |
+| discriminator | string                    | The discriminator of the user.     |
+| locale        | string                    | The locale of the user             |
+| premium_type  | number                    | I don't know.                      |
+| mfa_enabled   | boolean                   | Whether the suer have MFA enabled. |
+| flags         | number                    | The flags on this user             |
+| connections   | `unknown`                 | I don't know.                      |
+
+
 
 ### DiscordConnection
 
