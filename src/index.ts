@@ -1,6 +1,5 @@
 import DiscordConnection from './structures/DiscordConnection'
 import Profile from './structures/Profile'
-import User from './structures/User'
 import PartialProfile from './structures/PartialProfile'
 import ClientUser from './structures/ClientUser'
 import fetchUserDetails from './endpoints/fetchUserDetails'
