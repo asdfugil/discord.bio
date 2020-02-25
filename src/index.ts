@@ -23,17 +23,28 @@ class Bio {
     cookie:string
     /**Represent the logged in user. */
     user?:ClientUser
+    /**Fetches a user's details */
     fetchUserDetails: (slugOrID:string) => Promise<Profile>
+    /**Fetches a user's discord connections */
     fetchDiscordConnections: (this: Bio, slugOrID:string) => Promise<DiscordConnection[]>
+    /**Fetches a user's connections */
     fetchUserConnections: (this: Bio, slugOrID:string) => Promise<import("c:/Users/towin/Desktop/nick/not-avaliable/discord.bio/src/structures/UserConnections")>
+    /**Fetches total no. of users using discord.bio */
     fetchTotalUsers: (this:Bio) => Promise<number>
+    /**Fetches the api version. */
     fetchAPIVersion: (this:Bio) => Promise<string>
+    /**Update the logged in user's profile */
     updateProfile: (this:Bio,settings:any) => Promise<void>
+    /**Delete the logged in user's profile */
     deleteProfile:(this:Bio,) => Promise<void>
+    /**Create a slug for the logged in user.*/
     createSlug:(this:Bio,slug:string) => Promise<void>
+    /**Joines the logged in user to the offical server. */
     joinServer: (this: Bio) => Promise<void>
+    /**Fetch the top upvoted users */
     fetchTopUpvoted: (this:Bio) => Promise<Array<PartialProfile>>
     upvote: (this: Bio, slugOrID: string) => Promise<void>
+    /**Login using session cookie */
     login: (this: Bio, cookie: string) => Promise<ClientUser>
     /**
      * @param baseURL - The API base URL
