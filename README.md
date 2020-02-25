@@ -25,9 +25,9 @@ bio.login("some-oauth2-access-token").then(() => bio.fetchUserDetails()).then(co
 
 ### Bio
 
-#### .accessToken?
+#### .cookie
 
-Authorization token used by this bio instance.
+Authorization cookie used by this bio instance.
 
 #### .baseURL 
 
@@ -51,9 +51,9 @@ Fetches User connections by user id or slug,if sulgOrID is not provided,it will 
 
 Returns:`Promise<`[UserConnections](###UserConnections)`>` 
 
-#### .login(accessToken)
+#### .login(cookie)
 
-Login by OAuth2 access token
+Login by cookie
 
 Returns: `Promise<string>`   The access token used
 
@@ -68,6 +68,8 @@ Returns: `Promise<number>`  Total number of users using discord.bio
 Fetches the API Version
 
 Returns: `Promise<string>` The API Version
+
+
 
 ## Type definitions
 

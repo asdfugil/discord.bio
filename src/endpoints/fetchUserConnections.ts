@@ -5,8 +5,8 @@ import Bio from '..'
 /**
  * Fetch user connections by slug or user id,if sulgOrID is not provided,it will retrun the details of the logged in user.
  */
-async function fetchUserConnections(this:Bio,options: fetchOptions): Promise<UserConnections> {
-    const result = await fetch(`${this.baseURL}/UserConnections/${options.slugOrID}`, {
+async function fetchUserConnections(this:Bio,slugOrID:string): Promise<UserConnections> {
+    const result = await fetch(`${this.baseURL}/UserConnections/${slugOrID}`, {
         headers: {
             cookie: this.cookie
         }

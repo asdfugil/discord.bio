@@ -5,8 +5,8 @@ import Bio from '../'
 /**
  * Fetch profile by user id or slug,if sulgOrID is not provided,it will retrun the details of the logged in user.
  */
-async function fetchUserDetails(this:Bio,options: fetchOptions): Promise<Profile> {
-    const profile = await fetch(`${(this).baseURL}/UserDetails/${options.slugOrID || ''}`, {
+async function fetchUserDetails(this:Bio,slugOrID:string): Promise<Profile> {
+    const profile = await fetch(`${(this).baseURL}/UserDetails/${slugOrID || ''}`, {
         headers: {
             cookie: this.cookie
         }

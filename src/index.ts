@@ -23,10 +23,10 @@ class Bio {
     cookie:string
     /**Represent the logged in user. */
     user?:ClientUser
-    fetchUserDetails: (options: import("./structures/fetchOptions")) => Promise<Profile>
-    fetchDiscordConnections: (this: Bio, options: import("./structures/fetchOptions")) => Promise<DiscordConnection[]>
-    fetchUserConnections: (this: Bio, options: import("./structures/fetchOptions")) => Promise<import("c:/Users/towin/Desktop/nick/not-avaliable/discord.bio/src/structures/UserConnections")>
-    fetchTotalUsers: (this:Bio,options:import("./structures/fetchOptions")) => Promise<number>
+    fetchUserDetails: (slugOrID:string) => Promise<Profile>
+    fetchDiscordConnections: (this: Bio, slugOrID:string) => Promise<DiscordConnection[]>
+    fetchUserConnections: (this: Bio, slugOrID:string) => Promise<import("c:/Users/towin/Desktop/nick/not-avaliable/discord.bio/src/structures/UserConnections")>
+    fetchTotalUsers: (this:Bio) => Promise<number>
     fetchAPIVersion: (this:Bio) => Promise<string>
     updateProfile: (this:Bio,settings:any) => Promise<void>
     deleteProfile:(this:Bio,) => Promise<void>
