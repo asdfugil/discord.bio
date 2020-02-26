@@ -118,7 +118,7 @@ Returns: `Promise<void>`
 
 Represent a user 
 
-#### Properties
+#### Own Properties
 
 ##### .avatarURL 
 
@@ -162,7 +162,7 @@ Type:`string`
 
 Represent the logged in user.
 
-#### Properties
+#### Own Properties
 
 ##### .mfa_enabled
 
