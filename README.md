@@ -168,20 +168,25 @@ Represent the logged in user.
 ##### .mfa_enabled
 
 Whether the user have their multi-factor authentication enabled.
+Type: `boolean`
 
 ##### .connections
 
-I really don't know what this is...
-Type: `unknown`
+[Returns the user's linked third party accounts](https://discordapp.com/developers/docs/resources/user#connection-object)
+Type: `array of objects`
 
 ##### .flags
 
 The [flags](https://discordapp.com/developers/docs/resources/user#user-object-user-flags) on the user's account.
-Type:`number`
+Type: `number`
 
 ##### .premium_type
 
-I don't know.
+The type of Nitro subscription that the user has on their account
+```
+1 = Nitro Classic
+2 = Nitro
+```
 Type: `number`
 
 ## Type definitions
