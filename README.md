@@ -182,7 +182,7 @@ Type: `number`
 
 ##### .premium_type
 
-The type of Nitro subscription that the user has on their account
+The [type of Nitro subscription](https://discordapp.com/developers/docs/resources/user#user-object-premium-types) that the user has on their account
 ```
 1 = Nitro Classic
 2 = Nitro
@@ -243,7 +243,7 @@ The settings of an incomplete profile
 | upvotes        | number                    | The number of upvote on the profile |
 | verified       | boolean                   | Whether the user has verified.      |
 | description    | `string` or `null`        | The description of the profile      |
-| premium_status | number                    | Type of nitro subscription of the user |
+| premium_status | number                    | [Type of nitro subscription](https://discordapp.com/developers/docs/resources/user#user-object-premium-types) of the user |
 | name           | string                    | The slug of the profile.            |
 
 ### RawClientUser
