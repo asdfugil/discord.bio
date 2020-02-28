@@ -243,7 +243,7 @@ The settings of an incomplete profile
 | upvotes        | number                    | The number of upvote on the profile |
 | verified       | boolean                   | Whether the user has verified.      |
 | description    | `string` or `null`        | The description of the profile      |
-| premium_status | number                    | I don't know                        |
+| premium_status | number                    | Type of nitro subscription of the user |
 | name           | string                    | The slug of the profile.            |
 
 ### RawClientUser
@@ -274,7 +274,7 @@ id| `number`| The ID of the connection.
 connection_type| `string`| The type of the connection. 
 name| `string` | The name of the connection. 
 url| `string` or  `null`| The url of the connection. 
-icon| `string`| Unknown. a non-empty string. 
+icon| `string`| [The user's icon hash](https://discordapp.com/developers/docs/reference#image-formatting)
 ### UserConnections
 
 An object containing discord.bio connections.The property name is the type of connection.
