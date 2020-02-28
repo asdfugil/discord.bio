@@ -3,11 +3,11 @@ import RawClientUser from './RawClientUser'
 class ClientUser extends User {
     /**Whether the user have mfa enabled*/
     mfa_enabled: boolean
-    /**idk */
-    connections: unknown
+    /**the connections of the user */
+    connections: array
     /**The flags on the user */
     flags: number
-    /**idk */
+    /** the type of premium the user has */
     premium_type: number
     constructor(rawClientUser:RawClientUser) {
         const { id,username,avatar,discriminator,mfa_enabled,connections,flags,premium_type } = rawClientUser
