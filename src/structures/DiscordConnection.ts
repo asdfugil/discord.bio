@@ -8,7 +8,7 @@ type DiscordConnection = {
     name: string,
     /**The url of the connection. */
     url: string | null,
-    /**Unknown. a non-empty string. */
+    /**The hash of the icon */
     icon: string
 }
 export = DiscordConnection
