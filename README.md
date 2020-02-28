@@ -257,10 +257,10 @@ The unprocessed client user returned by the API
 | avatar        | `string` or `null`        | The avatar hash of the user.       |
 | discriminator | string                    | The discriminator of the user.     |
 | locale        | string                    | The locale of the user             |
-| premium_type  | number                    | I don't know.                      |
-| mfa_enabled   | boolean                   | Whether the suer have MFA enabled. |
+| premium_type  | number                    | Type of nitro subscription of the user |
+| mfa_enabled   | boolean                   | Whether the user has MFA enabled.  |
 | flags         | number                    | The flags on this user             |
-| connections   | `unknown`                 | I don't know.                      |
+| connections   | `unknown`                 | The third-party connections of this user |
 
 
 
