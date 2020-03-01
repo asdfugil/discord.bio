@@ -29,7 +29,7 @@ export class Bio {
     /**Fetches a user's discord connections */
     fetchDiscordConnections: (this: Bio, slugOrID:string) => Promise<DiscordConnection[]>
     /**Fetches a user's connections */
-    fetchUserConnections: (this: Bio, slugOrID:string) => Promise<import("c:/Users/towin/Desktop/nick/not-avaliable/discord.bio/src/structures/UserConnections")>
+    fetchUserConnections: (this: Bio, slugOrID:string) => Promise<import("./structures/UserConnections")>
     /**Fetches total no. of users using discord.bio */
     fetchTotalUsers: (this:Bio) => Promise<number>
     /**Fetches the api version. */
