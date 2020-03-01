@@ -1,26 +1,26 @@
 {
-  "name": "discord.bio",
-  "version": "3.0.0-beta3",
-  "description": "a node.js wrapper of the discord.bio api",
-  "main": "dist/index.js",
-  "types": "types/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx -p typescript tsc",
-    "postinstall": "npx -p typescript tsc"
-  },
-  "author": "Nick Chan#0001",
-  "license": "ISC",
-  "dependencies": {
-    "@types/node-fetch": "^2.5.4",
-    "node-fetch": "^2.6.0",
-    "typescript": "^3.7.5"
-  },
-  "keywords": [
-    "discord.bio"
-  ],
-  "devDependencies": {
-    "@types/node": "^13.7.0"
-  },
-  "repository": "github:Assfugil/discord.bio.js"
+	"name": "discord.bio",
+	"version": "3.0.0-beta3",
+	"description": "a node.js wrapper of the discord.bio api",
+	"main": "dist/index.js",
+	"types": "types/index.d.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "npx -p typescript tsc",
+		"postinstall": "npx -p typescript tsc"
+	},
+	"author": "Nick Chan#0001",
+	"license": "ISC",
+	"dependencies": {
+		"@types/node-fetch": "^2.5.4",
+		"node-fetch": "^2.6.0",
+		"typescript": "^3.7.5"
+	},
+	"keywords": [
+		"discord.bio"
+	],
+	"devDependencies": {
+		"@types/node": "^13.7.0"
+	},
+	"repository": "github:Assfugil/discord.bio.js"
 }
