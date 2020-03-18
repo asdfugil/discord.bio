@@ -168,20 +168,25 @@ Represent the logged in user.
 ##### .mfa_enabled
 
 Whether the user have their multi-factor authentication enabled.
+Type: `boolean`
 
 ##### .connections
 
-I really don't know what this is...
-Type: `unknown`
+[Returns the user's linked third party accounts](https://discordapp.com/developers/docs/resources/user#connection-object)
+Type: `array of objects`
 
 ##### .flags
 
 The [flags](https://discordapp.com/developers/docs/resources/user#user-object-user-flags) on the user's account.
-Type:`number`
+Type: `number`
 
 ##### .premium_type
 
-I don't know.
+The [type of Nitro subscription](https://discordapp.com/developers/docs/resources/user#user-object-premium-types) that the user has on their account
+```
+1 = Nitro Classic
+2 = Nitro
+```
 Type: `number`
 
 ## Type definitions
@@ -238,7 +243,7 @@ The settings of an incomplete profile
 | upvotes        | number                    | The number of upvote on the profile |
 | verified       | boolean                   | Whether the user has verified.      |
 | description    | `string` or `null`        | The description of the profile      |
-| premium_status | number                    | I don't know                        |
+| premium_status | number                    | [Type of nitro subscription](https://discordapp.com/developers/docs/resources/user#user-object-premium-types) of the user |
 | name           | string                    | The slug of the profile.            |
 
 ### RawClientUser
@@ -252,10 +257,10 @@ The unprocessed client user returned by the API
 | avatar        | `string` or `null`        | The avatar hash of the user.       |
 | discriminator | string                    | The discriminator of the user.     |
 | locale        | string                    | The locale of the user             |
-| premium_type  | number                    | I don't know.                      |
-| mfa_enabled   | boolean                   | Whether the suer have MFA enabled. |
+| premium_type  | number                    | Type of nitro subscription of the user |
+| mfa_enabled   | boolean                   | Whether the user has MFA enabled.  |
 | flags         | number                    | The flags on this user             |
-| connections   | `unknown`                 | I don't know.                      |
+| connections   | `unknown`                 | The third-party connections of this user |
 
 
 
@@ -269,7 +274,7 @@ id| `number`| The ID of the connection.
 connection_type| `string`| The type of the connection. 
 name| `string` | The name of the connection. 
 url| `string` or  `null`| The url of the connection. 
-icon| `string`| Unknown. a non-empty string. 
+icon| `string`| [The user's icon hash](https://discordapp.com/developers/docs/reference#image-formatting)
 ### UserConnections
 
 An object containing discord.bio connections.The property name is the type of connection.
