@@ -16,7 +16,7 @@ type RawClientUser = {
     /**The flags on this user */
     flags:number
     /**idk */
-    connections:unknown
+    connections:Array<any>
 }
 type Snowflake = string
 export = RawClientUser

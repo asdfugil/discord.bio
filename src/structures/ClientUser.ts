@@ -4,7 +4,7 @@ class ClientUser extends User {
     /**Whether the user have mfa enabled*/
     mfa_enabled: boolean
     /**the connections of the user */
-    connections: array
+    connections: Array<any>
     /**The flags on the user */
     flags: number
     /** the type of premium the user has */
