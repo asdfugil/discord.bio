@@ -173,7 +173,7 @@ Type: `boolean`
 ##### .connections
 
 [Returns the user's linked third party accounts](https://discordapp.com/developers/docs/resources/user#connection-object)
-Type: `array of objects`
+Type: `Array<any>`
 
 ##### .flags
 
