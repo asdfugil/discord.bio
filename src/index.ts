@@ -17,7 +17,6 @@ import login from './endpoints/login'
 import banner from './endpoints/user/banner'
 import api from './util/api'
 import FormData from 'form-data'
-import { version } from '../package.json'
 import update from './endpoints/user/update'
 import UserConnections from './structures/UserConnections'
 import join from './endpoints/user/join'
@@ -46,8 +45,6 @@ export class Bio {
     discordConnections: (this: Bio, slugOrID?: string) => Promise<DiscordConnection[]>
     update: (this: Bio, settings: import("./structures/ClientUserProfileSettings")) => Promise<void>
     join: (this: Bio) => Promise<void>
-    /** THe version of the library */
-    library_version: string
 
     /**
      * @param baseURL - The API base URL
@@ -70,7 +67,6 @@ export class Bio {
         this.update = update
         this.upvote = upvote
         this.join = join
-        this.library_version = version
     }
 }
 export { User, ClientUser, RawUser }
