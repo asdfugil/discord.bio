@@ -1,6 +1,6 @@
 {
   "name": "discord.bio",
-  "version": "3.0.4",
+  "version": "4.0.0-beta1",
   "description": "a node.js wrapper of the discord.bio api",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -13,6 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "@types/node-fetch": "^2.5.4",
+    "@types/ws": "^7.2.4",
+    "discord.js": "^12.1.1",
+    "form-data": "^3.0.0",
     "node-fetch": "^2.6.0",
     "typescript": "^3.7.5"
   },
@@ -22,5 +25,5 @@
   "devDependencies": {
     "@types/node": "^13.7.0"
   },
-  "repository": "github:Assfugil/discord.bio.js"
+  "repository": "github:Assfugil/discord.bio"
 }

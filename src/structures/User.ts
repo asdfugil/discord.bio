@@ -1,6 +1,7 @@
 import RawUser from  './RawUser'
+import UserFlags from './UserFlags'
 /**Represent A User */
-class User extends RawUser {
+class User {
     /**The DiscordTag#1234 tag of the user */
     tag: string
     /**The avatar URL of the user */
@@ -9,12 +10,20 @@ class User extends RawUser {
     displayAvatarURL: string
     /**The link to the user's default avatar URL */
     defaultAvatarURL:string
+    public_flags:UserFlags
+    username: string
+    discriminator: string
+    id: string
+    avatar: string | null
     /**
      * @param rawUser Thee raw user returned by the API
      */
     constructor(rawUser: RawUser) {
-        const { id, username, avatar, discriminator } = rawUser
-        super(id, username, avatar, discriminator)
+        const { id, username, avatar, discriminator,public_flags } = rawUser
+        this.id = id
+        this.username = username
+        this.discriminator = discriminator
+        this.avatar = avatar
         this.tag = `${this.username}#${this.discriminator}`
         rawUser.avatar ? this.avatarURL = `https://cdn.discordapp.com/avatars/${rawUser.id}/${rawUser.avatar}` : this.avatarURL = null
         const a = "https://discordapp.com/assets/"
@@ -27,6 +36,7 @@ class User extends RawUser {
         ].map(x => a + x)
         this.defaultAvatarURL = urls[parseInt(rawUser.discriminator.slice(3))] || urls[parseInt(rawUser.discriminator.slice(3)) - 5]
         this.avatarURL ? this.displayAvatarURL = this.avatarURL : this.displayAvatarURL = this.defaultAvatarURL
+        this.public_flags = new UserFlags(public_flags)
     }
 }
 export = User

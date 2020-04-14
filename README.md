@@ -1,4 +1,6 @@
 # discord.bio
+**This is an early beta preview and the documentation is not updated yet,please proceed with caution**
+(but old version is now broken)
 Node.js wrapper for https://discord.bio
 
 [![NPM](https://nodei.co/npm/discord.bio.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/discord.bio/)
@@ -6,9 +8,44 @@ Node.js wrapper for https://discord.bio
 To install: 
 
 ```bash
-npm i @types/node-fetch
 npm i discord.bio 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Old documentation**
+
+<!--
+
 ## Examples
 Example 1
 ```js
@@ -314,3 +351,4 @@ If we have a snowflake '266241948824764416' we can represent it as binary:
 
 **Solution:** run `npm i @types/node-fetch`
 This should solve other TS**** errors
+-->

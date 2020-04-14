@@ -8,11 +8,14 @@ class RawUser {
     avatar: string | null
     /**The discriminator of the user. */
     discriminator: string
-    constructor(id: Snowflake, username: string, avatar: string | null, discriminator: string) {
+    /**Public flags of the suer */
+    public_flags:number
+    constructor(id: Snowflake, username: string, avatar: string | null, discriminator: string,public_flags:number) {
         this.id = id
         this.username = username
         this.avatar = avatar
         this.discriminator = discriminator
+        this.public_flags = public_flags
     }
 }
 export = RawUser
