@@ -16,7 +16,7 @@ async function details (this:Bio,slugOrID?:string) {
             case null : {}
         }
         //append userful properties
-        profile.discord = new User(profile.discord)
+        profile.payload.discord = new User(profile.payload.discord)
         return profile.payload
 }
 export = details

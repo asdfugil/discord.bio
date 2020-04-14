@@ -9,7 +9,6 @@ import FormData from 'form-data'
  * @param body Request body
  */
 async function api(this:Bio,route:string,method:string,headers?:any,body?:string | Buffer | FormData) {
-    if (!method) method = 'GET'
     const response = await fetch(this.baseURL + route,{
         method:method,
         headers:headers,

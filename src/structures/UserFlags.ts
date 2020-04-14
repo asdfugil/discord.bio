@@ -3,7 +3,7 @@ class UserFlags extends BitField<string> {
     constructor(bits:number) {
         super(bits)
     }
-    FLAGS = {
+    static FLAGS = {
         DISCORD_EMPLOYEE:1 << 0,
         DISCORD_PARTNER:1 << 1,
         HYPESQUAD_EVENTS:1 << 2,
@@ -16,7 +16,7 @@ class UserFlags extends BitField<string> {
         SYSTEM:1 << 12,
         BUG_HUNTER_LEVEL_2:1 << 14
     }
-    ALL = Object.values(this.FLAGS).reduce((all, p) => all | p, 0)
-    DEFAULT = 0
+    static ALL = Object.values(UserFlags.FLAGS).reduce((all, p) => all | p, 0)
+    static DEFAULT = 0
 }
 export = UserFlags
