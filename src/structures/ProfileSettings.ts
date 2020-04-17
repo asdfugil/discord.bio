@@ -1,17 +1,12 @@
+import UserFlags from './UserFlags'
 /**The profile settings. */
 type ProfileSettings = {
-    /**ID of the profile */
-    id: number
     /**The slug */
     name: string
     /**User ID of the profile's user. */
     user_id: Snowflake
     /**The time the profile is created.*/
     created_at: string | null
-    /**View count of this profile. */
-    view_count: number
-    /**The ID of the slug. */
-    slug_id: number
     /**The status of the user. */
     status: string | null
     /**The description of the user. */
@@ -33,7 +28,7 @@ type ProfileSettings = {
     /**The number of upvotes the user has got */
     upvotes: number,
     /**The flags on the user's account. https://discordapp.com/developers/docs/resources/user#user-object-user-flags */
-    flags: number
+    flags: UserFlags
     /**Whether the user is verified */
     verified: boolean
 }

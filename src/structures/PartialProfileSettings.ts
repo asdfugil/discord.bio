@@ -3,8 +3,8 @@ type PartialProfileSettings = {
     user_id:Snowfalke
     upvotes:number
     description:string | null
-    verified:0 | 1
-    premium_status:0
+    verified:boolean
+    premium_status:boolean
     name:string
 }
 export = PartialProfileSettings

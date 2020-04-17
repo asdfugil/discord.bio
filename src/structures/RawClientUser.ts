@@ -1,3 +1,4 @@
+import DiscordConnection from './DiscordConnection'
 type RawClientUser = {
     /**The user id of the user. */
     id: Snowflake
@@ -9,14 +10,14 @@ type RawClientUser = {
     discriminator: string
     /**The locale of the user */
     locale:string
-    /**idk */
+    /**The type of nitro that the user has */
     premium_type:number
-    /**Whether the suer have MFA enabled. */
+    /**Whether the user have MFA enabled. */
     mfa_enabled:boolean
     /**The flags on this user */
     flags:number
-    /**idk */
-    connections:Array<any>
+    /**The connections of this user on discord. */
+    connections:Array<DiscordConnection>
     public_flags:number
 }
 type Snowflake = string

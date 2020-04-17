@@ -3,3 +3,4 @@ types/
 dist/
 *.log
 .git
+key.txt

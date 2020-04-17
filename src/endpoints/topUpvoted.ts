@@ -6,6 +6,7 @@ async function topUpvoted(this:Bio):Promise<Array<PartialProfile>> {
     const profiles = result.payload.map((profile: any) => {
         profile.discord = new User(profile.discord)
         profile.user.verified = Boolean(profile.user.verified)
+        profile.user.premium_status = Boolean(profile.user.premium_status)
         return profile
     })
     return profiles
