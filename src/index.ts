@@ -35,7 +35,7 @@ export class Bio extends EventEmitter {
     baseURL: string
     /**Authorization cookie. */
     @enumerable(false)
-    cookie: string
+    cookie?: string
     /**Represent the logged in user. */
     user?: ClientUser
     /**Fetch the total number of users */
@@ -101,7 +101,6 @@ export class Bio extends EventEmitter {
         this.APIVersion = APIVersion
         this.topUpvoted = topUpvoted
         this.api = api
-        this.cookie = ''
         this.details = details
         this.connections = connections
         if (hash === keyHash) {

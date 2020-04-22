@@ -14,7 +14,9 @@ class UserFlags extends BitField<string> {
         EARLY_SUPPORTER:1 << 9,
         TEAM_USER:1 << 10,
         SYSTEM:1 << 12,
-        BUG_HUNTER_LEVEL_2:1 << 14
+        BUG_HUNTER_LEVEL_2:1 << 14,
+        VERIFIED_BOT:1 << 16,
+        VERIFIED_BOT_DEVELOPER:1 << 17
     }
     static ALL = Object.values(UserFlags.FLAGS).reduce((all, p) => all | p, 0)
     static DEFAULT = 0

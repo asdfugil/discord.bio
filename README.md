@@ -1,7 +1,6 @@
 # discord.bio
 
-**This is a beta version.**
-(but old version is now broken)
+**BY USING THE LIBRARY YOU AGREE TO THE **[**TERMS OF SERIVICE OF DISCORD.BIO**](https://discord.bio/terms)
 
 Node.js wrapper for https://discord.bio
 
@@ -123,6 +122,12 @@ Type: number
 
 #### Properties
 
+##### .bitfield
+
+The bitfield of the flags
+
+Type: number
+
 ##### .FLAGS  [Static]
 
 Numeric user flags. All available properties:
@@ -147,6 +152,10 @@ Numeric user flags. All available properties:
 - `SYSTEM`
 
 - `BUG_HUNTER_LEVEL_2`
+
+- `VERIFIED_BOT`
+
+- `VERIFIED_BOT_DEVELOPER`
 
 Type: Object
 
@@ -193,6 +202,7 @@ The profile settings
  premium | `boolean` | Whether the user has discord.bio premium. 
  verified | `boolean` | Whether the user has verified. 
  flags | [UserFlags](###UserFlags) | the [flags](https://discordapp.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
+ staff | `boolean` | Whether the user is discord.bio staff 
 
 ### Profile
 

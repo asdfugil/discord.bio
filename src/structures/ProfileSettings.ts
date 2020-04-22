@@ -31,6 +31,8 @@ type ProfileSettings = {
     flags: UserFlags
     /**Whether the user is verified */
     verified: boolean
+    /**Whether the user is a discord.bio staff*/
+    staff:boolean
 }
 type Snowflake = string
 export = ProfileSettings
