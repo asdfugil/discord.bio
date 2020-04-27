@@ -11,7 +11,8 @@ To install:
 ```bash
 npm i discord.bio 
 ```
-
+## Changelogs
+Completely removed the code of unsupported endpoints.
 ## Features
 
 - Rate limit handling
