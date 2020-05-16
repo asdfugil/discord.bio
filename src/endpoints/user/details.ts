@@ -1,6 +1,6 @@
 import { Bio } from '../..'
 import User from '../../structures/User'
-import UserFlags from '../../structures/UserFlags'
+import { UserFlags } from 'discord.js'
 async function details (this:Bio,slugOrID?:string) {
     const profile = await this.api('/user/details/' + slugOrID,'GET')
         profile.payload.settings.verified = Boolean(profile.payload.settings.verified)
@@ -12,7 +12,8 @@ async function details (this:Bio,slugOrID?:string) {
             case 2 : profile.payload.settings.gender = "non-binary";break
             case null : break
         }
-        profile.payload.settings.flags = new UserFlags(profile.payload.settings.flags)
+        profile.payload.settings.cached_flags = new UserFlags(profile.payload.settings.cached_flags)
+        profile.payload.settings.staff = Boolean(profile.payload.settings.staff)
         //append userful properties
         profile.payload.discord = new User(profile.payload.discord)
         return profile.payload

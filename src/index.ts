@@ -12,7 +12,7 @@ import topUpvoted from './endpoints/topUpvoted'
 import api from './util/api'
 import FormData from 'form-data'
 import UserConnections from './structures/UserConnections'
-import UserFlags from './structures/UserFlags'
+import { UserFlags,ImageURLOptions } from 'discord.js'
 import { EventEmitter } from 'events'
 import enumerable from './util/enumerable'
 /**The main hub for interacting with the discord.bio API. */
@@ -67,4 +67,4 @@ export class Bio extends EventEmitter {
         this._quota_reset = Date.now()
     }
 }
-export { User, RawUser, UserFlags }
+export { User, RawUser, UserFlags,ImageURLOptions }

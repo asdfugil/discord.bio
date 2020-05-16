@@ -12,9 +12,13 @@ To install:
 npm i discord.bio 
 ```
 ## Changelogs
-Completely removed the code of unsupported endpoints.
+- `<User>.avatarURL() and <User>.displayAvatarURL()` is now a method so that you can pass options into it.
+- Used the `UserFlags` class from discord.js
+- Fixed some faulty typings
+
 ## Features
 
+- 100% coverage of the public discord.bio api
 - Rate limit handling
 - Easy to use, parse gender,flags... etc. for you
 
@@ -99,86 +103,53 @@ Returns: Promise\<number\>
 ```js
 const user = new User(rawUser)
 ```
-| key              | type                      | Meaning                                                      |
-| ---------------- | ------------------------- | ------------------------------------------------------------ |
-| id               | string                    | user id                                                      |
-| username         | string                    | username                                                     |
-| avatar           | string or null            | avatar hash                                                  |
-| discriminator    | string                    | user discriminator                                           |
-| tag              | string                    | The tag of the user (e.g.: `Nick Chan#0001`)                 |
-| public_flags     | [UserFlags](###UserFlags) | The flags on the user                                        |
-| avatarURL        | string or null            | avatar url                                                   |
-| displayAvatarURL | string                    | the link to the user's avatar if the have one,or their default one if they don't. |
-| defaultAvatarURL | string                    | The link to the user's default avatar                        |
+#### Properties
+
+   ##### .tag
+
+ The `DiscordTag#1234` tag of the user. (e.g.: `Nick Chan#0001`)
+
+Type: string
+
+##### .defaultAvatarURL
+
+The link to the user's default avatar URL 
+
+Type: string
+
+   ##### .public_flags
+
+The flags on the user
+
+Type: [UserFlags](###UserFlags)
+
+    ##### .username
+
+The username of the user 
+
+Type: string
+
+##### .discriminator
+
+The discriminator of the user 
+
+Type: string
+
+##### .id
+
+The id of the user 
+
+Type: string
+
+##### .avatar
+
+The hash of the user's avatar, it will be prepended with "a_" if the avatar is animated 
+
+Type: string or null
 
 ### UserFlags
 
-```js
-const userflags = new UserFlags(bits)
-```
-
-bits: The bitfield of the user's flags
-
-Type: number
-
-#### Properties
-
-##### .bitfield
-
-The bitfield of the flags
-
-Type: number
-
-##### .FLAGS  [Static]
-
-Numeric user flags. All available properties:
-
-- `DISCORD_EMPLOYEE`
-
-- `DISCORD_PARTNER`
-
-- `HYPESQUAD_EVENTS`
-- `BUG_HUNTER_LEVEL_1`
-
-- `HOUSE_BRAVERY`
-
-- `HOUSE_BRILLIANCE`
-
-- `HOUSE_BALANCE`
-
-- `EARLY_SUPPORTER`
-
-- `TEAM_USER`
-
-- `SYSTEM`
-
-- `BUG_HUNTER_LEVEL_2`
-
-- `VERIFIED_BOT`
-
-- `VERIFIED_BOT_DEVELOPER`
-
-Type: Object
-
-##### .DEFAULT  [Static]
-
-Bitfield representing the default flags (0)
-
-Type: number
-
-##### .ALL   [Static]
-
-Bitfield  represent every user flags combined
-
-Type: number
-
-#### Methods
-
-##### .serialize()
-
-Gets an object mapping field names to a [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the bit is available.
-
-Returns: Object
+This is just the `UserFlags` class from discord.js. Please refer to [here](https://discord.js.org/#/docs/main/12.2.0/class/UserFlags) .
 
 ## Type definitions
 
@@ -202,8 +173,10 @@ The profile settings
  upvotes | `number` | The number of upvotes the user have got. 
  premium | `boolean` | Whether the user has discord.bio premium. 
  verified | `boolean` | Whether the user has verified. 
- flags | [UserFlags](###UserFlags) | the [flags](https://discordapp.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
+ cached_flags | [UserFlags](###UserFlags) | the cached [flags](https://discord.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
  staff | `boolean` | Whether the user is discord.bio staff 
+ cached_avatar | `string` or `null` | The cached hash of the user's avatar, it will be prepended with "a_" if the avatar is animated 
+ cached_username | `string` | The cached `DiscordTag#0001` of the user. (**Not** the user's username) 
 
 ### Profile
 
@@ -245,7 +218,7 @@ id| `number`| The ID of the connection.
 connection_type| `string`| The type of the connection. 
 name| `string` | The name of the connection. 
 url| `string` or  `null`| The url of the connection. 
-icon| `string`| [The user's icon hash](https://discordapp.com/developers/docs/reference#image-formatting)
+icon| `string`| [The user's icon hash](https://discord.com/developers/docs/reference#image-formatting)
 ### UserConnections
 
 An object containing discord.bio connections.The property name is the type of connection.
@@ -278,3 +251,5 @@ If we have a snowflake '266241948824764416' we can represent it as binary:
       number of ms since Discord epoch       worker  pid    increment
 ```
 
+### ImageURLOptions
+This is also just a discord.js type definition, see [here](https://discord.js.org/#/docs/main/12.2.0/typedef/ImageURLOptions) for details.
