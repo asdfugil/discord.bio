@@ -15,6 +15,10 @@ import UserConnections from './structures/UserConnections'
 import { UserFlags,ImageURLOptions } from 'discord.js'
 import { EventEmitter } from 'events'
 import enumerable from './util/enumerable'
+import DBioAPIError from './structures/DBioAPIError'
+import Base from './structures/Base'
+import ConnectionTypes from './structures/ConnectionTypes'
+import UserConnection from './structures/UserConnection'
 /**The main hub for interacting with the discord.bio API. */
 export class Bio extends EventEmitter {
     _quota_reset: number
@@ -31,25 +35,21 @@ export class Bio extends EventEmitter {
     /**API shortcut. There should be no need to call this method manually.*/
     @enumerable(false)
     readonly api: (this: Bio, route: string, method: string, headers?: any, body?: string | Buffer | FormData) => any
-    /**
-     * Get user Details
-     * @example bio.details('nickchan')
-     */
-    details: (this: Bio, slugOrID?: string | undefined) => Promise<Profile>
-    /**Upload a banner!
-     * @example bio.banner(fs.createWriteStream("./banner.png"))
-     * @example const fetch = require('node-fetch')
-     * fetch("https://pngimage.net/wp-content/uploads/2018/06/test-png-1.png")
-     * .then(res => bio.banner(res.body))
-     */
-    @enumerable(false)
-    __banner?: (this: Bio, stream: import("stream").Readable) => Promise<void>
-    /**Get the user's connection on discord.bio
-     * @example bio.connections('nickchan')
-     */
-    connections: (this: Bio, slugOrID?: string) => Promise<UserConnections>
-    /**Returns a user's connections on Discord */
-    discordConnections: (this: Bio, slugOrID?: string) => Promise<DiscordConnection[]>
+    bio: this
+    users: {
+        bio: Bio
+        /**
+         * Get user Details
+         * @example bio.details('nickchan')
+         */
+        details: (this: Base, slugOrID: string) => Promise<Profile>,
+        /**Get the user's connection on discord.bio
+         * @example bio.connections('nickchan')
+         */
+        connections: (this: Base, slugOrID: string) => Promise<UserConnections>
+        /**Get a user's discord connections */
+        discordConnections: (this: Bio, slugOrID: string) => Promise<DiscordConnection[]>
+    }
     /**
      * @param baseURL - The API base URL
      */
@@ -60,11 +60,15 @@ export class Bio extends EventEmitter {
         this.APIVersion = APIVersion
         this.topUpvoted = topUpvoted
         this.api = api
-        this.details = details
-        this.connections = connections
-        this.discordConnections = discordConnections
+        this.users = {
+            bio: this,
+            details: details,
+            connections: connections,
+            discordConnections: discordConnections,
+        }
+        this.bio = this
         this._quota = 100
         this._quota_reset = Date.now()
     }
 }
-export { User, RawUser, UserFlags,ImageURLOptions }
+export { User, RawUser, UserFlags,ImageURLOptions,DBioAPIError,ConnectionTypes,UserConnections,UserConnection }

@@ -1,8 +1,8 @@
-import { Bio } from '../..'
+import Base from '../../structures/Base'
 import User from '../../structures/User'
 import { UserFlags } from 'discord.js'
-async function details (this:Bio,slugOrID?:string) {
-    const profile = await this.api('/user/details/' + slugOrID,'GET')
+async function details (this:Base,slugOrID:string):Promise<import('../../structures/Profile')> {
+    const profile = await this.bio.api('/user/details/' + slugOrID,'GET')
         profile.payload.settings.verified = Boolean(profile.payload.settings.verified)
         profile.payload.settings.premium = Boolean(profile.payload.settings.premium_status)
         delete profile.payload.settings.premium_status

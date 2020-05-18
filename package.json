@@ -1,13 +1,13 @@
 {
 	"name": "discord.bio",
-	"version": "5.0.0-beta.2",
+	"version": "5.0.0-beta.4",
 	"description": "a node.js wrapper of the discord.bio api",
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
 	"scripts": {
 		"test": "node test.js",
-		"build": "npx -p typescript tsc",
-		"postinstall": "npx -p typescript tsc"
+		"build": "npx -p typescript@3.9.2 tsc",
+		"postinstall": "npm run build"
 	},
 	"author": "Nick Chan#0001",
 	"license": "ISC",

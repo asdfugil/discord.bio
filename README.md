@@ -15,19 +15,47 @@ npm i discord.bio
 - `<User>.avatarURL() and <User>.displayAvatarURL()` is now a method so that you can pass options into it.
 - Used the `UserFlags` class from discord.js
 - Fixed some faulty typings
+- user-related endpoints is now on `bio.users.<function>` e.g. `bio.details()` => `bio.user.details()`
+- More exported typedefs and classes
 
 ## Features
 
 - 100% coverage of the public discord.bio api
+
 - Rate limit handling
+
 - Easy to use, parse gender,flags... etc. for you
 
+
+## Example
+
+```js
+const { Bio } = require('discord.bio')
+const bio = new Bio()
+Promise.all([
+bio.users.details('nickchan'),
+bio.users.connections('nickchan'),
+bio.users.discordConnections('nickchan'),
+bio.topUpvoted(),
+bio.totalUsers(),
+bio.APIVersion()
+]).then(result => { 
+    console.log(require('util').inspect(result,{depth:4}));
+    console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
+    console.log(`Display Avatar URL of Nick Chan#0001: ${result[0].discord.displayAvatarURL({ size:1024,dynamic:true })}`)
+    console.log(`Default URL of Nick Chan#0001: ${result[0].discord.defaultAvatarURL}`)
+ })
+.catch(error => {
+    console.error(error.stack)
+})
+
+```
 ## Classes
 
 <h3> Bio</h3> Extends EventEmitter
 
-```js
-const bio = new Bio(baseURL)
+```ts
+const bio = new (require('discord.bio').Bio)(baseURL?)
 ```
 
 baseURL: The base url
@@ -52,6 +80,40 @@ The time when the quota resets.
 
 Type: number
 
+##### .bio
+
+The bio instance
+
+Type: [Bio](###Bio)
+
+##### .users 
+
+User-related endpoints, includes:
+
+###### .details(slugOrID:string)
+
+Get user details
+
+Returns : Promise\<[Profile](###Profile)\>
+
+###### .connections(slugOrID:string)
+
+Get the connections of a user on Discord
+
+Returns: Promise\<[DiscordConnection](#####DiscordConnection)[]\>
+
+###### .discordConnections(slugOrID:string)
+
+Get a user's discord.bio connections
+
+Returns: Promise\<[UserConnections](###UserConnections)\>
+
+###### .bio
+
+the bio instance
+
+Type: [Bio](###Bio)
+
 #### Functions
 
 ##### .APIVersion()
@@ -59,24 +121,6 @@ Type: number
 Fetch the API version
 
 Returns: Promise\<string\>
-
-##### .details(slugOrID:string)
-
-Get user details
-
-Returns : Promise\<[Profile](###Profile)\>
-
-##### .discordConnections(slugOrID?:string)
-
-Get the connections of a user on Discord
-
-Returns: Promise\<[DiscordConnection](#####DiscordConnection)[]\>
-
-##### .connections(slugOrID?:string)
-
-Get a user's discord.bio connections
-
-Returns: Promise\<[UserConnections](###UserConnections)\>
 
 ##### .topUpvoted()
 
@@ -101,7 +145,7 @@ Returns: Promise\<number\>
 ### User
 
 ```js
-const user = new User(rawUser)
+const user = new (require('discord.bio').User)(rawUser)
 ```
 #### Properties
 
@@ -123,7 +167,7 @@ The flags on the user
 
 Type: [UserFlags](###UserFlags)
 
-    ##### .username
+##### .username
 
 The username of the user 
 
@@ -221,15 +265,17 @@ url| `string` or  `null`| The url of the connection.
 icon| `string`| [The user's icon hash](https://discord.com/developers/docs/reference#image-formatting)
 ### UserConnections
 
-An object containing discord.bio connections.The property name is the type of connection.
+An object mapping the discord.bio connections.
 
-key|type
----|---
-github| [UserConnection](###UserConnection)
-website| [UserConnection](###UserConnection)
-instagram|[UserConnection](###UserConnection)
-snapchat| [UserConnection](###UserConnection)
-linkedin| [UserConnection](###UserConnection)
+The property name is than name of the connection. Type: [ConnectionTypes](###ConnectionTypes)
+
+The value is a [UserConnection](###UserConnection).
+
+### ConnectionTypes
+
+One of  `github`,`website`, `instagram`, `snapchat`,`linkedin`.
+
+Type: string
 
 ### UserConnection
 

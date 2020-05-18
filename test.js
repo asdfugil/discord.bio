@@ -2,11 +2,12 @@ console.log('If it ends with Test Successful it worked.')
 const { Bio } = require('./')
 const bio = new Bio()
 Promise.all([
-bio.details('nickchan'),
-bio.connections('nickchan'),
-bio.discordConnections('nickchan'),
+bio.users.details('nickchan'),
+bio.users.connections('nickchan'),
+bio.users.discordConnections('nickchan'),
 bio.topUpvoted(),
-bio.totalUsers()
+bio.totalUsers(),
+bio.APIVersion()
 ]).then(result => { 
     console.log(require('util').inspect(result,{depth:4}));
     console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
