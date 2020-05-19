@@ -27,12 +27,16 @@ type ProfileSettings = {
     premium: boolean
     /**The number of upvotes the user has got */
     upvotes: number,
-    /**The flags on the user's account. https://discordapp.com/developers/docs/resources/user#user-object-user-flags */
-    flags: UserFlags
+    /**The cached flags on the user's account. https://discordapp.com/developers/docs/resources/user#user-object-user-flags */
+    cached_flags: UserFlags
     /**Whether the user is verified */
     verified: boolean
     /**Whether the user is a discord.bio staff*/
     staff:boolean
+    /**Cached avatar hash */
+    cached_avatar:string | null
+    /**Cached DiscordTag#0000 TAG of the user (not username) */
+    cached_username:string
 }
 type Snowflake = string
 export = ProfileSettings

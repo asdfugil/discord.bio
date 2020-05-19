@@ -11,17 +11,38 @@ To install:
 ```bash
 npm i discord.bio 
 ```
-
+## Changelogs
+- This update contains typings for new features introduced by the discord.bio API
+- fixed some faulty typings 
 ## Features
 
 - Rate limit handling
 - Easy to use, parse gender,flags... etc. for you
+
+## Example
+
+```js
+const { Bio } = require('discord.bio')
+const bio = new Bio()
+Promise.all([
+bio.details('nickchan'),
+bio.details('nickchan'),
+bio.connections('nickchan'),
+bio.discordConnections('nickchan'),
+bio.topUpvoted(),
+]).then(result => console.(result))
+.catch(error => {
+    console.error(error.stack)
+})
+
+```
 
 ## Classes
 
 <h3> Bio</h3> Extends EventEmitter
 
 ```js
+const { Bio } = require('discord.bio')
 const bio = new Bio(baseURL)
 ```
 
@@ -96,6 +117,7 @@ Returns: Promise\<number\>
 ### User
 
 ```js
+const { User } = require('discord.bio')
 const user = new User(rawUser)
 ```
 | key              | type                      | Meaning                                                      |
@@ -113,6 +135,7 @@ const user = new User(rawUser)
 ### UserFlags
 
 ```js
+const { UserFlags } = require('discord.bio')
 const userflags = new UserFlags(bits)
 ```
 
@@ -201,8 +224,10 @@ The profile settings
  upvotes | `number` | The number of upvotes the user have got. 
  premium | `boolean` | Whether the user has discord.bio premium. 
  verified | `boolean` | Whether the user has verified. 
- flags | [UserFlags](###UserFlags) | the [flags](https://discordapp.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
+ public_flags | [UserFlags](###UserFlags) | the [flags](https://discordapp.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
  staff | `boolean` | Whether the user is discord.bio staff 
+ cached_avatar | `string` or `null` | Cached avatar hash of the user 
+ cached_username | `string` | Cached **tag** (**not** username) of the user 
 
 ### Profile
 
