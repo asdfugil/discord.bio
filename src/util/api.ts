@@ -3,6 +3,7 @@ import fetch from 'node-fetch'
 import FormData from 'form-data'
 import util from 'util'
 import DBioAPIError from '../structures/DBioAPIError'
+import * as constants from './Constants'
 const pTimoeut = util.promisify(setTimeout)
 /**
  * API shortcut
@@ -14,16 +15,17 @@ const pTimoeut = util.promisify(setTimeout)
 async function api(this:Bio,path:string,method:string,headers?:any,body?:string | Buffer | FormData):Promise<any> {
     if (this._quota === 0) await pTimoeut(this._quota_reset - Date.now())
     if (!headers) headers = {}
-    if (!headers['User-Agent']) headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36'
-    headers['content-type'] ? {} : headers['content-type'] = 'application/json; charset=utf-8'
+    Object.keys(constants.headers).forEach(key => {
+    if (typeof headers[key] === 'undefined') headers[key] = constants.headers[key]
+    })
     const response = await fetch(this.baseURL + path,{
         method:method,
         headers:headers,
         body:body
     })
-  const text =  await response.text()
-this.emit('debug',`[API Response] ${text}`)
-    if (response.status === 429 ) {
+    const text =  await response.text()
+    this.emit('debug',`[API Response] ${text}`)
+    if (response.status === 429 ) { //Rate Limit. This should never happen.
         this.emit('rateLimit',
         /**
          * Number of seconds until you can send a request again
@@ -38,7 +40,6 @@ this.emit('debug',`[API Response] ${text}`)
     try {
      result = JSON.parse(text)
     } catch (error) {}
-    console.log(result)
     if (!result) {
         if (response.ok) return
         else throw new DBioAPIError({ message:response.statusText,path:path,method:method })

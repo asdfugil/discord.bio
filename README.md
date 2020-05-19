@@ -12,11 +12,13 @@ To install:
 npm i discord.bio 
 ```
 ## Changelogs
+
 - `<User>.avatarURL() and <User>.displayAvatarURL()` is now a method so that you can pass options into it.
 - Used the `UserFlags` class from discord.js
 - Fixed some faulty typings
 - user-related endpoints is now on `bio.users.<function>` e.g. `bio.details()` => `bio.user.details()`
 - More exported typedefs and classes
+- some methods now returns a collection instead of an array
 
 ## Features
 
@@ -34,16 +36,21 @@ const { Bio } = require('discord.bio')
 const bio = new Bio()
 Promise.all([
 bio.users.details('nickchan'),
-bio.users.connections('nickchan'),
-bio.users.discordConnections('nickchan'),
+bio.users.connections('v'),
+bio.users.discordConnections('v'),
 bio.topUpvoted(),
 bio.totalUsers(),
-bio.APIVersion()
+bio.users.search('ven'),
 ]).then(result => { 
-    console.log(require('util').inspect(result,{depth:4}));
+    const ven = result[5].first()
+    const vdconnections = result[2]
+    const vconnections = result[1]
     console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
     console.log(`Display Avatar URL of Nick Chan#0001: ${result[0].discord.displayAvatarURL({ size:1024,dynamic:true })}`)
     console.log(`Default URL of Nick Chan#0001: ${result[0].discord.defaultAvatarURL}`)
+    console.log(`The most upvoted user that match the search term \`ven\` is ${ven.discord.tag}, with ${ven.user.upvotes} upvotes!`)
+    console.log(`Ven#7051 has ${vdconnections.size} discord connections!`)
+    console.log(`Ven#7051 has ${Object.keys(vconnections).join(',')} connections on discord.bio`)
  })
 .catch(error => {
     console.error(error.stack)
@@ -96,17 +103,27 @@ Get user details
 
 Returns : Promise\<[Profile](###Profile)\>
 
-###### .connections(slugOrID:string)
+###### .discordConnections(slugOrID:string)
 
 Get the connections of a user on Discord
 
-Returns: Promise\<[DiscordConnection](#####DiscordConnection)[]\>
+The key is the connection id,the value is the connection.
 
-###### .discordConnections(slugOrID:string)
+Returns: Promise\<Collection<number,[DiscordConnection](#####DiscordConnection)>\>
+
+###### .connections(slugOrID:string)
 
 Get a user's discord.bio connections
 
 Returns: Promise\<[UserConnections](###UserConnections)\>
+
+###### .search(query:string)
+
+Search for profiles using `query` as the query.
+
+The key is the user id,the value is the profile.
+
+Type: Promise<[Collection](###Collection)<[Snowflake](###Snowflake),[PartialProfile](###PartialProfile)>>
 
 ###### .bio
 
@@ -126,7 +143,9 @@ Returns: Promise\<string\>
 
 Get most upvoted users
 
-Returns: Promise\<[ParrtialProfile](###PartialProfile)[]\>
+The key is the user id,the value is the profile.
+
+Type: Promise<[Collection](###Collection)<[Snowflake](###Snowflake),[PartialProfile](###PartialProfile)>>
 
 ##### .totalUsers()
 
@@ -195,6 +214,46 @@ Type: string or null
 
 This is just the `UserFlags` class from discord.js. Please refer to [here](https://discord.js.org/#/docs/main/12.2.0/class/UserFlags) .
 
+### Collection
+
+Collection class from discord.js. Please refer to [here](https://discord.js.org/#/docs/collection/master/class/Collection).
+
+### DBioAPIError     extends Error
+
+Represent an error 
+
+#### Properties
+
+##### .message
+
+The error message
+
+Type: string
+
+##### .path
+
+The path of the request that caused this error
+
+Type: string
+
+##### .method
+
+The request method of the request that caused this error
+
+Type: [HTTPRequestMethod](###HTTPRequestMethod)
+
+### Base
+
+Anything that has a .bio property
+
+#### Property
+
+##### .bio
+
+The bio instance
+
+Type: [Bio](###Bio)
+
 ## Type definitions
 
 ### ProfileSettings
@@ -235,7 +294,6 @@ discord|[User](###User)|The user that this profile represents.
 Represent an incomplete profile
 key|type|meaning
 ---|---|---
-id| number                                              |The discord.bio ID of the profile.
 user| [PartialProfileSettings](###PartialProfileSettings) |The settings of this profile.
 discord| [User](###User)                                     |The user of this profile
 
@@ -298,4 +356,10 @@ If we have a snowflake '266241948824764416' we can represent it as binary:
 ```
 
 ### ImageURLOptions
-This is also just a discord.js type definition, see [here](https://discord.js.org/#/docs/main/12.2.0/typedef/ImageURLOptions) for details.
+This is also just a discord.js type definition, see [here](https://discord.js.org/#/docs/main/12.2.0/typedef/ImageURLOptions) for details.npm is ignor
+
+### HTTPRequestMethod
+
+valid http request methods
+
+one of  `GET`,  `HEAD`,  `POST`,  `PUT`, `DELETE`, `CONNECT`,`OPTIONS`, `TRACE`,`PATCH`
