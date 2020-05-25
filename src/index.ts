@@ -21,11 +21,15 @@ import Base from './structures/Base'
 import ConnectionTypes from './structures/ConnectionTypes'
 import UserConnection from './structures/UserConnection'
 import { defaults } from './util/Constants'
+import HTTPRequestMethod from './structures/HTTPRequestMethod'
 /**The main hub for interacting with the discord.bio API. */
 export class Bio extends EventEmitter {
-    _quota_reset: number
+    __outgoing_requests:number
+    __quota_reset: number
     /**Number of request remaining before getting rate-limited */
-    _quota: number
+    __quota: number
+    /**Maximum number of requests in a timeframe */
+    __limit:number
     /**The base URL used in making API requests */
     baseURL: string
     /**Fetch the total number of users */
@@ -36,7 +40,8 @@ export class Bio extends EventEmitter {
     topUpvoted: (this: Bio) => Promise<Collection<Snowflake,PartialProfile>>
     /**API shortcut. There should be no need to call this method manually.*/
     @enumerable(false)
-    readonly api: (this: Bio, route: string, method: string, headers?: any, body?: string | Buffer | FormData) => any
+    readonly api: (this: Bio, path: string, method: HTTPRequestMethod, headers?: any, body?: string | Buffer | FormData) => any
+    @enumerable(false)
     bio: this
     users: {
         bio: Bio
@@ -60,6 +65,7 @@ export class Bio extends EventEmitter {
     constructor(baseURL?: string) {
         super()
         this.baseURL = baseURL || defaults.baseurl
+        this.__limit = 100
         this.totalUsers = totalUsers
         this.APIVersion = APIVersion
         this.topUpvoted = topUpvoted
@@ -72,8 +78,10 @@ export class Bio extends EventEmitter {
             search:search
         }
         this.bio = this
-        this._quota = 100
-        this._quota_reset = Date.now()
+        this.__quota = this.__limit
+        this.__quota_reset = Date.now()
+        this.__outgoing_requests = 0
+        this.APIVersion()
     }
 }
 export { User, RawUser, UserFlags,ImageURLOptions,DBioAPIError,ConnectionTypes,UserConnections,UserConnection,Collection }

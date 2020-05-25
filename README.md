@@ -19,6 +19,7 @@ npm i discord.bio
 - user-related endpoints is now on `bio.users.<function>` e.g. `bio.details()` => `bio.user.details()`
 - More exported typedefs and classes
 - some methods now returns a collection instead of an array
+- Improved rate-limit handling
 
 ## Features
 
@@ -76,14 +77,26 @@ Defaults to https://api.discord.bio/v1
 The base url
 Type: string
 
-##### ._quota
+##### .__quota
 
 Number of request left
 Type: number
 
-##### ._quota_reset
+##### .__quota_reset
 
 The time when the quota resets.
+
+Type: number
+
+##### .__limit
+
+Maximum amount of requests allowed in a time-frame
+
+Type: number
+
+##### .__outgoing_requests
+
+Amount of outgoing requests
 
 Type: number
 
