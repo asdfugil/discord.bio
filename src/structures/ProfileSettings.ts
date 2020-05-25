@@ -1,4 +1,4 @@
-import UserFlags from './UserFlags'
+import { UserFlags } from 'discord.js'
 /**The profile settings. */
 type ProfileSettings = {
     /**The slug */
@@ -9,12 +9,18 @@ type ProfileSettings = {
     created_at: string | null
     /**The status of the user. */
     status: string | null
+    /**The cached flags on the user */
+    cached_flags:UserFlags
+    /**The cached User#1234 tag (NOT the username only) of the user */
+    cached_username:string
+    /**The cached avatar hash on the user */
+    cached_avatar:string
     /**The description of the user. */
     description: string | null
     /**The location of the user. */
     location: string | null
     /**Gender of the user.*/
-    gender: "male" | "female" | null
+    gender: "male" | "female" | "non-binary" | null
     /**The birthday of the user. */
     birthday: string | null
     /**The email of the user. */
@@ -27,16 +33,10 @@ type ProfileSettings = {
     premium: boolean
     /**The number of upvotes the user has got */
     upvotes: number,
-    /**The cached flags on the user's account. https://discordapp.com/developers/docs/resources/user#user-object-user-flags */
-    cached_flags: UserFlags
     /**Whether the user is verified */
     verified: boolean
     /**Whether the user is a discord.bio staff*/
     staff:boolean
-    /**Cached avatar hash */
-    cached_avatar:string | null
-    /**Cached DiscordTag#0000 TAG of the user (not username) */
-    cached_username:string
 }
 type Snowflake = string
 export = ProfileSettings

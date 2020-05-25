@@ -2,42 +2,66 @@ import { Bio }  from '..'
 import fetch from 'node-fetch'
 import FormData from 'form-data'
 import util from 'util'
-const pTimoeut = util.promisify(setTimeout)
+import DBioAPIError from '../structures/DBioAPIError'
+import * as constants from './Constants'
+import HTTPRequestMethod from '../structures/HTTPRequestMethod'
 /**
  * API shortcut
- * @param route The api route including the first /
+ * @param path The api route including the first /
  * @param method The HTTP request method
  * @param headers Custom headers
  * @param body Request body
  */
-async function api(this:Bio,route:string,method:string,headers?:any,body?:string | Buffer | FormData):Promise<any> {
-    if (this._quota === 0) await pTimoeut(this._quota_reset - Date.now())
+async function api(this:Bio,path:string,method:HTTPRequestMethod,headers?:any,body?:string | Buffer | FormData):Promise<any> {
+    if (this.__quota <= this.__outgoing_requests) {
+        return new Promise<any> (resolve => {
+            if (this.__quota_reset - Date.now() > 0) setTimeout(()=> {
+                resolve(this.api(path,method,headers,body))
+            },this.__quota_reset - Date.now());
+            //Prevent race condition
+            //if this is removed it will result in an OOM 
+           else setTimeout(()=> {
+                resolve(this.api(path,method,headers,body))
+            },60000);
+        })
+    }
     if (!headers) headers = {}
-    if (!headers['User-Agent']) headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36'
-    const response = await fetch(this.baseURL + route,{
+    Object.keys(constants.headers).forEach(key => {
+    if (typeof headers[key] === 'undefined') headers[key] = constants.headers[key]
+    })
+    this.__outgoing_requests += 1
+    const response = await fetch(this.baseURL + path,{
         method:method,
         headers:headers,
         body:body
     })
-    if (response.status === 429 ) {
+    this.__outgoing_requests -= 1
+    const text =  await response.text()
+    this.emit('debug',`[API Response] ${text}`)
+    if (response.status === 429 ) { //Rate Limit. This should never happen.
         this.emit('rateLimit',
         /**
          * Number of seconds until you can send a request again
          */
         parseInt(response.headers.get('retry-after') as string))
-        await pTimoeut(parseInt(response.headers.get('retry-after') as string))
-        return this.api(route,method,headers,body)
+        return new Promise<any>(resolve => {
+            setTimeout(() => {
+                resolve(this.api(path,method,headers,body))
+            },parseInt(response.headers.get('retry-after') as string))
+        })
     }
-    this._quota_reset = parseInt(response.headers.get('x-ratelimit-reset') as string)*1000
-    this._quota = parseInt(response.headers.get('x-ratelimit-remaining') as string)
-    const result = await response.json()
-    .catch(_ => {})
+    this.__quota_reset = parseInt(response.headers.get('x-ratelimit-reset') as string)*1000
+    this.__quota = parseInt(response.headers.get('x-ratelimit-remaining') as string)
+    let result;
+    try {
+     result = JSON.parse(text)
+    } catch (error) {}
     if (!result) {
         if (response.ok) return
-        else throw new Error(response.statusText)
+        else throw new DBioAPIError({ message:response.statusText,path:path,method:method })
     } 
     if (typeof result.success !== 'boolean') return result
-    if (result.success === false) throw new Error(result.message || response.status.toString())
+    if (result.success === false) throw new DBioAPIError({message:result.message || response.statusText.toString(),path:path,method:method})
     return result
 }
 export = api

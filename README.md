@@ -12,11 +12,21 @@ To install:
 npm i discord.bio 
 ```
 ## Changelogs
-- This update contains typings for new features introduced by the discord.bio API
-- fixed some faulty typings 
+
+- `<User>.avatarURL() and <User>.displayAvatarURL()` is now a method so that you can pass options into it.
+- Used the `UserFlags` class from discord.js
+- Fixed some faulty typings
+- user-related endpoints is now on `bio.users.<function>` e.g. `bio.details()` => `bio.user.details()`
+- More exported typedefs and classes
+- some methods now returns a collection instead of an array
+- Improved rate-limit handling
+
 ## Features
 
+- 100% coverage of the public discord.bio api
+
 - Rate limit handling
+
 - Easy to use, parse gender,flags... etc. for you
 
 ## Example
@@ -25,25 +35,34 @@ npm i discord.bio
 const { Bio } = require('discord.bio')
 const bio = new Bio()
 Promise.all([
-bio.details('nickchan'),
-bio.details('nickchan'),
-bio.connections('nickchan'),
-bio.discordConnections('nickchan'),
+bio.users.details('nickchan'),
+bio.users.connections('v'),
+bio.users.discordConnections('v'),
 bio.topUpvoted(),
-]).then(result => console.(result))
+bio.totalUsers(),
+bio.users.search('ven'),
+]).then(result => { 
+    const ven = result[5].first()
+    const vdconnections = result[2]
+    const vconnections = result[1]
+    console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
+    console.log(`Display Avatar URL of Nick Chan#0001: ${result[0].discord.displayAvatarURL({ size:1024,dynamic:true })}`)
+    console.log(`Default URL of Nick Chan#0001: ${result[0].discord.defaultAvatarURL}`)
+    console.log(`The most upvoted user that match the search term \`ven\` is ${ven.discord.tag}, with ${ven.user.upvotes} upvotes!`)
+    console.log(`Ven#7051 has ${vdconnections.size} discord connections!`)
+    console.log(`Ven#7051 has ${Object.keys(vconnections).join(',')} connections on discord.bio`)
+ })
 .catch(error => {
     console.error(error.stack)
 })
 
 ```
-
 ## Classes
 
 <h3> Bio</h3> Extends EventEmitter
 
-```js
-const { Bio } = require('discord.bio')
-const bio = new Bio(baseURL)
+```ts
+const bio = new (require('discord.bio').Bio)(baseURL?)
 ```
 
 baseURL: The base url
@@ -57,16 +76,72 @@ Defaults to https://api.discord.bio/v1
 The base url
 Type: string
 
-##### ._quota
+##### .__quota
 
 Number of request left
 Type: number
 
-##### ._quota_reset
+##### .__quota_reset
 
 The time when the quota resets.
 
 Type: number
+
+##### .__limit
+
+Maximum amount of requests allowed in a time-frame
+
+Type: number
+
+##### .__outgoing_requests
+
+Amount of outgoing requests
+
+Type: number
+
+##### .bio
+
+The bio instance
+
+Type: [Bio](###Bio)
+
+##### .users 
+
+User-related endpoints, includes:
+
+###### .details(slugOrID:string)
+
+Get user details
+
+Returns : Promise\<[Profile](###Profile)\>
+
+###### .discordConnections(slugOrID:string)
+
+Get the connections of a user on Discord
+
+The key is the connection id,the value is the connection.
+
+Returns: Promise\<Collection<number,[DiscordConnection](#####DiscordConnection)>\>
+
+###### .connections(slugOrID:string)
+
+Get a user's discord.bio connections
+
+Returns: Promise\<[UserConnections](###UserConnections)\>
+
+###### .search(query:string)
+
+Search for profiles using `query` as the query.
+
+The key is the user id,the value is the profile.
+
+Type: Promise<[Collection](###Collection)<[Snowflake](###Snowflake),[PartialProfile](###PartialProfile)>>
+
+###### .bio
+
+the bio instance
+
+Type: [Bio](###Bio)
 
 #### Functions
 
@@ -76,29 +151,13 @@ Fetch the API version
 
 Returns: Promise\<string\>
 
-##### .details(slugOrID:string)
-
-Get user details
-
-Returns : Promise\<[Profile](###Profile)\>
-
-##### .discordConnections(slugOrID?:string)
-
-Get the connections of a user on Discord
-
-Returns: Promise\<[DiscordConnection](#####DiscordConnection)[]\>
-
-##### .connections(slugOrID?:string)
-
-Get a user's discord.bio connections
-
-Returns: Promise\<[UserConnections](###UserConnections)\>
-
 ##### .topUpvoted()
 
 Get most upvoted users
 
-Returns: Promise\<[ParrtialProfile](###PartialProfile)[]\>
+The key is the user id,the value is the profile.
+
+Type: Promise<[Collection](###Collection)<[Snowflake](###Snowflake),[PartialProfile](###PartialProfile)>>
 
 ##### .totalUsers()
 
@@ -117,90 +176,95 @@ Returns: Promise\<number\>
 ### User
 
 ```js
-const { User } = require('discord.bio')
-const user = new User(rawUser)
+const user = new (require('discord.bio').User)(rawUser)
 ```
-| key              | type                      | Meaning                                                      |
-| ---------------- | ------------------------- | ------------------------------------------------------------ |
-| id               | string                    | user id                                                      |
-| username         | string                    | username                                                     |
-| avatar           | string or null            | avatar hash                                                  |
-| discriminator    | string                    | user discriminator                                           |
-| tag              | string                    | The tag of the user (e.g.: `Nick Chan#0001`)                 |
-| public_flags     | [UserFlags](###UserFlags) | The flags on the user                                        |
-| avatarURL        | string or null            | avatar url                                                   |
-| displayAvatarURL | string                    | the link to the user's avatar if the have one,or their default one if they don't. |
-| defaultAvatarURL | string                    | The link to the user's default avatar                        |
+#### Properties
+
+   ##### .tag
+
+ The `DiscordTag#1234` tag of the user. (e.g.: `Nick Chan#0001`)
+
+Type: string
+
+##### .defaultAvatarURL
+
+The link to the user's default avatar URL 
+
+Type: string
+
+   ##### .public_flags
+
+The flags on the user
+
+Type: [UserFlags](###UserFlags)
+
+##### .username
+
+The username of the user 
+
+Type: string
+
+##### .discriminator
+
+The discriminator of the user 
+
+Type: string
+
+##### .id
+
+The id of the user 
+
+Type: string
+
+##### .avatar
+
+The hash of the user's avatar, it will be prepended with "a_" if the avatar is animated 
+
+Type: string or null
 
 ### UserFlags
 
-```js
-const { UserFlags } = require('discord.bio')
-const userflags = new UserFlags(bits)
-```
+This is just the `UserFlags` class from discord.js. Please refer to [here](https://discord.js.org/#/docs/main/12.2.0/class/UserFlags) .
 
-bits: The bitfield of the user's flags
+### Collection
 
-Type: number
+Collection class from discord.js. Please refer to [here](https://discord.js.org/#/docs/collection/master/class/Collection).
+
+### DBioAPIError     extends Error
+
+Represent an error 
 
 #### Properties
 
-##### .bitfield
+##### .message
 
-The bitfield of the flags
+The error message
 
-Type: number
+Type: string
 
-##### .FLAGS  [Static]
+##### .path
 
-Numeric user flags. All available properties:
+The path of the request that caused this error
 
-- `DISCORD_EMPLOYEE`
+Type: string
 
-- `DISCORD_PARTNER`
+##### .method
 
-- `HYPESQUAD_EVENTS`
-- `BUG_HUNTER_LEVEL_1`
+The request method of the request that caused this error
 
-- `HOUSE_BRAVERY`
+Type: [HTTPRequestMethod](###HTTPRequestMethod)
 
-- `HOUSE_BRILLIANCE`
+### Base
 
-- `HOUSE_BALANCE`
+Anything that has a .bio property
 
-- `EARLY_SUPPORTER`
+#### Property
 
-- `TEAM_USER`
+##### .bio
 
-- `SYSTEM`
+The bio instance
 
-- `BUG_HUNTER_LEVEL_2`
-
-- `VERIFIED_BOT`
-
-- `VERIFIED_BOT_DEVELOPER`
-
-Type: Object
-
-##### .DEFAULT  [Static]
-
-Bitfield representing the default flags (0)
-
-Type: number
-
-##### .ALL   [Static]
-
-Bitfield  represent every user flags combined
-
-Type: number
-
-#### Methods
-
-##### .serialize()
-
-Gets an object mapping field names to a [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the bit is available.
-
-Returns: Object
+Type: [Bio](###Bio)
 
 ## Type definitions
 
@@ -224,10 +288,10 @@ The profile settings
  upvotes | `number` | The number of upvotes the user have got. 
  premium | `boolean` | Whether the user has discord.bio premium. 
  verified | `boolean` | Whether the user has verified. 
- public_flags | [UserFlags](###UserFlags) | the [flags](https://discordapp.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
+ cached_flags | [UserFlags](###UserFlags) | the cached [flags](https://discord.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
  staff | `boolean` | Whether the user is discord.bio staff 
- cached_avatar | `string` or `null` | Cached avatar hash of the user 
- cached_username | `string` | Cached **tag** (**not** username) of the user 
+ cached_avatar | `string` or `null` | The cached hash of the user's avatar, it will be prepended with "a_" if the avatar is animated 
+ cached_username | `string` | The cached `DiscordTag#0001` of the user. (**Not** the user's username) 
 
 ### Profile
 
@@ -242,7 +306,6 @@ discord|[User](###User)|The user that this profile represents.
 Represent an incomplete profile
 key|type|meaning
 ---|---|---
-id| number                                              |The discord.bio ID of the profile.
 user| [PartialProfileSettings](###PartialProfileSettings) |The settings of this profile.
 discord| [User](###User)                                     |The user of this profile
 
@@ -269,18 +332,20 @@ id| `number`| The ID of the connection.
 connection_type| `string`| The type of the connection. 
 name| `string` | The name of the connection. 
 url| `string` or  `null`| The url of the connection. 
-icon| `string`| [The user's icon hash](https://discordapp.com/developers/docs/reference#image-formatting)
+icon| `string`| [The user's icon hash](https://discord.com/developers/docs/reference#image-formatting)
 ### UserConnections
 
-An object containing discord.bio connections.The property name is the type of connection.
+An object mapping the discord.bio connections.
 
-key|type
----|---
-github| [UserConnection](###UserConnection)
-website| [UserConnection](###UserConnection)
-instagram|[UserConnection](###UserConnection)
-snapchat| [UserConnection](###UserConnection)
-linkedin| [UserConnection](###UserConnection)
+The property name is than name of the connection. Type: [ConnectionTypes](###ConnectionTypes)
+
+The value is a [UserConnection](###UserConnection).
+
+### ConnectionTypes
+
+One of  `github`,`website`, `instagram`, `snapchat`,`linkedin`.
+
+Type: string
 
 ### UserConnection
 
@@ -302,3 +367,11 @@ If we have a snowflake '266241948824764416' we can represent it as binary:
       number of ms since Discord epoch       worker  pid    increment
 ```
 
+### ImageURLOptions
+This is also just a discord.js type definition, see [here](https://discord.js.org/#/docs/main/12.2.0/typedef/ImageURLOptions) for details.npm is ignor
+
+### HTTPRequestMethod
+
+valid http request methods
+
+one of  `GET`,  `HEAD`,  `POST`,  `PUT`, `DELETE`, `CONNECT`,`OPTIONS`, `TRACE`,`PATCH`
