@@ -1,7 +1,5 @@
 /**Represent a discord user connection*/
 type DiscordConnection = {
-    /** The ID of the connection.*/
-    id: number
     /**The type of the connection. */
     connection_type: string,
     /**The name of the connection. */

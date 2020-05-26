@@ -9,7 +9,7 @@ type PartialProfileSettings = {
     /**Whether the user is verified */
     verified:boolean
     /**Whether the user has discord.bio premium */
-    premium_status:boolean
+    premium:boolean
     /**The slug */
     name:string
 }

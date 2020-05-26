@@ -9,12 +9,8 @@ type ProfileSettings = {
     created_at: string | null
     /**The status of the user. */
     status: string | null
-    /**The cached flags on the user */
-    cached_flags:UserFlags
-    /**The cached User#1234 tag (NOT the username only) of the user */
-    cached_username:string
-    /**The cached avatar hash on the user */
-    cached_avatar:string
+    /**The flags on the user */
+    flags:UserFlags
     /**The description of the user. */
     description: string | null
     /**The location of the user. */

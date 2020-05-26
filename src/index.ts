@@ -4,8 +4,6 @@ import PartialProfile from './structures/PartialProfile'
 import User from './structures/User'
 import RawUser from './structures/RawUser'
 import details from './endpoints/user/details'
-import discordConnections from './endpoints/user/discordConnections'
-import connections from './endpoints/user/connections'
 import search from './endpoints/user/search'
 import totalUsers from './endpoints/totalUsers'
 import APIVersion from './endpoints/APIVersion'
@@ -50,12 +48,6 @@ export class Bio extends EventEmitter {
          * @example bio.details('nickchan')
          */
         details: (this: Base, slugOrID: string) => Promise<Profile>,
-        /**Get the user's connection on discord.bio
-         * @example bio.connections('nickchan')
-         */
-        connections: (this: Base, slugOrID: string) => Promise<UserConnections>
-        /**Get a user's discord connections */
-        discordConnections: (this: Bio, slugOrID: string) => Promise<Collection<number,DiscordConnection>>,
         /**Search for profiles on discord.bio */
         search:(this:Base,query:string) => Promise<Collection<Snowflake,PartialProfile>>
     }
@@ -73,8 +65,6 @@ export class Bio extends EventEmitter {
         this.users = {
             bio: this,
             details: details,
-            connections: connections,
-            discordConnections: discordConnections,
             search:search
         }
         this.bio = this
