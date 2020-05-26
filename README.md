@@ -13,13 +13,7 @@ npm i discord.bio
 ```
 ## Changelogs
 
-- `<User>.avatarURL() and <User>.displayAvatarURL()` is now a method so that you can pass options into it.
-- Used the `UserFlags` class from discord.js
-- Fixed some faulty typings
-- user-related endpoints is now on `bio.users.<function>` e.g. `bio.details()` => `bio.user.details()`
-- More exported typedefs and classes
-- some methods now returns a collection instead of an array
-- Improved rate-limit handling
+- `bio.users.connections()` and `bio.users.discordConnections()` now merged into `bio.users.details()`
 
 ## Features
 
@@ -36,21 +30,16 @@ const { Bio } = require('discord.bio')
 const bio = new Bio()
 Promise.all([
 bio.users.details('nickchan'),
-bio.users.connections('v'),
-bio.users.discordConnections('v'),
 bio.topUpvoted(),
 bio.totalUsers(),
 bio.users.search('ven'),
 ]).then(result => { 
-    const ven = result[5].first()
-    const vdconnections = result[2]
-    const vconnections = result[1]
+    console.log(result[0])
+    const ven = result[3].first()
     console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
     console.log(`Display Avatar URL of Nick Chan#0001: ${result[0].discord.displayAvatarURL({ size:1024,dynamic:true })}`)
     console.log(`Default URL of Nick Chan#0001: ${result[0].discord.defaultAvatarURL}`)
     console.log(`The most upvoted user that match the search term \`ven\` is ${ven.discord.tag}, with ${ven.user.upvotes} upvotes!`)
-    console.log(`Ven#7051 has ${vdconnections.size} discord connections!`)
-    console.log(`Ven#7051 has ${Object.keys(vconnections).join(',')} connections on discord.bio`)
  })
 .catch(error => {
     console.error(error.stack)
@@ -114,20 +103,6 @@ User-related endpoints, includes:
 Get user details
 
 Returns : Promise\<[Profile](###Profile)\>
-
-###### .discordConnections(slugOrID:string)
-
-Get the connections of a user on Discord
-
-The key is the connection id,the value is the connection.
-
-Returns: Promise\<Collection<number,[DiscordConnection](#####DiscordConnection)>\>
-
-###### .connections(slugOrID:string)
-
-Get a user's discord.bio connections
-
-Returns: Promise\<[UserConnections](###UserConnections)\>
 
 ###### .search(query:string)
 
@@ -238,7 +213,7 @@ Represent an error
 
 ##### .message
 
-The error message
+The error message, or the response status text if there isn't one.
 
 Type: string
 
@@ -253,6 +228,11 @@ Type: string
 The request method of the request that caused this error
 
 Type: [HTTPRequestMethod](###HTTPRequestMethod)
+
+##### .statusCode
+
+HTTP response status code
+Type: number
 
 ### Base
 
@@ -288,10 +268,8 @@ The profile settings
  upvotes | `number` | The number of upvotes the user have got. 
  premium | `boolean` | Whether the user has discord.bio premium. 
  verified | `boolean` | Whether the user has verified. 
- cached_flags | [UserFlags](###UserFlags) | the cached [flags](https://discord.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
+ flags | [UserFlags](###UserFlags) | the cached [flags](https://discord.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
  staff | `boolean` | Whether the user is discord.bio staff 
- cached_avatar | `string` or `null` | The cached hash of the user's avatar, it will be prepended with "a_" if the avatar is animated 
- cached_username | `string` | The cached `DiscordTag#0001` of the user. (**Not** the user's username) 
 
 ### Profile
 
@@ -299,7 +277,10 @@ Represent a discord.bio profile
 
 key|type|Meaning
 ---|---|---
-settings|[ProfileSettings](###ProfileSettings)|The settings of this profile.
+user| object                                      |User information
+user.details| [ProfileSettings](###ProfileSettings)       |The details of the user
+user.discordConnections| [DiscordConnection](###DiscordConnection)[] |Array of the user's connections on discord
+user.userConnections| [UserConnections](###UserConnections)       |the user's connections on discord.bio
 discord|[User](###User)|The user that this profile represents.
 
 ### PartialProfile
@@ -313,14 +294,14 @@ discord| [User](###User)                                     |The user of this p
 
 The settings of an incomplete profile
 
-| key            | type                      | meaning                                  |
-| -------------- | ------------------------- | ---------------------------------------- |
-| user_id        | [Snowflake](###Snowflake) | The user ID of the profile's user        |
-| upvotes        | number                    | The number of upvote on the profile      |
-| verified       | boolean                   | Whether the user has verified.           |
-| description    | `string` or `null`        | The description of the profile           |
-| premium_status | boolean                   | Whether the user has discord.bio premium |
-| name           | string                    | The slug of the profile.                 |
+| key         | type                      | meaning                                  |
+| ----------- | ------------------------- | ---------------------------------------- |
+| user_id     | [Snowflake](###Snowflake) | The user ID of the profile's user        |
+| upvotes     | number                    | The number of upvote on the profile      |
+| verified    | boolean                   | Whether the user has verified.           |
+| description | `string` or `null`        | The description of the profile           |
+| premium     | boolean                   | Whether the user has discord.bio premium |
+| name        | string                    | The slug of the profile.                 |
 
 ### DiscordConnection
 
@@ -328,7 +309,6 @@ Represent a discord user connection
 
 key|type|Meaning
 ---|---|---
-id| `number`| The ID of the connection. 
 connection_type| `string`| The type of the connection. 
 name| `string` | The name of the connection. 
 url| `string` or  `null`| The url of the connection. 
