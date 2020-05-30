@@ -60,8 +60,8 @@ async function api(this:Bio,path:string,method:HTTPRequestMethod,headers?:any,bo
         if (response.ok) return
         else throw new DBioAPIError({ message:response.statusText,path:path,method:method,statusCode:response.status })
     } 
-    if (typeof result.success !== 'boolean') return result
-    if (result.success === false) throw new DBioAPIError({message:result.message || response.statusText.toString(),path:path,method:method,statusCode:response.status})
+    if (typeof result.success !== 'boolean' && response.ok) return result
+    if (result.success === false || !response.ok) throw new DBioAPIError({message:result.message || response.statusText.toString(),path:path,method:method,statusCode:response.status})
     return result
 }
 export = api

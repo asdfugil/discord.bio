@@ -13,7 +13,7 @@ npm i discord.bio
 ```
 ## Changelogs
 
-- `bio.users.connections()` and `bio.users.discordConnections()` now merged into `bio.users.details()`
+- Minor bug fixes
 
 ## Features
 
