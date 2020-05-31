@@ -7,6 +7,7 @@ bio.users.details('nickchan'),
 bio.topUpvoted(),
 bio.totalUsers(),
 bio.users.search('ven'),
+bio.users.presence('570634232465063967'),
 ]).then(result => { 
     console.log(result[0])
     const ven = result[3].first()
@@ -19,4 +20,5 @@ bio.users.search('ven'),
 .catch(error => {
     console.error("Test failed,reason:")
     console.error(error.stack)
+    throw error
 })

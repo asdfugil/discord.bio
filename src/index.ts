@@ -8,6 +8,7 @@ import search from './endpoints/user/search'
 import totalUsers from './endpoints/totalUsers'
 import APIVersion from './endpoints/APIVersion'
 import topUpvoted from './endpoints/topUpvoted'
+import presence from './endpoints/user/presence'
 import api from './util/api'
 import FormData from 'form-data'
 import UserConnections from './structures/UserConnections'
@@ -20,6 +21,7 @@ import ConnectionTypes from './structures/ConnectionTypes'
 import UserConnection from './structures/UserConnection'
 import { defaults } from './util/Constants'
 import HTTPRequestMethod from './structures/HTTPRequestMethod'
+import Activity from './structures/Activity'
 /**The main hub for interacting with the discord.bio API. */
 export class Bio extends EventEmitter {
     __outgoing_requests:number
@@ -31,14 +33,14 @@ export class Bio extends EventEmitter {
     /**The base URL used in making API requests */
     baseURL: string
     /**Fetch the total number of users */
-    totalUsers: (this: Bio) => Promise<number>
+    totalUsers: typeof totalUsers
     /**Fetches the api version. */
-    APIVersion: (this: Bio) => Promise<string>
+    APIVersion: typeof APIVersion
     /**Fetch the top upvoted users */
-    topUpvoted: (this: Bio) => Promise<Collection<Snowflake,PartialProfile>>
+    topUpvoted: typeof topUpvoted
     /**API shortcut. There should be no need to call this method manually.*/
     @enumerable(false)
-    readonly api: (this: Bio, path: string, method: HTTPRequestMethod, headers?: any, body?: string | Buffer | FormData) => any
+    readonly api:typeof api
     @enumerable(false)
     bio: this
     users: {
@@ -47,9 +49,10 @@ export class Bio extends EventEmitter {
          * Get user Details
          * @example bio.details('nickchan')
          */
-        details: (this: Base, slugOrID: string) => Promise<Profile>,
+        details:typeof details,
         /**Search for profiles on discord.bio */
-        search:(this:Base,query:string) => Promise<Collection<Snowflake,PartialProfile>>
+        search:typeof search
+        presence:typeof presence
     }
     /**
      * @param baseURL - The API base URL
@@ -65,7 +68,8 @@ export class Bio extends EventEmitter {
         this.users = {
             bio: this,
             details: details,
-            search:search
+            search:search,
+            presence:presence
         }
         this.bio = this
         this.__quota = this.__limit
