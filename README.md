@@ -236,7 +236,7 @@ Type: number
 
 ### Base
 
-Anything that has a .bio property
+Anything that has a .bio property 
 
 #### Property
 
@@ -319,23 +319,13 @@ An object mapping the discord.bio connections.
 
 The property name is than name of the connection. Type: [ConnectionTypes](###ConnectionTypes)
 
-The value is a [UserConnection](###UserConnection).
+The value is the name of the connection. Type:`string`
 
 ### ConnectionTypes
 
 One of  `github`,`website`, `instagram`, `snapchat`,`linkedin`.
 
 Type: string
-
-### UserConnection
-
-Represent a connection on discord.bio.
-
-key|type|Meaning
----|---|---
-name|`string`|The name of the connection.
-
-### Snowflake
 
 A Twitter snowflake, except the epoch is 2015-01-01T00:00:00.000Z 
 

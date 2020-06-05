@@ -1,5 +1,6 @@
+import ConnectionTypes from './ConnectionTypes'
 /**An object containing discord.bio connections.The property name is the type of connection.*/
 type UserConnections = {
-    [key in import('./ConnectionTypes')]?: import('./UserConnection')
+    [key in ConnectionTypes]?: ConnectionTypes
 }
 export = UserConnections

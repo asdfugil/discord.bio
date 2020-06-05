@@ -1,6 +1,8 @@
 dependencies:
   '@types/node-fetch': 2.5.4
   '@types/ws': 7.2.4
+  colors: 1.4.0
+  commander: 5.1.0
   discord.js: 12.2.0
   form-data: 3.0.0
   node-fetch: 2.6.0
@@ -403,6 +405,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
+  /colors/1.4.0:
+    dev: false
+    engines:
+      node: '>=0.1.90'
+    resolution:
+      integrity: sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==
   /combined-stream/1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -415,6 +423,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+  /commander/5.1.0:
+    dev: false
+    engines:
+      node: '>= 6'
+    resolution:
+      integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
   /concat-map/0.0.1:
     dev: true
     resolution:
@@ -1144,6 +1158,8 @@ specifiers:
   '@types/node-fetch': ^2.5.4
   '@types/ws': ^7.2.4
   better-docs: ^1.4.7
+  colors: ^1.4.0
+  commander: ^5.1.0
   discord.js: 12.2.0
   form-data: ^3.0.0
   node-fetch: ^2.6.0

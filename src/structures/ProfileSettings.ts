@@ -2,7 +2,7 @@ import { UserFlags } from 'discord.js'
 /**The profile settings. */
 type ProfileSettings = {
     /**The slug */
-    name: string
+    slug: string
     /**User ID of the profile's user. */
     user_id: Snowflake
     /**The time the profile is created.*/

@@ -1,7 +1,5 @@
 type Snowfalke = string
 type PartialProfileSettings = {
-    /**The user id of the user */
-    user_id:Snowfalke
     /**The amount of upvotes the profile has */
     upvotes:number
     /**Profile description */
@@ -11,6 +9,8 @@ type PartialProfileSettings = {
     /**Whether the user has discord.bio premium */
     premium:boolean
     /**The slug */
-    name:string
+    slug:string
+    /**Whether the user is a discord.bio staff */
+    staff:boolean
 }
 export = PartialProfileSettings
