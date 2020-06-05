@@ -25,10 +25,10 @@ class Activity {
     /**Timestamps for the activity */
     timestamps: {
         /**When the activity started */
-        start:Date
+        start:Date | null
         /**When the activity will end */
-        end:Date
-    }
+        end:Date | null
+    } | null
     /**State of the activity*/
     state:string | null
     /**The type of the activity status */
@@ -45,7 +45,10 @@ class Activity {
         this.emoji = new Emoji(bio,emoji)
         this.assets = assets
         this.createdTimestamp = createdTimestamp
-        this.timestamps = timestamps
+        timestamps ? this.timestamps = {
+            start:timestamps.start ? new Date(timestamps.start) : null,
+            end:timestamps.end ? new Date(timestamps.end) : null,
+        } : this.timestamps = null
         this.createdAt = new Date(this.createdTimestamp)
         this.details = details
         this.state = state

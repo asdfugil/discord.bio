@@ -1,8 +1,13 @@
-import { Bio, ConnectionTypes } from '../..'
+import { Bio, ConnectionTypes,DBioAPIError } from '../..'
 import { bold } from 'colors'
 const bio = new Bio()
 async function details (slug:string):Promise<void> {
     const profile = await bio.users.details(slug)
+    .catch((error:DBioAPIError) => {
+        if (error.statusCode === 404) console.error(`Profile "${slug}" not found.`)
+        else console.error(error)
+        process.exit(1)
+    })
     const { details,userConnections,discordConnections } = profile.user
     const flags = [];
     for (const [key, value] of Object.entries(

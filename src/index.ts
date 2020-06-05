@@ -7,20 +7,21 @@ import topUpvoted from './endpoints/topUpvoted'
 import presence from './endpoints/user/presence'
 import api from './util/api'
 import UserConnections from './structures/UserConnections'
-import { UserFlags,ImageURLOptions,Collection, } from 'discord.js'
+import { UserFlags, ImageURLOptions, Collection, } from 'discord.js'
 import { EventEmitter } from 'events'
 import enumerable from './util/enumerable'
 import DBioAPIError from './structures/DBioAPIError'
 import ConnectionTypes from './structures/ConnectionTypes'
 import { defaults } from './util/Constants'
+import { deprecate } from 'util'
 /**The main hub for interacting with the discord.bio API. */
 export class Bio extends EventEmitter {
-    __outgoing_requests:number
+    __outgoing_requests: number
     __quota_reset: number
     /**Number of request remaining before getting rate-limited */
     __quota: number
     /**Maximum number of requests in a timeframe */
-    __limit:number
+    __limit: number
     /**The base URL used in making API requests */
     baseURL: string
     /**Fetches the api version. */
@@ -29,7 +30,7 @@ export class Bio extends EventEmitter {
     topUpvoted: typeof topUpvoted
     /**API shortcut. There should be no need to call this method manually.*/
     @enumerable(false)
-    readonly api:typeof api
+    readonly api: typeof api
     @enumerable(false)
     bio: this
     users: {
@@ -38,11 +39,12 @@ export class Bio extends EventEmitter {
          * Get user Details
          * @example bio.details('nickchan')
          */
-        details:typeof details,
+        details: typeof details,
         /**Search for profiles on discord.bio,sorted by upvotes */
-        search:typeof search
-        presence:typeof presence
+        search: typeof search
+        presence: typeof presence
     }
+    totalUsers: () => number
     /**
      * @param baseURL - The API base URL
      */
@@ -52,12 +54,14 @@ export class Bio extends EventEmitter {
         this.__limit = 100
         this.APIVersion = APIVersion
         this.topUpvoted = topUpvoted
+        //semver
+        this.totalUsers = deprecate(function () { return 1 }, 'This endpoint no longer exists')
         this.api = api
         this.users = {
             bio: this,
             details: details,
-            search:search,
-            presence:presence
+            search: search,
+            presence: presence
         }
         this.bio = this
         this.__quota = this.__limit
@@ -66,4 +70,4 @@ export class Bio extends EventEmitter {
         this.APIVersion()
     }
 }
-export { User, RawUser, UserFlags,ImageURLOptions,DBioAPIError,ConnectionTypes,UserConnections,Collection }
+export { User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection }
