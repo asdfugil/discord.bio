@@ -1,3 +1,5 @@
+//https://discordapp.com/channels/661331961188712459/670016661453012992/715933428960329829
+//In offical discord.bio discord server
 import Activity from '../../structures/Activity'
 import { Snowflake } from 'discord.js'
 import Base from '../../structures/Base'
