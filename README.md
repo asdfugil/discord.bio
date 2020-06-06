@@ -92,7 +92,7 @@ Type: number
 
 The bio instance
 
-Type: [Bio](###Bio)
+Type: [Bio](#Bio)
 
 ##### .users 
 
@@ -102,7 +102,7 @@ User-related endpoints, includes:
 
 Get user details
 
-Returns : Promise\<[Profile](###Profile)\>
+Returns : Promise\<[Profile](#Profile)\>
 
 ###### .search(query:string)
 
@@ -110,13 +110,13 @@ Search for profiles using `query` as the query.
 
 The key is the user id,the value is the profile.
 
-Type: Promise<[Collection](###Collection)<[Snowflake](###Snowflake),[PartialProfile](###PartialProfile)>>
+Type: Promise<[Collection](#Collection)<[Snowflake](#Snowflake),[PartialProfile](#PartialProfile)>>
 
 ###### .bio
 
 the bio instance
 
-Type: [Bio](###Bio)
+Type: [Bio](#Bio)
 
 #### Functions
 
@@ -132,13 +132,7 @@ Get most upvoted users
 
 The key is the user id,the value is the profile.
 
-Type: Promise<[Collection](###Collection)<[Snowflake](###Snowflake),[PartialProfile](###PartialProfile)>>
-
-##### .totalUsers()
-
-Get the amount of users in discord.bio
-
-Returns: Promise\<number\>
+Type: Promise<[Collection](#Collection)<[Snowflake](#Snowflake),[PartialProfile](#PartialProfile)>>
 
 #### Events
 
@@ -171,7 +165,7 @@ Type: string
 
 The flags on the user
 
-Type: [UserFlags](###UserFlags)
+Type: [UserFlags](#UserFlags)
 
 ##### .username
 
@@ -196,6 +190,12 @@ Type: string
 The hash of the user's avatar, it will be prepended with "a_" if the avatar is animated 
 
 Type: string or null
+
+### Activity
+
+
+
+### Emoji
 
 ### UserFlags
 
@@ -227,7 +227,7 @@ Type: string
 
 The request method of the request that caused this error
 
-Type: [HTTPRequestMethod](###HTTPRequestMethod)
+Type: [HTTPRequestMethod](#HTTPRequestMethod)
 
 ##### .statusCode
 
@@ -244,7 +244,7 @@ Anything that has a .bio property
 
 The bio instance
 
-Type: [Bio](###Bio)
+Type: [Bio](#Bio)
 
 ## Type definitions
 
@@ -268,7 +268,7 @@ The profile settings
  upvotes | `number` | The number of upvotes the user have got. 
  premium | `boolean` | Whether the user has discord.bio premium. 
  verified | `boolean` | Whether the user has verified. 
- flags | [UserFlags](###UserFlags) | the cached [flags](https://discord.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
+ flags | [UserFlags](#UserFlags) | the cached [flags](https://discord.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
  staff | `boolean` | Whether the user is discord.bio staff 
 
 ### Profile
@@ -278,17 +278,17 @@ Represent a discord.bio profile
 key|type|Meaning
 ---|---|---
 user| object                                      |User information
-user.details| [ProfileSettings](###ProfileSettings)       |The details of the user
-user.discordConnections| [DiscordConnection](###DiscordConnection)[] |Array of the user's connections on discord
-user.userConnections| [UserConnections](###UserConnections)       |the user's connections on discord.bio
-discord|[User](###User)|The user that this profile represents.
+user.details| [ProfileSettings](#ProfileSettings)       |The details of the user
+user.discordConnections| [DiscordConnection](#DiscordConnection)[] |Array of the user's connections on discord
+user.userConnections| [UserConnections](#UserConnections)       |the user's connections on discord.bio
+discord|[User](#User)|The user that this profile represents.
 
 ### PartialProfile
 Represent an incomplete profile
 key|type|meaning
 ---|---|---
-user| [PartialProfileSettings](###PartialProfileSettings) |The settings of this profile.
-discord| [User](###User)                                     |The user of this profile
+user| [PartialProfileSettings](#PartialProfileSettings) |The settings of this profile.
+discord| [User](#User)                                     |The user of this profile
 
 ### PartialProfileSettings
 
@@ -296,7 +296,7 @@ The settings of an incomplete profile
 
 | key         | type                      | meaning                                  |
 | ----------- | ------------------------- | ---------------------------------------- |
-| user_id     | [Snowflake](###Snowflake) | The user ID of the profile's user        |
+| user_id     | [Snowflake](#Snowflake) | The user ID of the profile's user        |
 | upvotes     | number                    | The number of upvote on the profile      |
 | verified    | boolean                   | Whether the user has verified.           |
 | description | `string` or `null`        | The description of the profile           |
@@ -317,7 +317,7 @@ icon| `string`| [The user's icon hash](https://discord.com/developers/docs/refer
 
 An object mapping the discord.bio connections.
 
-The property name is than name of the connection. Type: [ConnectionTypes](###ConnectionTypes)
+The property name is than name of the connection. Type: [ConnectionTypes](#ConnectionTypes)
 
 The value is the name of the connection. Type:`string`
 
