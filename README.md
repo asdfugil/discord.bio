@@ -11,6 +11,29 @@ To install:
 ```bash
 npm i discord.bio 
 ```
+## Contents
+- [Contents](#Contents)
+
+- [Features](#Features)
+
+- [Example](#Example)
+
+  - [Classes](#Classes)
+
+    - [Bio](#bio)
+
+    - [User](#User)
+    
+    - [Activity](#Activity)
+
+    - [Emoji](#Emoji)
+
+    - [UserFlags](#UserFlags)
+
+    - [Collection](#Collection)
+  
+  - [Type definition](#type-definition)
+ 
 ## Changelogs
 
 - Minor bug fixes

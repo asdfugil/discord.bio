@@ -5,7 +5,7 @@
 - [Installing](#Installing)
 - [Help message](#command-line-help-message)
 - [Commands](#Commands)
-- - [details](#details)
+  - [details](#details)
   - [search](#search)
   - [topUpvoted](#topUpvoted)
   - [version](#version)
