@@ -5,10 +5,12 @@ type ProfileSettings = {
     slug: string
     /**User ID of the profile's user. */
     user_id: Snowflake
-    /**The time the profile is created.*/
+    /**[DEPRECATED] The date string of the time the profile is created.*/
     created_at: string | null
-    /**The status of the user. */
-    status: string | null
+    /**The date that the profile is created */
+    createdAt: Date | null
+    /**The timestamp in ms that the profile is created */
+    createdTimestamp:number | null
     /**The flags on the user */
     flags:UserFlags
     /**The description of the user. */
@@ -18,7 +20,7 @@ type ProfileSettings = {
     /**Gender of the user.*/
     gender: "male" | "female" | "non-binary" | null
     /**The birthday of the user. */
-    birthday: string | null
+    birthday: Date | null
     /**The email of the user. */
     email: string | null
     /**The occupation of the user. */

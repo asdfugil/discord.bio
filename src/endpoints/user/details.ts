@@ -14,7 +14,7 @@ async function details(this: Base, slugOrID: string): Promise<import('../../stru
         case null: break
     }
     details.createdAt = details.created_at ? new Date(details.created_at) : null
-    details.createdTimestamp = details.createdAt.getTime()
+    details.createdTimestamp = details.createdAt ? details.createdAt.getTime() : null
     Object.defineProperty(details,'createdTimestamp',{
         get:details.createdAt ? function() { return details.createdAt.getTime.bind(details.createdAt)() } : function() { return null },
         set:function(timestamp:number) {
@@ -25,6 +25,7 @@ async function details(this: Base, slugOrID: string): Promise<import('../../stru
         get:deprecate(function() { return details.createdAt.toISOString() },'Please use .createdAt.toISOString() instead.'),
         set:function(v) { details.createdAt = new Date(v) }
     })
+    details.birthday = details.birthday ? new Date(details.birthday) : null
     details.flags = new UserFlags(details.flags)
     details.staff = Boolean(details.staff)
     //append userful properties
