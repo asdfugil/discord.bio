@@ -3,7 +3,7 @@
 
 - [Contents](#Contents)
 - [Installing](#Installing)
-- [Help message](#Command line help message)
+- [Help message](##command-line-help-message)
 - [Commands](#Commands)
 - - [details](#details)
   - [search](#search)
@@ -138,4 +138,4 @@ Example: `dbio version` outputs
 1.0.3
 ```
 ### help
-Shows help message. Please see [here](#Command line help message)
+Shows help message. Please see [here](#command-line-help-message)
