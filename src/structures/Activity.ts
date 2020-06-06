@@ -42,7 +42,7 @@ class Activity {
         emoji:RawEmoji
     }) {
         const { name,assets,createdTimestamp,timestamps,state,type,url,party,emoji,details,flags,applicationID } = data
-        this.emoji = new Emoji(bio,emoji)
+        this.emoji = emoji ? new Emoji(bio,emoji) : null
         this.name = name
         this.assets = assets ? new RichPresenceAssets(this,assets) : null
         this.createdTimestamp = createdTimestamp

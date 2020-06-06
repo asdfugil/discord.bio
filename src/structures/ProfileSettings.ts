@@ -8,7 +8,7 @@ type ProfileSettings = {
     /**[DEPRECATED] The date string of the time the profile is created.*/
     created_at: string | null
     /**The date that the profile is created */
-    createdAt: Date | null
+    createdAt: Date
     /**The timestamp in ms that the profile is created */
     createdTimestamp:number | null
     /**The flags on the user */

@@ -13,7 +13,7 @@ async function details(this: Base, slugOrID: string): Promise<import('../../stru
         case 2: details.gender = "non-binary"; break
         case null: break
     }
-    details.createdAt = details.created_at ? new Date(details.created_at) : null
+    details.createdAt = new Date(details.created_at)
     details.createdTimestamp = details.createdAt ? details.createdAt.getTime() : null
     Object.defineProperty(details,'createdTimestamp',{
         get:details.createdAt ? function() { return details.createdAt.getTime.bind(details.createdAt)() } : function() { return null },
