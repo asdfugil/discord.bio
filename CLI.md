@@ -3,7 +3,7 @@
 
 - [Contents](#Contents)
 - [Installing](#Installing)
-- [Help message](##command-line-help-message)
+- [Help message](#command-line-help-message)
 - [Commands](#Commands)
 - - [details](#details)
   - [search](#search)
