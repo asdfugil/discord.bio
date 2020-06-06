@@ -21,6 +21,7 @@ npm i discord.bio
     - [User](#User)
     - [Activity](#Activity)
     - [Emoji](#Emoji)
+    - [RichPresenceAssets](#RichPresenceAssets)
     - [UserFlags](#UserFlags)
     - [DBioAPIError](#DBioAPIError-----extends-Error)
     - [Collection](#Collection)

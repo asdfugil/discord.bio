@@ -20,7 +20,7 @@ class RichPresenceAssets {
       this.smallImage = assets.smallImage || null;
    }
    /**Gets the URL of the large image asset */
-   largeImageURL({ format,size }:{ format?:string,size?:number } = {}) {
+   largeImageURL({ format,size }:{ format?:string,size?:number } = {}):string | null {
     if (!this.largeImage) return null;
     if (/^spotify:/.test(this.largeImage)) {
       return `https://i.scdn.co/image/${this.largeImage.slice(8)}`;
@@ -29,7 +29,7 @@ class RichPresenceAssets {
     }
     return `https://cdn.discordapp.com/app-assets/${this.activity.applicationID}/${this.largeImage}${ format ? `.${format}` : ''}${size ? `?size=${size}` : ''}`
    }
-   smallImageURL({ format, size }:{ format?:string,size?:number }  = {}) {
+   smallImageURL({ format, size }:{ format?:string,size?:number }  = {}):string | null {
     if (!this.smallImage) return null;
     else return `https://cdn.discordapp.com/app-assets/${this.activity.applicationID}/${this.smallImage}${ format ? `.${format}` : ''}?size=${size}`
   }

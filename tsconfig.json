@@ -2,6 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "strict": true,
+    "noImplicitReturns": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "lib": ["esnext"],
