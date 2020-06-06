@@ -13,27 +13,26 @@ npm i discord.bio
 ```
 ## Contents
 - [Contents](#Contents)
-
 - [Features](#Features)
-
 - [Example](#Example)
-
   - [Classes](#Classes)
-
     - [Bio](#bio)
-
     - [User](#User)
-    
     - [Activity](#Activity)
-
     - [Emoji](#Emoji)
-
     - [UserFlags](#UserFlags)
-
+    - [DBioAPIError](#dbioapierror-extends-error)
     - [Collection](#Collection)
-  
   - [Type definition](#type-definition)
- 
+    - [ProfileSettings](#ProfileSettings)
+    - [Profile](#Profile)
+    - [PartialProfile](#PartialProfile)
+    - [PartialProfileSettings](#PartialProfileSettings)
+    - [DiscordConnection](#DiscordConnection)
+    - [UserConnections)[#UserConnection]
+    - [ConnectionTypes](#ConnectionTypes)
+    - [ImageURLOptions](#ImageURLOptions)
+    - [HTTPRequestMethod](#HTTPRequestMethod)
 ## Changelogs
 
 - Minor bug fixes
