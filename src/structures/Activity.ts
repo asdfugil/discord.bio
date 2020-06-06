@@ -1,12 +1,11 @@
-import { ActivityFlags,RichPresenceAssets,ActivityType, } from 'discord.js'
+import { ActivityFlags,ActivityType } from 'discord.js'
 import Emoji from './Emoji'
 import { Bio } from '../'
 import RawEmoji from './RawEmoji'
+import RichPresenceAssets from './RichPresenceAssets'
 class Activity {
     /**Assets for rich presence */
-    assets:RichPresenceAssets
-    /**The time the activity was created at */
-    createdAt:Date
+    assets:RichPresenceAssets | null
     /**Creation date of the activity */
     createdTimestamp:number
     /**Details about the activity */
@@ -37,19 +36,20 @@ class Activity {
     url:string | null
     /**Application ID associated with this activity */
     applicationID: string | null
+    name:string
     constructor(bio:Bio,data:{
         [key:string]:any,
         emoji:RawEmoji
     }) {
-        const { assets,createdTimestamp,timestamps,state,type,url,party,emoji,details,flags,applicationID } = data
+        const { name,assets,createdTimestamp,timestamps,state,type,url,party,emoji,details,flags,applicationID } = data
         this.emoji = new Emoji(bio,emoji)
-        this.assets = assets
+        this.name = name
+        this.assets = assets ? new RichPresenceAssets(this,assets) : null
         this.createdTimestamp = createdTimestamp
         timestamps ? this.timestamps = {
             start:timestamps.start ? new Date(timestamps.start) : null,
             end:timestamps.end ? new Date(timestamps.end) : null,
         } : this.timestamps = null
-        this.createdAt = new Date(this.createdTimestamp)
         this.details = details
         this.state = state
         this.type = type
@@ -58,6 +58,20 @@ class Activity {
         this.applicationID = applicationID
         this.flags = new ActivityFlags(flags)
     }
+  /**
+   * Whether this activity is equal to another activity.
+   * @param activity The actvity to compare with
+   */
+  equals(activity:Activity):boolean {
+    return (
+      this === activity ||
+      (activity && this.name === activity.name && this.type === activity.type && this.url === activity.url)
+    );
+  }
+  /**The time the activity was created at */
+  get createdAt() {
+    return new Date(this.createdTimestamp);
+  }
 
 }
 export = Activity

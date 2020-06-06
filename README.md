@@ -2,7 +2,7 @@
 
 **BY USING THE LIBRARY YOU AGREE TO THE **[**TERMS OF SERIVICE OF DISCORD.BIO**](https://discord.bio/terms)
 
-Node.js wrapper for https://discord.bio
+Node.js wrapper and CLI client for https://discord.bio
 
 [![NPM](https://nodei.co/npm/discord.bio.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/discord.bio/)
 
@@ -13,6 +13,7 @@ npm i discord.bio
 ```
 ## Contents
 - [Contents](#Contents)
+- [Changelogs](#Changelogs)
 - [Features](#Features)
 - [Example](#Example)
   - [Classes](#Classes)
@@ -21,21 +22,27 @@ npm i discord.bio
     - [Activity](#Activity)
     - [Emoji](#Emoji)
     - [UserFlags](#UserFlags)
-    - [DBioAPIError](#dbioapierror-extends-error)
+    - [DBioAPIError](#DBioAPIError-----extends-Error)
     - [Collection](#Collection)
-  - [Type definition](#type-definition)
+  - [Type definitions](#type-definitions)
     - [ProfileSettings](#ProfileSettings)
     - [Profile](#Profile)
     - [PartialProfile](#PartialProfile)
     - [PartialProfileSettings](#PartialProfileSettings)
     - [DiscordConnection](#DiscordConnection)
-    - [UserConnections)[#UserConnection]
+    - [UserConnections](#UserConnections)
     - [ConnectionTypes](#ConnectionTypes)
     - [ImageURLOptions](#ImageURLOptions)
     - [HTTPRequestMethod](#HTTPRequestMethod)
 ## Changelogs
 
-- Minor bug fixes
+- Fixed faulty typings
+- Added a CLI
+- Added presence endpoint support
+
+## CLI Documentation
+
+Please go to [here](https://github.com/Assfugil/discord.bio/blob/stable/CLI.md) .
 
 ## Features
 
@@ -46,7 +53,6 @@ npm i discord.bio
 - Easy to use, parse gender,flags... etc. for you
 
 ## Example
-
 ```js
 const { Bio } = require('discord.bio')
 const bio = new Bio()
@@ -215,8 +221,45 @@ Type: string or null
 
 ### Activity
 
+Represent an activity on discord.
 
+#### Properties
 
+    /**Assets for rich presence */
+    ##### assets
+    Type: [RichPresenceAssets](https://discord.js.org/#/docs/main/12.2.0/class/RichPresenceAssets?scrollTo=largeImageURL)
+    /**The time the activity was created at */
+    createdAt:Date
+    /**Creation date of the activity */
+    createdTimestamp:number
+    /**Details about the activity */
+    details:string | null
+    /**Emoji for a custom activity */
+    emoji:Emoji | null
+    /**Flags that describe the activity */
+    flags:ActivityFlags
+    /**Party of the activity */
+    party: {
+        /**ID of the party */
+        id:string | null,
+        /** Size of the party as [current, max]*/
+        size:[number,number]
+    } | null
+    /**Timestamps for the activity */
+    timestamps: {
+        /**When the activity started */
+        start:Date | null
+        /**When the activity will end */
+        end:Date | null
+    } | null
+    /**State of the activity*/
+    state:string | null
+    /**The type of the activity status */
+    type:ActivityType
+    /**If the activity is being streamed, a link to the stream */
+    url:string | null
+    /**Application ID associated with this activity */
+    applicationID: string | null
 ### Emoji
 
 ### UserFlags
@@ -276,7 +319,7 @@ The profile settings
 
   key|type|Meaning
   ---|---|---
-  name| `string` | The slug. 
+  slug| `string` | The slug. 
   user_id| `string` | User ID of the profile's user. 
   created_at| `string` or  `null` | The time the profile is created 
   status| `string` or `null` | The status of the user. 
@@ -318,7 +361,6 @@ The settings of an incomplete profile
 
 | key         | type                      | meaning                                  |
 | ----------- | ------------------------- | ---------------------------------------- |
-| user_id     | [Snowflake](#Snowflake) | The user ID of the profile's user        |
 | upvotes     | number                    | The number of upvote on the profile      |
 | verified    | boolean                   | Whether the user has verified.           |
 | description | `string` or `null`        | The description of the profile           |
