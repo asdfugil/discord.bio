@@ -3,7 +3,7 @@
 
 - [Contents](#Contents)
 - [Installing](#Installing)
-- [Help message](#Help message)
+- [Help message](#Command line help message)
 - [Commands](#Commands)
 - - [details](#details)
   - [search](#search)
@@ -135,6 +135,7 @@ Shows the API version.
 Example: `dbio version` outputs
 
 ```
-1.0.3```
+1.0.3
+```
 ### help
 Shows help message. Please see [here](#Command line help message)
