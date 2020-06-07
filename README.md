@@ -62,6 +62,7 @@ bio.users.details('nickchan'),
 bio.topUpvoted(),
 bio.totalUsers(),
 bio.users.search('ven'),
+bio.users.presence('570634232465063967')
 ]).then(result => { 
     console.log(result[0])
     const ven = result[3].first()
@@ -127,19 +128,27 @@ Type: [Bio](#Bio)
 
 User-related endpoints, includes:
 
-###### .details(slugOrID:string)
+###### .details(slugOrID: string)
 
 Get user details
 
 Returns : Promise\<[Profile](#Profile)\>
 
-###### .search(query:string)
+###### .search(query: string)
 
 Search for profiles using `query` as the query.
 
 The key is the user id,the value is the profile.
 
 Type: Promise<[Collection](#Collection)<[Snowflake](#Snowflake),[PartialProfile](#PartialProfile)>>
+
+###### .presence(user_id: Snowflake)
+
+| Paramemter | Type | Meaning |
+| ---------- | ---- |-------- |
+|user_id| [Snowflake](#Snowflake) | The user id of the user that you want to know its presence |
+
+Returns: Promise<[Activity](#Activity)[]>
 
 ###### .bio
 
@@ -190,7 +199,7 @@ The link to the user's default avatar URL
 
 Type: string
 
-   ##### .public_flags
+##### .public_flags
 
 The flags on the user
 
@@ -266,7 +275,7 @@ Type: number or null
 
 The ID of this emoji 
 
-Type [Snowflake](#Snowflake) or null
+Type: [Snowflake](#Snowflake) or null
 
 ##### .name
 
@@ -350,6 +359,7 @@ key|type|meaning
 ---|---|---
 start|Date or null|When the activity started
 end|Date or null|When the activity ended
+
 Type: object or null
 ##### .state
 State of the activity
@@ -357,6 +367,7 @@ State of the activity
 Type: string | null
 ##### .type
 The type of the activity status 
+
 Type: [ActivityType](https://discord.js.org/#/docs/main/12.2.0/typedef/ActivityType)
 ##### .url
 If the activity is being streamed, a link to the stream 
@@ -412,6 +423,7 @@ Type: [HTTPRequestMethod](#HTTPRequestMethod)
 ##### .statusCode
 
 HTTP response status code
+
 Type: number
 
 ### Base
@@ -470,6 +482,7 @@ Gets the URL of the large image asset
 | options        | object or undefined | Options for the image |
 | options.format | string or undefined | Format of the image   |
 | options.size   | number or undefined | Size of the image     |
+
 Returns: string or null
 ##### .smallImageURL(options?)
 
@@ -480,6 +493,7 @@ Gets the URL of the small image asset
 | options        | object or undefined | Options for the image |
 | options.format | string or undefined | Format of the image   |
 | options.size   | number or undefined | Size of the image     |
+
 Returns: string or null
 
 ## Type definitions
