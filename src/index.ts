@@ -14,6 +14,7 @@ import DBioAPIError from './structures/DBioAPIError'
 import ConnectionTypes from './structures/ConnectionTypes'
 import { defaults } from './util/Constants'
 import { deprecate } from 'util'
+import Base from './structures/Base'
 /**The main hub for interacting with the discord.bio API. */
 export class Bio extends EventEmitter {
     __outgoing_requests: number
@@ -33,8 +34,7 @@ export class Bio extends EventEmitter {
     readonly api: typeof api
     @enumerable(false)
     bio: this
-    users: {
-        bio: Bio
+    users: Base & {
         /**
          * Get user Details
          * @example bio.details('nickchan')

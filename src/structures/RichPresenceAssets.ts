@@ -3,6 +3,7 @@ import { Snowflake } from 'discord.js';
 import enumerable from '../util/enumerable'
 class RichPresenceAssets {
     @enumerable(false)
+    /**Activity that these assets belongs to */
     activity: Activity;
     /** Hover text for the large image*/
     largeText: string | null;
@@ -29,6 +30,7 @@ class RichPresenceAssets {
     }
     return `https://cdn.discordapp.com/app-assets/${this.activity.applicationID}/${this.largeImage}${ format ? `.${format}` : ''}${size ? `?size=${size}` : ''}`
    }
+    /**Gets the URL of the small image asset */
    smallImageURL({ format, size }:{ format?:string,size?:number }  = {}):string | null {
     if (!this.smallImage) return null;
     else return `https://cdn.discordapp.com/app-assets/${this.activity.applicationID}/${this.smallImage}${ format ? `.${format}` : ''}?size=${size}`

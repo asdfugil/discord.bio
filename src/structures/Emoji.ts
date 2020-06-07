@@ -23,6 +23,9 @@ class Emoji extends Base {
     /**The URL to the emoji file if its a custom emoji */
     //@ts-ignore
     public readonly url: string | null;
+    /**Whether this emoji has been deleted */
+    //@ts-ignore
+    public deleted: boolean
     constructor(bio:Bio,data:RawEmoji) {
         super(bio)
         //TypeScript is stupid here

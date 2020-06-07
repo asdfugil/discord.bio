@@ -39,7 +39,7 @@ class Activity {
     name:string
     constructor(bio:Bio,data:{
         [key:string]:any,
-        emoji:RawEmoji
+        emoji:RawEmoji | null
     }) {
         const { name,assets,createdTimestamp,timestamps,state,type,url,party,emoji,details,flags,applicationID } = data
         this.emoji = emoji ? new Emoji(bio,emoji) : null

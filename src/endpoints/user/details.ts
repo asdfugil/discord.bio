@@ -14,9 +14,8 @@ async function details(this: Base, slugOrID: string): Promise<import('../../stru
         case null: break
     }
     details.createdAt = new Date(details.created_at)
-    details.createdTimestamp = details.createdAt ? details.createdAt.getTime() : null
     Object.defineProperty(details,'createdTimestamp',{
-        get:details.createdAt ? function() { return details.createdAt.getTime.bind(details.createdAt)() } : function() { return null },
+        get:function() { return details.createdAt.getTime.bind(details.createdAt)() },
         set:function(timestamp:number) {
             details.createdAt = new Date(timestamp)
         }

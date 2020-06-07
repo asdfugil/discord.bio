@@ -1,4 +1,3 @@
-type Snowfalke = string
 type PartialProfileSettings = {
     /**The amount of upvotes the profile has */
     upvotes:number

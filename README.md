@@ -220,48 +220,162 @@ The hash of the user's avatar, it will be prepended with "a_" if the avatar is a
 
 Type: string or null
 
+##### .avatarURL(options?)
+
+Get an URL to the user's avatar
+
+| Parameter | Type                                               | Meaning               |
+| --------- | -------------------------------------------------- | --------------------- |
+| options   | [ImageURLOptions](#ImageURLOptions) or `undefined` | Options for the image |
+
+Returns: string or null
+
+##### .displayAvatarURL(options?)
+
+Get the URL to the user's avatar if the have one, or their default one if the don't have one.
+
+| Parameter | Type                                               | Meaning               |
+| --------- | -------------------------------------------------- | --------------------- |
+| options   | [ImageURLOptions](#ImageURLOptions) or `undefined` | Options for the image |
+
+Returns: string or null
+
+### Emoji
+
+#### Properties
+
+##### .animated
+
+Whether the emoji is animated 
+
+Type: boolean
+
+##### .createdAt
+
+The time the emoji was created at, or null if unicode
+
+Type: Date or null
+
+##### .createdTimestamp
+
+The timestamp the emoji was created at, or null if unicode 
+
+Type: number or null
+
+##### .id
+
+The ID of this emoji 
+
+Type [Snowflake](#Snowflake) or null
+
+##### .name
+
+The name of this emoji
+
+##### .identifier
+
+The identifier of this emoji, used for message reactions
+
+Type: string
+
+##### .url
+
+The URL to the emoji file if its a custom emoji 
+
+Type: string or null
+
+##### .deleted
+
+Whether this emoji has been deleted
+
+Type: boolean
+
+#### Functions
+
+##### .toString()
+
+> Your bot will need to be in the server that the emoji is in for the emoji to form.
+
+When concatenated with a string, this automatically returns the text required to form a graphical emoji on Discord instead of the Emoji object.
+
+Returns: string
+
 ### Activity
 
 Represent an activity on discord.
 
 #### Properties
 
-    /**Assets for rich presence */
-    ##### assets
-    Type: [RichPresenceAssets](https://discord.js.org/#/docs/main/12.2.0/class/RichPresenceAssets?scrollTo=largeImageURL)
-    /**The time the activity was created at */
-    createdAt:Date
-    /**Creation date of the activity */
-    createdTimestamp:number
-    /**Details about the activity */
-    details:string | null
-    /**Emoji for a custom activity */
-    emoji:Emoji | null
-    /**Flags that describe the activity */
-    flags:ActivityFlags
-    /**Party of the activity */
-    party: {
-        /**ID of the party */
-        id:string | null,
-        /** Size of the party as [current, max]*/
-        size:[number,number]
-    } | null
-    /**Timestamps for the activity */
-    timestamps: {
-        /**When the activity started */
-        start:Date | null
-        /**When the activity will end */
-        end:Date | null
-    } | null
-    /**State of the activity*/
-    state:string | null
-    /**The type of the activity status */
-    type:ActivityType
-    /**If the activity is being streamed, a link to the stream */
-    url:string | null
-    /**Application ID associated with this activity */
-    applicationID: string | null
-### Emoji
+##### .assets
+Assets for rich presence
+
+Type: [RichPresenceAssets](#RichPresenceAssets)
+
+##### .createdAt
+The time the activity was created at
+
+Type: Date
+
+##### .createdTimestamp
+Creation date of the activity 
+
+Type: number
+
+##### .details
+Details about the activity
+
+Type: string or null
+
+##### .emoji
+Emoji for a custom activity 
+
+Type: [Emoji](#Emoji) or null
+
+##### .flags
+Flags that describe the activity 
+
+Type:ActivityFlags
+
+##### .party
+Party of the activity 
+key|type|meaning
+---|---|---
+id|string or null|ID of the party
+size|[number,number]|Size of the party as [current, max]
+
+Type: object or null
+##### .timestamps
+Timestamps for the activity 
+key|type|meaning
+---|---|---
+start|Date or null|When the activity started
+end|Date or null|When the activity ended
+Type: object or null
+##### .state
+State of the activity
+
+Type: string | null
+##### .type
+The type of the activity status 
+Type: [ActivityType](https://discord.js.org/#/docs/main/12.2.0/typedef/ActivityType)
+##### .url
+If the activity is being streamed, a link to the stream 
+
+Type: string | null
+#####  .applicationID
+Application ID associated with this activity 
+
+Type: string | null
+
+#### Functions
+
+##### .equals(activity)
+
+Whether this activity is equal to another activity.
+
+activity: The actvity to compare with
+
+Returns: boolean
 
 ### UserFlags
 
@@ -312,6 +426,62 @@ The bio instance
 
 Type: [Bio](#Bio)
 
+### RichPresenceAssets
+Assets for rich presence
+#### Properties
+##### .activity
+
+Activity that these assets belongs to 
+
+Type: [Activity](#Activity)
+
+##### .largeText
+
+Hover text for the large image
+
+Type: string or null
+
+##### .smallText
+
+Hover text for the small image
+
+Type: string or null
+
+##### .largeImage
+
+ID of the large image asset
+
+Type: [Snowflake](#Snowflake)
+
+##### .smallImage
+
+ID of the small image asset
+
+Type: [Snowflake](#Snowflake)
+
+#### Functions
+
+##### .largeImageURL(options?)
+
+Gets the URL of the large image asset
+
+| Parameter      | type                | meaning               |
+| -------------- | ------------------- | --------------------- |
+| options        | object or undefined | Options for the image |
+| options.format | string or undefined | Format of the image   |
+| options.size   | number or undefined | Size of the image     |
+Returns: string or null
+##### .smallImageURL(options?)
+
+Gets the URL of the small image asset
+
+| Parameter      | type                | meaning               |
+| -------------- | ------------------- | --------------------- |
+| options        | object or undefined | Options for the image |
+| options.format | string or undefined | Format of the image   |
+| options.size   | number or undefined | Size of the image     |
+Returns: string or null
+
 ## Type definitions
 
 ### ProfileSettings
@@ -320,14 +490,15 @@ The profile settings
 
   key|type|Meaning
   ---|---|---
-  slug| `string` | The slug. 
-  user_id| `string` | User ID of the profile's user. 
-  created_at| `string` or  `null` | The time the profile is created 
-  status| `string` or `null` | The status of the user. 
+ slug | `string` | The slug. 
+  user_id| [Snowflake](#Snowflake) | User ID of the profile's user. 
+  created_at| `string` or  `null` | [DEPRECATED] The date string of the time the profile is created 
+ createdAt | `Date` | The date that the profile is created 
+ createdTimestamp | `number` or `null` | The timestamp in ms that the profile is created 
   description| `string` or `null` | The description of the user. 
   location| `string` or  `null` | The location of the user. 
   gender| `'male'` , `'female'`,'`'non-binary'`,or `null` | Gender of the user. 
-  birthday| `string` or `null` | The birthday of the user. 
+  birthday| `Date` or `null`                                | The birthday of the user. 
   email| `string` or `null` | The email of the user. 
   occupation| `string` or  `null` | The occupation of the user. 
  banner | `string` or `null` | The URL to the profile banner. 
@@ -384,13 +555,15 @@ An object mapping the discord.bio connections.
 
 The property name is than name of the connection. Type: [ConnectionTypes](#ConnectionTypes)
 
-The value is the name of the connection. Type:`string`
+The value is the name of the connection. Type: `string`
 
 ### ConnectionTypes
 
 One of  `github`,`website`, `instagram`, `snapchat`,`linkedin`.
 
 Type: string
+
+### Snowflake
 
 A Twitter snowflake, except the epoch is 2015-01-01T00:00:00.000Z 
 
