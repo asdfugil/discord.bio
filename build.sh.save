@@ -1,8 +1,0 @@
-#!/usr/bin/bash
-if [ "which" pnpx ]
-then
-echo "pnpx found. Will use pnpx instead of npx"
-pnpx -p typescript@3.9.2 tsc
-else
-npx -p typescript@3.9.2 tsc
-fi
