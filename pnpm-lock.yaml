@@ -9,7 +9,7 @@ dependencies:
   node-fetch: 2.6.0
   typescript: 3.8.2
 devDependencies:
-  '@types/node': 13.7.4
+  '@types/node': 13.13.10
   better-docs: 1.4.7_typescript@3.8.2
 lockfileVersion: 5.1
 packages:
@@ -221,7 +221,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-eWQGP3qtxwL8FGneRrC5DwrJLGN4/dH1clNTuLfN81HCrxVtxRjygDTUoZJ5ASlDEeo0ppYFQjQIlXhtXpOn6g==
+  /@types/node/13.13.10:
+    dev: true
+    resolution:
+      integrity: sha512-J+FbkhLTcFstD7E5mVZDjYxa1VppwT2HALE6H3n2AnBSP8uiCQk0Pyr6BkJcP38dFV9WecoVJRJmFnl9ikIW7Q==
   /@types/node/13.7.4:
+    dev: false
     resolution:
       integrity: sha512-oVeL12C6gQS/GAExndigSaLxTrKpQPxewx9bOcwfvJiJge4rr7wNaph4J+ns5hrmIV2as5qxqN8YKthn9qh0jw==
   /@types/ws/7.2.4:
@@ -1159,7 +1164,7 @@ packages:
     resolution:
       integrity: sha1-9+572FfdfB0tOMDnTvvWgdFDH9E=
 specifiers:
-  '@types/node': ^13.7.0
+  '@types/node': ^13.13.10
   '@types/node-fetch': ^2.5.4
   '@types/ws': ^7.2.4
   better-docs: ^1.4.7
