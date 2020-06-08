@@ -1,12 +1,12 @@
 {
 	"name": "discord.bio",
-	"version": "6.1.0-rc.1",
+	"version": "6.1.0-rc.2",
 	"description": "a node.js wrapper of the discord.bio api",
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
 	"scripts": {
 		"test": "node test.js",
-		"build": "npx -p typescript@3.9.2 tsc",
+		"build": "node install.js",
 		"postinstall": "npm run build"
 	},
 	"author": "Nick Chan#0001",
@@ -15,6 +15,7 @@
 		"@types/node-fetch": "^2.5.4",
 		"@types/ws": "^7.2.4",
 		"colors": "^1.4.0",
+		"command-exists": "^1.2.9",
 		"commander": "^5.1.0",
 		"discord.js": "12.2.0",
 		"form-data": "^3.0.0",

@@ -2,6 +2,7 @@ dependencies:
   '@types/node-fetch': 2.5.4
   '@types/ws': 7.2.4
   colors: 1.4.0
+  command-exists: 1.2.9
   commander: 5.1.0
   discord.js: 12.2.0
   form-data: 3.0.0
@@ -419,6 +420,10 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
+  /command-exists/1.2.9:
+    dev: false
+    resolution:
+      integrity: sha512-LTQ/SGc+s0Xc0Fu5WaKnR0YiygZkm9eKFvyS+fRsU7/ZWFF8ykFM6Pc9aCVf1+xasOOZpO3BAVgVrKvsqKHV7w==
   /commander/2.20.3:
     dev: true
     resolution:
@@ -1159,6 +1164,7 @@ specifiers:
   '@types/ws': ^7.2.4
   better-docs: ^1.4.7
   colors: ^1.4.0
+  command-exists: ^1.2.9
   commander: ^5.1.0
   discord.js: 12.2.0
   form-data: ^3.0.0

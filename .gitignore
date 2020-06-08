@@ -5,3 +5,4 @@ dist/
 .git
 key.txt
 discord.bio.code-workspace
+package-lock.json
