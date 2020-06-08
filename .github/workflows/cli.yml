@@ -25,7 +25,7 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Install and run the cli
       run: |
-        npm run build
+        npm install
         npx -p ./ dbio version
         npx -p ./ dbio details v
         npx -p ./ dbio presence 198869192718417920
