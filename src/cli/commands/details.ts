@@ -22,8 +22,8 @@ async function details (slug:string):Promise<void> {
     console.log(bold('User ID:') + profile.discord.id)
     console.log(bold(`Flags: `) + (flags.join(', ') || '(none)'))
     console.log(bold('Details'))
-    const info:['location','gender','birthday','email','created_at','occupation','verified','staff'] = ['location','gender','birthday','email','created_at','occupation','verified','staff']
-    const data:{[key:string]:{ value:string | boolean | null}} = {}
+    const info:['location','gender','birthday','email','createdAt','occupation','verified','staff'] = ['location','gender','birthday','email','createdAt','occupation','verified','staff']
+    const data:{[key:string]:{ value:string | boolean | null | Date }} = {}
     for (const key of info) {
         if (details[key] as string | null| boolean) data[key] = { value: details[key] as string | null }
     }
