@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // The CLI
 import { program } from 'commander'
-program.name('dbio').versiob(require('../../package.json').version)
+program.name('dbio').version(require('../../package.json').version)
 program
     .command('details <slug_or_user_id>')
     .description('Display user details')
