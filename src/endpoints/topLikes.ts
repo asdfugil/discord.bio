@@ -3,7 +3,7 @@ import User from '../structures/User'
 import PartialProfile from '../structures/PartialProfile'
 import { Collection,Snowflake } from 'discord.js'
 async function topUpvoted(this:Bio):Promise<Collection<Snowflake,PartialProfile>> {
-    const result = await this.api('/topUpvoted','GET')
+    const result = await this.api('/topLikes','GET')
     let profiles = result.payload.map((profile: any) => {
         profile.discord = new User(profile.discord)
         profile.user.verified = Boolean(profile.user.verified)
