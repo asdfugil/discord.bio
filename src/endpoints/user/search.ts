@@ -20,6 +20,7 @@ async function search(this:import('../../structures/Base'),query:string):Promise
         profile.discord = new User(profile.discord)
         profile.user.verified = Boolean(profile.user.verified)
         profile.user.premium = Boolean(profile.user.premium)
+        profile.user.upvotes = profile.user.likes
         return profile
     })
     profiles = new Collection<Snowflake,PartialProfile>(result.payload.map((entry:any) => [entry.discord.id,entry]))

@@ -1,5 +1,7 @@
 type PartialProfileSettings = {
-    /**The amount of upvotes the profile has */
+    /**The number of likes the user has got */
+    likes: number,
+    /**@deprecated Please use .likes instead */
     upvotes:number
     /**Profile description */
     description:string | null

@@ -2,7 +2,7 @@ import { Bio } from '../..'
 import { bold } from 'colors'
 const bio = new Bio()
 async function topUpvoted(): Promise<void> {
-    const results = await bio.topUpvoted()
+    const results = await bio.topLikes()
     const data:{[key:string]:any} = {}
     results.forEach(result => {
         data[bold(result.discord.tag) + ` (↑ ${result.user.upvotes})`] = {

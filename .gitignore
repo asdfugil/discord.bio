@@ -6,3 +6,4 @@ dist/
 key.txt
 discord.bio.code-workspace
 package-lock.json
+bin/

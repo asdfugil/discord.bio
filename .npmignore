@@ -3,4 +3,5 @@ node_modules/
 .git
 key.txt
 discord.bio.code-workspace
-.github/workflows
+.github/workflows/
+bin/

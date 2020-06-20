@@ -16,7 +16,7 @@ async function details (slug:string):Promise<void> {
       if (value) flags.push(key.replace(/_/g,' ').toLowerCase());
     }
     console.log(bold(profile.discord.tag + `(${details.slug})`))
-    console.log(bold(`↑ ${details.upvotes} upvotes`))
+    console.log(bold(`❤️ ${details.likes} likes`))
     console.log('')
     console.log(bold('Description:') + ' '+ details.description)
     console.log(bold('User ID:') + profile.discord.id)

@@ -27,6 +27,8 @@ async function details(this: Base, slugOrID: string): Promise<import('../../stru
     details.birthday = details.birthday ? new Date(details.birthday) : null
     details.flags = new UserFlags(details.flags)
     details.staff = Boolean(details.staff)
+    //semver
+    details.upvotes = details.likes
     //append userful properties
     profile.payload.discord = new User(profile.payload.discord)
     return profile.payload

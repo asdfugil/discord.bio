@@ -5,7 +5,9 @@ type ProfileSettings = {
     slug: string
     /**User ID of the profile's user. */
     user_id: Snowflake
-    /**[DEPRECATED] The date string of the time the profile is created.*/
+    /**
+     * @deprecated Please use .createdAt.toISOString() instead.
+     */
     created_at: string | null
     /**The date that the profile is created */
     createdAt: Date
@@ -29,8 +31,10 @@ type ProfileSettings = {
     banner: string | null
     /**Whether the user has discord.bio premium */
     premium: boolean
-    /**The number of upvotes the user has got */
-    upvotes: number,
+    /**The number of likes the user has got */
+    likes: number,
+    /**@deprecated Please use .likes instead */
+    upvotes:number
     /**Whether the user is verified */
     verified: boolean
     /**Whether the user is a discord.bio staff*/

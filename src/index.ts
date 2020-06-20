@@ -3,7 +3,7 @@ import RawUser from './structures/RawUser'
 import details from './endpoints/user/details'
 import search from './endpoints/user/search'
 import APIVersion from './endpoints/APIVersion'
-import topUpvoted from './endpoints/topUpvoted'
+import topLikes from './endpoints/topLikes'
 import presence from './endpoints/user/presence'
 import api from './util/api'
 import UserConnections from './structures/UserConnections'
@@ -28,13 +28,14 @@ export class Bio extends EventEmitter {
     /**Fetches the api version. */
     APIVersion: typeof APIVersion
     /**Fetch the top upvoted users, sorted by upvotes.*/
-    topUpvoted: typeof topUpvoted
+    topLikes: typeof topLikes
     /**API shortcut. There should be no need to call this method manually.*/
     @enumerable(false)
     readonly api: typeof api
     @enumerable(false)
     bio: this
-    users: Base & {
+    //public on<K extends keyof BioEvents>(event: K, listener: (...args: BioEvents[K]) => void): this;  
+      users: Base & {
         /**
          * Get user Details
          * @example bio.details('nickchan')
@@ -45,6 +46,7 @@ export class Bio extends EventEmitter {
         presence: typeof presence
     }
     totalUsers: () => number
+    topUpvoted: typeof topLikes
     /**
      * @param baseURL - The API base URL
      */
@@ -53,7 +55,9 @@ export class Bio extends EventEmitter {
         this.baseURL = baseURL || defaults.baseurl
         this.__limit = 100
         this.APIVersion = APIVersion
-        this.topUpvoted = topUpvoted
+        this.topLikes = topLikes
+        //semver
+        this.topUpvoted = deprecate(this.topLikes,'Please use .topLikes() instead')
         //semver
         this.totalUsers = deprecate(function () { return 1 }, 'This endpoint no longer exists')
         this.api = api
