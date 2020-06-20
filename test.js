@@ -4,13 +4,13 @@ const bio = new Bio()
 bio.APIVersion().then(ver => console.log(`Library version:${require('./package.json').version}, testing against API version ${ver}`))
 Promise.all([
 bio.users.details('nickchan'),
-bio.topUpvoted(),
 bio.totalUsers(),
 bio.users.search('ven'),
 bio.users.presence('570634232465063967'),
+bio.topUpvoted()
 ]).then(result => { 
     console.log(result[0])
-    const ven = result[3].first()
+    const ven = result[2].first()
     console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
     console.log(`Display Avatar URL of Nick Chan#0001: ${result[0].discord.displayAvatarURL({ size:1024,dynamic:true })}`)
     console.log(`Default URL of Nick Chan#0001: ${result[0].discord.defaultAvatarURL}`)
@@ -20,5 +20,5 @@ bio.users.presence('570634232465063967'),
 .catch(error => {
     console.error("Test failed,reason:")
     console.error(error.stack)
-    throw error
+    process.exit(1)
 })
