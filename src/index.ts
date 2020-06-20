@@ -47,7 +47,7 @@ export class Bio extends EventEmitter {
     }
     totalUsers: () => number
     topUpvoted: typeof topLikes
-    /**The version of the package */
+    /**The version of the library */
     version: string
     /**
      * @param baseURL - The API base URL
