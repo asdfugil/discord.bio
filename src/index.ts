@@ -47,6 +47,8 @@ export class Bio extends EventEmitter {
     }
     totalUsers: () => number
     topUpvoted: typeof topLikes
+    /**The version of the package */
+    version: string
     /**
      * @param baseURL - The API base URL
      */
@@ -71,6 +73,7 @@ export class Bio extends EventEmitter {
         this.__quota = this.__limit
         this.__quota_reset = Date.now()
         this.__outgoing_requests = 0
+        this.version = require('../package.json').version
         this.APIVersion()
     }
 }

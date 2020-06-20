@@ -13,7 +13,7 @@ program
 program
     .command('topUpvoted')
     .description('Show the most upvoted profiles, sorted by upvotes')
-    .action(require('./commands/topUpvoted'));
+    .action(require('./commands/topLikes'));
 program
     .command('version')
     .description('Displays the API version')
