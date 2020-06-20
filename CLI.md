@@ -21,6 +21,7 @@ npm i -g discord.bio
 Usage: dbio [options] [command]
 
 Options:
+  -V, --version              output the version number
   -h, --help                 display help for command
 
 Commands:
@@ -34,43 +35,40 @@ Commands:
 ### details
 Display user details
 
-**Example:** `dbio details v` outputs
+**Example:** `dbio details nick` outputs
 
 ```xl
-ven#7051(v)
-↑ 107 upvotes
+Nick Chan#0001(nickchan)
+❤️ 1 likes
 
-Description: 17. Full-stack developer; vue, node, python.
-User ID:204616460797083648
-Flags: house balance, early supporter, verified developer
+Description: Just another random developer.
+
+https://www.npmjs.com/package/discord.bio/
+User ID:570634232465063967
+Flags: house bravery
 Details
-┌────────────┬────────────────────────────┐
-│  (index)   │           value            │
-├────────────┼────────────────────────────┤
-│  location  │     'London, England'      │
-│   gender   │           'male'           │
-│   email    │      'admin@veno.dev'      │
-│ created_at │ '2020-05-17T22:43:46.000Z' │
-│ occupation │        'Developer'         │
-│  verified  │            true            │
-│   staff    │            true            │
-└────────────┴────────────────────────────┘
+┌────────────┬──────────────────────────────────────────────────┐
+│  (index)   │                      value                       │
+├────────────┼──────────────────────────────────────────────────┤
+│  location  │                   'Hong Kong'                    │
+│   gender   │                      'male'                      │
+│   email    │ 't.o.w.i.n.ch.e.n.mi+f92op2m6vla@googlemail.com' │
+│ createdAt  │             2020-02-21T02:22:06.000Z             │
+│ occupation │                '[object Object]'                 │
+└────────────┴──────────────────────────────────────────────────┘
 Discord Connections
-┌────────────┬─────────────────┬───────────────────────────────────┬──────────────────┐
-│  (index)   │ Connection type │                URL                │       icon       │
-├────────────┼─────────────────┼───────────────────────────────────┼──────────────────┤
-│  venoras   │    'twitch'     │   'https://twitch.tv/venoras/'    │ 'fab fa-twitch'  │
-│  venolol   │    'twitter'    │  'https://twitter.com/venolol/'   │ 'fab fa-twitter' │
-│ discordbio │    'twitter'    │ 'https://twitter.com/discordbio/' │ 'fab fa-twitter' │
-└────────────┴─────────────────┴───────────────────────────────────┴──────────────────┘
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
 User Connections
-┌───────────┬────────────────────┐
-│  (index)  │       value        │
-├───────────┼────────────────────┤
-│  github   │     'venoras'      │
-│  website  │ 'https://veno.dev' │
-│ instagram │     'dualipa'      │
-└───────────┴────────────────────┘
+┌─────────┬──────────────────────────────┐
+│ (index) │            value             │
+├─────────┼──────────────────────────────┤
+│ github  │          'Assfugil'          │
+│ website │ 'https://Assfugil.github.io' │
+└─────────┴──────────────────────────────┘
+
 
 ```
 

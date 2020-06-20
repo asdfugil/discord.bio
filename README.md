@@ -15,6 +15,7 @@ npm i discord.bio
 - [Contents](#Contents)
 - [Changelogs](#Changelogs)
 - [Features](#Features)
+- [CLI Documentation](#CLI Documentation)
 - [Example](#Example)
   - [Classes](#Classes)
     - [Bio](#bio)
@@ -37,9 +38,7 @@ npm i discord.bio
     - [HTTPRequestMethod](#HTTPRequestMethod)
 ## Changelogs
 
-- Fixed faulty typings
-- Added a CLI
-- Added presence endpoint support
+- Upvotes are now likes
 
 ## CLI Documentation
 
@@ -516,7 +515,8 @@ The profile settings
   email| `string` or `null` | The email of the user. 
   occupation| `string` or  `null` | The occupation of the user. 
  banner | `string` or `null` | The URL to the profile banner. 
- upvotes | `number` | The number of upvotes the user have got. 
+ upvotes | `number` | [DEPRECATED] The number of likes the user have got. 
+ likes | `number` | The number of likes on the profile. 
  premium | `boolean` | Whether the user has discord.bio premium. 
  verified | `boolean` | Whether the user has verified. 
  flags | [UserFlags](#UserFlags) | the cached [flags](https://discord.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
@@ -545,13 +545,14 @@ discord| [User](#User)                                     |The user of this pro
 
 The settings of an incomplete profile
 
-| key         | type                      | meaning                                  |
-| ----------- | ------------------------- | ---------------------------------------- |
-| upvotes     | number                    | The number of upvote on the profile      |
-| verified    | boolean                   | Whether the user has verified.           |
-| description | `string` or `null`        | The description of the profile           |
-| premium     | boolean                   | Whether the user has discord.bio premium |
-| name        | string                    | The slug of the profile.                 |
+| key         | type               | meaning                                             |
+| ----------- | ------------------ | --------------------------------------------------- |
+| upvotes     | number             | [DEPRECATED] The number of likes the user have got. |
+| verified    | boolean            | Whether the user has verified.                      |
+| likes       | number             | The number of likes the user have got.              |
+| description | `string` or `null` | The description of the profile                      |
+| premium     | boolean            | Whether the user has discord.bio premium            |
+| name        | string             | The slug of the profile.                            |
 
 ### DiscordConnection
 
