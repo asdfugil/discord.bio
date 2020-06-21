@@ -38,7 +38,7 @@ npm i discord.bio
     - [HTTPRequestMethod](#HTTPRequestMethod)
 ## Changelogs
 
-- Upvotes are now likes
+- Emoji bug fixes
 
 ## CLI Documentation
 
