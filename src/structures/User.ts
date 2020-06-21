@@ -1,5 +1,6 @@
 import RawUser from  './RawUser'
 import { ImageURLOptions,UserFlags } from 'discord.js'
+import { defaults } from '../util/Constants'
 /**Represent A User */
 class User {
     /**The DiscordTag#1234 tag of the user */
@@ -43,7 +44,7 @@ class User {
      */
     avatarURL (options:ImageURLOptions & { dynamic?: boolean } = { format:'webp',dynamic:false }):string | null {
         options.format ? {} :options.format = 'webp'
-        let url:string = `https://cdn.discordapp.com/avatars/${this.id}/${this.avatar}`
+        let url:string = `${defaults.cdn_url}/avatars/${this.id}/${this.avatar}`
         if (!this.avatar) return null
         if (!this.avatar.startsWith('a_') && options.format === 'gif') return null
         else url += '.' + options.format;

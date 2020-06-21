@@ -1,7 +1,6 @@
 import ProfileSettings from './ProfileSettings'
 import User from './User'
 import DiscordConnection from './DiscordConnection'
-import { Collection } from 'discord.js'
 import UserConnections from './UserConnections'
 /**Represent a discord.bio profile */
 type Profile = {
