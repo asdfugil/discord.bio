@@ -74,7 +74,6 @@ export class Bio extends EventEmitter {
         this.__quota_reset = Date.now()
         this.__outgoing_requests = 0
         this.version = require('../package.json').version
-        this.APIVersion()
     }
 }
 export { User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection }
