@@ -26,11 +26,11 @@ npm i discord.bio
     - [UserFlags](#UserFlags)
     - [DBioAPIError](#DBioAPIError-----extends-Error)
     - [Collection](#Collection)
-  - [Type definitions](#type-definitions)
     - [ProfileSettings](#ProfileSettings)
+    - [PartialProfileSettings](#PartialProfileSettings)
+  - [Type definitions](#type-definitions)
     - [Profile](#Profile)
     - [PartialProfile](#PartialProfile)
-    - [PartialProfileSettings](#PartialProfileSettings)
     - [DiscordConnection](#DiscordConnection)
     - [UserConnections](#UserConnections)
     - [ConnectionTypes](#ConnectionTypes)
@@ -79,43 +79,21 @@ bio.users.presence('570634232465063967')
 
 <h3> Bio</h3> Extends EventEmitter
 
+#### Constructor
+
 ```ts
-const bio = new (require('discord.bio').Bio)(baseURL?)
+const bio = new (require('discord.bio').Bio)(options)
 ```
 
-baseURL: The base url
+##### options.base_url 
 
-Defaults to https://api.discord.bio/v1
+The base url of the api
+
+##### options.cdn_url
+
+the base url of the cdn
 
 #### Properties
-
-##### .baseURL
-
-The base url
-Type: string
-
-##### .__quota
-
-Number of request left
-Type: number
-
-##### .__quota_reset
-
-The time when the quota resets.
-
-Type: number
-
-##### .__limit
-
-Maximum amount of requests allowed in a time-frame
-
-Type: number
-
-##### .__outgoing_requests
-
-Amount of outgoing requests
-
-Type: number
 
 ##### .bio
 
@@ -495,8 +473,6 @@ Gets the URL of the small image asset
 
 Returns: string or null
 
-## Type definitions
-
 ### ProfileSettings
 
 The profile settings
@@ -522,6 +498,21 @@ The profile settings
  flags | [UserFlags](#UserFlags) | the cached [flags](https://discord.com/developers/docs/resources/user#user-object-user-flags) on the user's account. 
  staff | `boolean` | Whether the user is discord.bio staff 
 
+### PartialProfileSettings
+
+The settings of an incomplete profile
+
+| key         | type               | meaning                                             |
+| ----------- | ------------------ | --------------------------------------------------- |
+| upvotes     | number             | [DEPRECATED] The number of likes the user have got. |
+| verified    | boolean            | Whether the user has verified.                      |
+| likes       | number             | The number of likes the user have got.              |
+| description | `string` or `null` | The description of the profile                      |
+| premium     | boolean            | Whether the user has discord.bio premium            |
+| slug        | string             | The slug of the profile.                            |
+
+## Type definitions
+
 ### Profile
 
 Represent a discord.bio profile 
@@ -540,19 +531,6 @@ key|type|meaning
 ---|---|---
 user| [PartialProfileSettings](#PartialProfileSettings) |The settings of this profile.
 discord| [User](#User)                                     |The user of this profile
-
-### PartialProfileSettings
-
-The settings of an incomplete profile
-
-| key         | type               | meaning                                             |
-| ----------- | ------------------ | --------------------------------------------------- |
-| upvotes     | number             | [DEPRECATED] The number of likes the user have got. |
-| verified    | boolean            | Whether the user has verified.                      |
-| likes       | number             | The number of likes the user have got.              |
-| description | `string` or `null` | The description of the profile                      |
-| premium     | boolean            | Whether the user has discord.bio premium            |
-| name        | string             | The slug of the profile.                            |
 
 ### DiscordConnection
 
