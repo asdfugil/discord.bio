@@ -1,8 +1,6 @@
-type PartialProfileSettings = {
+class PartialProfileSettings {
     /**The number of likes the user has got */
-    likes: number,
-    /**@deprecated Please use .likes instead */
-    upvotes:number
+    likes: number
     /**Profile description */
     description:string | null
     /**Whether the user is verified */
@@ -13,5 +11,14 @@ type PartialProfileSettings = {
     slug:string
     /**Whether the user is a discord.bio staff */
     staff:boolean
+    constructor(data:any) {
+        const { likes,description,verified,premium,slug,staff } = data
+        this.likes = likes
+        this.description = description
+        this.verified = Boolean(verified)
+        this.premium = premium
+        this.slug = slug
+        this.staff = staff
+    }
 }
 export = PartialProfileSettings

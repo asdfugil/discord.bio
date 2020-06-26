@@ -38,7 +38,7 @@ npm i discord.bio
     - [HTTPRequestMethod](#HTTPRequestMethod)
 ## Changelogs
 
-- Emoji bug fixes
+- Updated licnese! please check it out
 
 ## CLI Documentation
 

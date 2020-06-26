@@ -1,7 +1,6 @@
-import { Bio }  from '..'
 import fetch from 'node-fetch'
 import FormData from 'form-data'
-import util from 'util'
+import RESTManager from '../structures/RESTManager'
 import DBioAPIError from '../structures/DBioAPIError'
 import * as constants from './Constants'
 import HTTPRequestMethod from '../structures/HTTPRequestMethod'
@@ -12,12 +11,12 @@ import HTTPRequestMethod from '../structures/HTTPRequestMethod'
  * @param headers Custom headers
  * @param body Request body
  */
-async function api(this:Bio,path:string,method:HTTPRequestMethod,headers?:any,body?:string | Buffer | FormData):Promise<any> {
-    if (this.__quota <= this.__outgoing_requests) {
+async function api(this:RESTManager,path:string,method:HTTPRequestMethod,headers?:any,body?:string | Buffer | FormData):Promise<any> {
+    if (this.quota <= this.outgoing_requests) {
         return new Promise<any> (resolve => {
-            if (this.__quota_reset - Date.now() > 0) setTimeout(()=> {
+            if (this.quota_reset - Date.now() > 0) setTimeout(()=> {
                 resolve(this.api(path,method,headers,body))
-            },this.__quota_reset - Date.now());
+            },this.quota_reset - Date.now());
             //Prevent race condition
             //if this is removed it will result in an OOM 
            else setTimeout(()=> {
@@ -29,17 +28,17 @@ async function api(this:Bio,path:string,method:HTTPRequestMethod,headers?:any,bo
     Object.keys(constants.headers).forEach(key => {
     if (typeof headers[key] === 'undefined') headers[key] = constants.headers[key]
     })
-    this.__outgoing_requests += 1
-    const response = await fetch(this.baseURL + path,{
+    this.outgoing_requests += 1
+    const response = await fetch(this.base_url + path,{
         method:method,
         headers:headers,
         body:body
     })
-    this.__outgoing_requests -= 1
+    this.outgoing_requests -= 1
     const text =  await response.text()
-    this.emit('debug',`[API Response] ${text}`)
+    this.bio.emit('debug',`[API Response] ${text}`)
     if (response.status === 429 ) { //Rate Limit. This should never happen.
-        this.emit('rateLimit',
+        this.bio.emit('rateLimit',
         /**
          * Number of seconds until you can send a request again
          */
@@ -50,8 +49,8 @@ async function api(this:Bio,path:string,method:HTTPRequestMethod,headers?:any,bo
             },parseInt(response.headers.get('retry-after') as string))
         })
     }
-    this.__quota_reset = parseInt(response.headers.get('x-ratelimit-reset') as string)*1000
-    this.__quota = parseInt(response.headers.get('x-ratelimit-remaining') as string)
+    this.quota_reset = parseInt(response.headers.get('x-ratelimit-reset') as string)*1000
+    this.quota = parseInt(response.headers.get('x-ratelimit-remaining') as string)
     let result;
     try {
      result = JSON.parse(text)

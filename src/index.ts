@@ -5,33 +5,22 @@ import search from './endpoints/user/search'
 import APIVersion from './endpoints/APIVersion'
 import topLikes from './endpoints/topLikes'
 import presence from './endpoints/user/presence'
-import api from './util/api'
 import UserConnections from './structures/UserConnections'
 import { UserFlags, ImageURLOptions, Collection, } from 'discord.js'
 import { EventEmitter } from 'events'
 import enumerable from './util/enumerable'
 import DBioAPIError from './structures/DBioAPIError'
 import ConnectionTypes from './structures/ConnectionTypes'
-import { defaults } from './util/Constants'
 import { deprecate } from 'util'
 import Base from './structures/Base'
+import RESTManager from './structures/RESTManager'
+import { bioOptionsDefaults } from './util/Constants'
 /**The main hub for interacting with the discord.bio API. */
 export class Bio extends EventEmitter {
-    __outgoing_requests: number
-    __quota_reset: number
-    /**Number of request remaining before getting rate-limited */
-    __quota: number
-    /**Maximum number of requests in a timeframe */
-    __limit: number
-    /**The base URL used in making API requests */
-    baseURL: string
     /**Fetches the api version. */
     APIVersion: typeof APIVersion
     /**Fetch the top upvoted users, sorted by upvotes.*/
     topLikes: typeof topLikes
-    /**API shortcut. There should be no need to call this method manually.*/
-    @enumerable(false)
-    readonly api: typeof api
     @enumerable(false)
     bio: this
     //public on<K extends keyof BioEvents>(event: K, listener: (...args: BioEvents[K]) => void): this;  
@@ -50,19 +39,21 @@ export class Bio extends EventEmitter {
     /**The version of the library */
     version: string
     /**
+     * REST Manager
+     * @private
+     */
+    rest: RESTManager
+    /**
      * @param baseURL - The API base URL
      */
-    constructor(baseURL?: string) {
+    constructor(options: typeof bioOptionsDefaults = bioOptionsDefaults) {
         super()
-        this.baseURL = baseURL || defaults.baseurl
-        this.__limit = 100
         this.APIVersion = APIVersion
         this.topLikes = topLikes
         //semver
         this.topUpvoted = deprecate(this.topLikes,'Please use .topLikes() instead')
         //semver
         this.totalUsers = deprecate(function () { return 1 }, 'This endpoint no longer exists')
-        this.api = api
         this.users = {
             bio: this,
             details: details,
@@ -70,9 +61,7 @@ export class Bio extends EventEmitter {
             presence: presence
         }
         this.bio = this
-        this.__quota = this.__limit
-        this.__quota_reset = Date.now()
-        this.__outgoing_requests = 0
+        this.rest = new RESTManager(this,options.rest)
         this.version = require('../package.json').version
     }
 }

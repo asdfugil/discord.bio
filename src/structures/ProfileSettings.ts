@@ -1,20 +1,15 @@
 import { UserFlags } from 'discord.js'
 /**The profile settings. */
-type ProfileSettings = {
+class ProfileSettings {
     /**The slug */
     slug: string
     /**User ID of the profile's user. */
     user_id: Snowflake
-    /**
-     * @deprecated Please use .createdAt.toISOString() instead.
-     */
-    created_at: string | null
-    /**The date that the profile is created */
     createdAt: Date
     /**The timestamp in ms that the profile is created */
-    createdTimestamp:number
+    createdTimestamp: number
     /**The flags on the user */
-    flags:UserFlags
+    flags: UserFlags
     /**The description of the user. */
     description: string | null
     /**The location of the user. */
@@ -32,13 +27,36 @@ type ProfileSettings = {
     /**Whether the user has discord.bio premium */
     premium: boolean
     /**The number of likes the user has got */
-    likes: number,
-    /**@deprecated Please use .likes instead */
-    upvotes:number
+    likes: number
     /**Whether the user is verified */
     verified: boolean
     /**Whether the user is a discord.bio staff*/
-    staff:boolean
+    staff: boolean
+    constructor(data: any) {
+        const { slug, user_id, flags, verified, created_at, description, location, birthday, email, occupation, banner, premium, staff, likes } = data
+        const gender: 0 | 1 | 2 | null = data.gender
+        this.slug = slug
+        this.user_id = user_id
+        this.flags = new UserFlags(flags)
+        this.verified = verified
+        this.createdAt = new Date(created_at)
+        this.createdTimestamp = created_at
+        this.description = description
+        this.location = location
+        this.email = email
+        this.occupation = occupation
+        this.banner = banner
+        this.premium = premium
+        this.staff = staff
+        this.likes = likes
+        this.birthday = birthday ? new Date(birthday) : null
+        switch (gender) {
+            case 0: this.gender = 'male'; break
+            case 1: this.gender = 'female'; break
+            case 2: this.gender = "non-binary"; break
+            case null: this.gender = null; break
+        }
+    }
 }
 type Snowflake = string
 export = ProfileSettings

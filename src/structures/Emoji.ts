@@ -2,7 +2,7 @@ import { Snowflake } from 'discord.js'
 import Base from './Base'
 import { Bio } from '..'
 import RawEmoji from './RawEmoji';
-import { defaults } from '../util/Constants'
+import { bioOptionsDefaults } from '../util/Constants'
 class Emoji extends Base {
     /**Whether the emoji is animated */
     //@ts-ignore
@@ -37,7 +37,7 @@ class Emoji extends Base {
     }
        /**The URL to the emoji file if its a custom emoji */
     get url() : string | null {
-        return this.id ? `${defaults.cdn_url}/emojis/${this.id}.${this.animated ? 'gif' : 'png'}` : null
+        return this.id ? `${bioOptionsDefaults.rest.cdn_url}/emojis/${this.id}.${this.animated ? 'gif' : 'png'}` : null
     }
 }
 export = Emoji
