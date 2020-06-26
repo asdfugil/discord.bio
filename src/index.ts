@@ -34,8 +34,6 @@ export class Bio extends EventEmitter {
         search: typeof search
         presence: typeof presence
     }
-    totalUsers: () => number
-    topUpvoted: typeof topLikes
     /**The version of the library */
     version: string
     /**
@@ -50,10 +48,6 @@ export class Bio extends EventEmitter {
         super()
         this.APIVersion = APIVersion
         this.topLikes = topLikes
-        //semver
-        this.topUpvoted = deprecate(this.topLikes,'Please use .topLikes() instead')
-        //semver
-        this.totalUsers = deprecate(function () { return 1 }, 'This endpoint no longer exists')
         this.users = {
             bio: this,
             details: details,
