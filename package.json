@@ -25,7 +25,6 @@
 		"discord.bio"
 	],
 	"devDependencies": {
-		"better-docs": "^1.4.7",
 		"typescript": "^3.7.5",
 		"command-exists": "^1.2.9"
 	},
