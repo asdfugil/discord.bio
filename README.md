@@ -53,28 +53,7 @@ Please go to [here](https://github.com/Assfugil/discord.bio/blob/stable/CLI.md) 
 - Easy to use, parse gender,flags... etc. for you
 
 ## Example
-```js
-const { Bio } = require('discord.bio')
-const bio = new Bio()
-Promise.all([
-bio.users.details('nickchan'),
-bio.topUpvoted(),
-bio.totalUsers(),
-bio.users.search('ven'),
-bio.users.presence('570634232465063967')
-]).then(result => { 
-    console.log(result[0])
-    const ven = result[3].first()
-    console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
-    console.log(`Display Avatar URL of Nick Chan#0001: ${result[0].discord.displayAvatarURL({ size:1024,dynamic:true })}`)
-    console.log(`Default URL of Nick Chan#0001: ${result[0].discord.defaultAvatarURL}`)
-    console.log(`The most upvoted user that match the search term \`ven\` is ${ven.discord.tag}, with ${ven.user.upvotes} upvotes!`)
- })
-.catch(error => {
-    console.error(error.stack)
-})
-
-```
+Please refer to test.js
 ## Classes
 
 <h3> Bio</h3> Extends EventEmitter
