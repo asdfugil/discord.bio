@@ -14,6 +14,14 @@ import ConnectionTypes from './structures/ConnectionTypes'
 import Base from './structures/Base'
 import RESTManager from './structures/RESTManager'
 import { bioOptionsDefaults } from './util/Constants'
+import Activity from './structures/Activity'
+import Emoji from './structures/Emoji'
+import HTTPRequestMethod from './structures/HTTPRequestMethod'
+import Profile from './structures/Profile'
+import PartialProfile from './structures/PartialProfile'
+import PartialProfileSettings from './structures/PartialProfileSettings'
+import ProfileSettings from './structures/ProfileSettings'
+import RichPresenceAssets from './structures/RichPresenceAssets'
 /**The main hub for interacting with the discord.bio API. */
 export class Bio extends EventEmitter {
     /**Fetches the api version. */
@@ -58,4 +66,4 @@ export class Bio extends EventEmitter {
         this.version = require('../package.json').version
     }
 }
-export { User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection }
+export { User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity,Emoji,HTTPRequestMethod,Profile,PartialProfile,PartialProfileSettings,ProfileSettings,RichPresenceAssets }
