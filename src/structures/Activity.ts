@@ -3,7 +3,8 @@ import Emoji from './Emoji'
 import { Bio } from '../'
 import RawEmoji from './RawEmoji'
 import RichPresenceAssets from './RichPresenceAssets'
-class Activity {
+import Base from './Base'
+class Activity extends Base {
     /**Assets for rich presence */
     assets:RichPresenceAssets | null
     /**Creation date of the activity */
@@ -41,6 +42,7 @@ class Activity {
         [key:string]:any,
         emoji:RawEmoji | null
     }) {
+        super(bio)
         const { name,assets,createdTimestamp,timestamps,state,type,url,party,emoji,details,flags,applicationID } = data
         this.emoji = emoji ? new Emoji(bio,emoji) : null
         this.name = name
