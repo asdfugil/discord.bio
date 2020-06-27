@@ -34,10 +34,11 @@ export class Bio extends EventEmitter {
       users: Base & {
         /**
          * Get user Details
-         * @example bio.details('nickchan')
          */
         details: typeof details,
-        /**Search for profiles on discord.bio,sorted by upvotes */
+        /**
+         * Search for profiles on discord.bio,sorted by upvotes 
+         */
         search: typeof search
         presence: typeof presence
     }
