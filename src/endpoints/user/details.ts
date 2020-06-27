@@ -1,10 +1,9 @@
 import Base from '../../structures/Base'
-import User from '../../structures/User'
-import ProfileSettings from '../../structures/ProfileSettings'
-async function details(this: Base, slugOrID: string): Promise<import('../../structures/Profile')> {
+
+import Profile from '../../structures/Profile'
+async function details(this: Base, slugOrID: string): Promise<Profile> {
     const profile = await this.bio.rest.api('/user/details/' + slugOrID, 'GET')
-    profile.payload.user.details = new ProfileSettings(profile.payload.user.details)
-    profile.payload.discord = new User(profile.payload.discord)
+    profile.payload = new Profile(this.bio,profile.payload)
     return profile.payload
 }
 export = details

@@ -6,8 +6,9 @@
 	"types": "types/index.d.ts",
 	"scripts": {
 		"test": "node test.js",
-		"build": "node build.js",
-		"prepare": "npm run build"
+		"build": "tsc",
+		"prepare": "npm run build",
+		"build-bin": "pkg . --targets node12.16.1-linux-x64,node12.16.1-macos-x64,node12.16.1-win-x64,node12.16.1-alpine-x64,node12.2.0-linux-armv7 --out-path bin"
 	},
 	"author": "asdfugil",
 	"license": "BSD-3-Clause",
@@ -25,8 +26,9 @@
 		"discord.bio"
 	],
 	"devDependencies": {
-		"typescript": "^3.7.5",
-		"command-exists": "^1.2.9"
+		"command-exists": "^1.2.9",
+		"pkg": "^4.4.8",
+		"typescript": "^3.7.5"
 	},
 	"bin": {
 		"dbio": "dist/cli/cli.js"
