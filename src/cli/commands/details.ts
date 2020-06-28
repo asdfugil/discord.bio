@@ -8,6 +8,7 @@ async function details (slug:string):Promise<void> {
         else console.error(error)
         process.exit(1)
     })
+    const presence = (await bio.users.presence(profile.discord.id))[0]
     const { details,userConnections,discordConnections } = profile.user
     const flags = [];
     for (const [key, value] of Object.entries(
@@ -16,6 +17,20 @@ async function details (slug:string):Promise<void> {
       if (value) flags.push(key.replace(/_/g,' ').toLowerCase());
     }
     console.log(bold(profile.discord.tag + `(${details.slug})`))
+    console.log(presence ?
+      `[${presence.type === 'CUSTOM_STATUS' ?
+        presence.name :
+        presence.type
+          .replace('_',' ')
+          .toLowerCase()
+          .charAt(0)
+          .toUpperCase() +
+        presence.type
+          .replace('_',' ')
+          .toLowerCase()
+          .slice(1)} ${bold(`${presence.type === 'CUSTOM_STATUS' ?
+            presence.state : presence.name}`)}]` :
+      '' )
     console.log(bold(`❤️ ${details.likes} likes`))
     console.log('')
     console.log(bold('Description:') + ' '+ details.description)
