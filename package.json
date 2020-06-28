@@ -1,13 +1,15 @@
 {
 	"name": "discord.bio",
-	"version": "6.2.3",
+	"version": "6.3.0",
 	"description": "a node.js wrapper + cli client of the discord.bio api",
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
 	"scripts": {
 		"test": "node test.js",
-		"build": "node build.js",
-		"prepare": "npm run build"
+		"build": "tsc",
+		"prepare": "npm run build && npm run-script docgen",
+		"docgen": "typedoc --mode modules --out docs --theme themes --readme WELCOME.md src/index.ts && touch docs/.nojekyll",
+		"build-bin": "npm run build && pkg . --targets node12.16.1-linux-x64,node12.16.1-macos-x64,node12.16.1-win-x64,node12.16.1-alpine-x64,node12.2.0-linux-armv7 --out-path bin"
 	},
 	"author": "asdfugil",
 	"license": "ISC",
@@ -25,9 +27,9 @@
 		"discord.bio"
 	],
 	"devDependencies": {
-		"better-docs": "^1.4.7",
-		"typescript": "^3.7.5",
-		"command-exists": "^1.2.9"
+		"pkg": "^4.4.8",
+		"typedoc": "^0.17.7",
+		"typescript": "^3.7.5"
 	},
 	"bin": {
 		"dbio": "dist/cli/cli.js"
