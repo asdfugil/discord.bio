@@ -17,7 +17,7 @@ async function details (slug:string):Promise<void> {
       if (value) flags.push(key.replace(/_/g,' ').toLowerCase());
     }
     console.log(bold(profile.discord.tag + `(${details.slug})`))
-    console.log(presence ?
+     if (presence) console.log(
       `[${presence.type === 'CUSTOM_STATUS' ?
         presence.name :
         presence.type
@@ -29,8 +29,7 @@ async function details (slug:string):Promise<void> {
           .replace('_',' ')
           .toLowerCase()
           .slice(1)} ${bold(`${presence.type === 'CUSTOM_STATUS' ?
-            presence.state : presence.name}`)}]` :
-      '' )
+            presence.state : presence.name}`)}]`)
     console.log(bold(`❤️ ${details.likes} likes`))
     console.log('')
     console.log(bold('Description:') + ' '+ details.description)
