@@ -1,6 +1,6 @@
 # discord.bio
 
-**BY USING THE LIBRARY YOU AGREE TO THE **[**TERMS OF SERIVICE OF DISCORD.BIO**](https://discord.bio/terms)
+**BY USING THE LIBRARY YOU AGREE TO THE **[**TERMS OF SERVICE OF DISCORD.BIO**](https://discord.bio/terms)
 
 Node.js wrapper and CLI client for https://discord.bio
 
@@ -15,7 +15,7 @@ npm i discord.bio
 - [Contents](#Contents)
 - [Changelogs](#Changelogs)
 - [Features](#Features)
-- [CLI-Documentation](#CLI Documentation)
+- [CLI Documentation](#CLI-Documentation)
 ## Changelogs
 
 - Updated licnese! please check it out
@@ -38,6 +38,8 @@ Please go to [here](https://github.com/Assfugil/discord.bio/blob/stable/CLI.md) 
 ## Example
 Please refer to test.js
 
-# Documentations
+# Documentation
 
-Please refer to the /docs folder
+Master branch (stable version): Go to https://assfugil.github.io/discord.bio
+
+Other branches: Please refer to the /docs folder
