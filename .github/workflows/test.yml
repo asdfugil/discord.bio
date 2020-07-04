@@ -27,7 +27,3 @@ jobs:
       run: |
         npm install
         npm test
-        npx -p ./ dbio version
-        npx -p ./ dbio details v
-        npx -p ./ dbio topUpvoted
-        npx -p ./ dbio search v
