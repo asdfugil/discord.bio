@@ -15,7 +15,7 @@ npm i discord.bio
 - [Contents](#Contents)
 - [Changelogs](#Changelogs)
 - [Features](#Features)
-- [CLI Documentation](#CLI-Documentation)
+- [CLI Wrapper](#CLI-wrapper)
 ## Changelogs
 
 - Updated licnese! please check it out
@@ -23,9 +23,9 @@ npm i discord.bio
 - A lot of internal changes
 - Bug fixes
 
-## CLI Documentation
+## CLI wrapper
 
-Please go to [here](https://github.com/Assfugil/discord.bio/blob/stable/CLI.md) .
+Please go to https://github.com/Assfugil/dbio-cli for details.
 
 ## Features
 
