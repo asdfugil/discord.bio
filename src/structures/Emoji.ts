@@ -5,25 +5,20 @@ import RawEmoji from './RawEmoji';
 import { bioOptionsDefaults } from '../util/Constants'
 class Emoji extends Base {
     /**Whether the emoji is animated */
-    //@ts-ignore
-    public animated: boolean;
+    public animated!: boolean;
     /**The time the emoji was created at, or null if unicode*/
     public readonly createdAt: Date | null;
     /**The timestamp the emoji was created at, or null if unicode */
-    //@ts-ignore
-    public readonly createdTimestamp: number | null;
+    public readonly createdTimestamp!: number | null;
     /**The ID of this emoji */
-    //@ts-ignore
-    public id: Snowflake | null;
+    public id!: Snowflake | null;
     /**The name of this emoji */
-    //@ts-ignore
-    public name: string;
+    public name!: string;
     /**The identifier of this emoji, used for message reactions */
     //@ts-ignore
     public readonly identifier: string;
     /**Whether this emoji has been deleted */
-    //@ts-ignore
-    public deleted: boolean
+    public deleted!: boolean
     constructor(bio:Bio,data:RawEmoji) {
         super(bio)
         //TypeScript is stupid here
