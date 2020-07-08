@@ -9,7 +9,7 @@ bio.users.search('ven'),
 bio.users.presence('570634232465063967'),
 bio.topUpvoted()
 ]).then(result => { 
-    console.log(result[0])
+    console.log(result,[])
     const ven = result[2].first()
     console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
     console.log(`Display Avatar URL of Nick Chan#0001: ${result[0].discord.displayAvatarURL({ size:1024,dynamic:true })}`)

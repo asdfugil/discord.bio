@@ -39,6 +39,10 @@ type ProfileSettings = {
     verified: boolean
     /**Whether the user is a discord.bio staff*/
     staff:boolean
+    /**Whether the user has applied for vertification */
+    hasApplied:boolean
+    /**The type of nitro that the user has. 0 for none, 1 for nitro classic, 2 for nitro. */
+    premium_type:number
 }
 type Snowflake = string
 export = ProfileSettings
