@@ -29,6 +29,7 @@ export class Bio extends EventEmitter {
     APIVersion: typeof APIVersion
     /**Fetch the top upvoted users, sorted by upvotes.*/
     topLikes: typeof topLikes
+    /**Get approximate user count, correct to the nearest 27. */
     totalUsers:typeof totalUsers
     @enumerable(false)
     bio: this
@@ -42,6 +43,9 @@ export class Bio extends EventEmitter {
          * Search for profiles on discord.bio,sorted by upvotes 
          */
         search: typeof search
+        /**Get user presence.
+         * <p>Note: discord.bio custom status won't be shown.</p>
+         */
         presence: typeof presence
     }
     /**The version of the library */
