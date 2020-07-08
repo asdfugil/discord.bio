@@ -32,8 +32,5 @@
 		"typedoc": "^0.17.7",
 		"typescript": "^3.7.5"
 	},
-	"bin": {
-		"dbio": "dist/cli/cli.js"
-	},
 	"repository": "github:Assfugil/discord.bio"
 }
