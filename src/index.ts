@@ -3,6 +3,7 @@ import RawUser from './structures/RawUser'
 import details from './endpoints/user/details'
 import search from './endpoints/user/search'
 import APIVersion from './endpoints/APIVersion'
+import totalUsers from './helper_functions/totalUsers'
 import topLikes from './endpoints/topLikes'
 import presence from './endpoints/user/presence'
 import UserConnections from './structures/UserConnections'
@@ -28,6 +29,7 @@ export class Bio extends EventEmitter {
     APIVersion: typeof APIVersion
     /**Fetch the top upvoted users, sorted by upvotes.*/
     topLikes: typeof topLikes
+    totalUsers:typeof totalUsers
     @enumerable(false)
     bio: this
     //public on<K extends keyof BioEvents>(event: K, listener: (...args: BioEvents[K]) => void): this;  
@@ -56,6 +58,7 @@ export class Bio extends EventEmitter {
         super()
         this.APIVersion = APIVersion
         this.topLikes = topLikes
+        this.totalUsers = totalUsers
         this.users = {
             bio: this,
             details: details,
