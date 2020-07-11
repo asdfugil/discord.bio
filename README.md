@@ -40,6 +40,6 @@ Please refer to test.js
 
 # Documentation
 
-Master branch (stable version): Go to https://assfugil.github.io/discord.bio
+Master branch (stable version): Go to https://discord-bio.js.org
 
 Other branches: Please refer to the /docs folder
