@@ -21,7 +21,7 @@ async function connect(this:Profile) {
     this.once('viewCountUpdate',count => this.emit('subscribe',count))
     connection.on('close',  () => {
      this.bio.emit('debug',' Websocket Connection Closed');
-     this.emit('disconnect')
+     this.emit('close')
     });
     let sent2:number
     setInterval(() => {
@@ -55,7 +55,10 @@ async function connect(this:Profile) {
               settings:new ProfileSettings(settings)
             })
           };break
-          case 'BANNER_UPDATE': this.emit('bannerUpdate',data as unknown)
+          case 'BANNER_UPDATE': {
+            if (!data) this.user.details.banner = null;
+            this.emit('bannerUpdate',data)
+          }
           default: console.error(`Received unknown event "${event}"`)
         }
     });

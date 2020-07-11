@@ -21,9 +21,17 @@ class Profile extends EventEmitter {
   }
   /**The user that this profile represents. */
   discord: User
-  /**Connect to this profile's websocket */
+  /**Connect to this profile's websocket
+   * @example profile.connect()
+   */
   connect:typeof connect
+  /**
+   * Websocket Information
+   * @example profile.ws.close()
+   * @example profile.ws.ping
+   */
   ws:{
+    /**The websocket */
     socket?:WebSocket
     /**Websocket ping */
     ping?:number
@@ -64,9 +72,11 @@ class Profile extends EventEmitter {
   /**@param profile The updated profile data*/
   (profile:{ connections:UserConnections,settings:ProfileSettings }) => void):this
   /**Emitted when the profile's banner is updated */
-  on(event:'bannerUpdate',listener:(...args:unknown[]) => void):this 
+  on(event:'bannerUpdate',listener:
+  /**@param banner_exists Whether the user still has a banner */
+  (has_banner:boolean) => void):this 
   /**Emitted when the websocket is closed */
-  on(event:'disconnect',listener:() => void):this
+  on(event:'close',listener:() => void):this
   on(event:string,listener:(...args:any[]) => void):this {
     return super.on(event,listener)
   }
