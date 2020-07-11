@@ -106,6 +106,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_profile_.profile.html#connect" class="tsd-kind-icon">connect</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_profile_.profile.html#discord" class="tsd-kind-icon">discord</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_profile_.profile.html#user" class="tsd-kind-icon">user</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_profile_.profile.html#ws" class="tsd-kind-icon">ws</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external"><a href="_structures_profile_.profile.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
 							</ul>
 						</section>
@@ -147,7 +148,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L21">src/structures/Profile.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L30">src/structures/Profile.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -172,7 +173,7 @@
 					<div class="tsd-signature tsd-kind-icon">bio<span class="tsd-signature-symbol">:</span> <a href="_index_.bio.html" class="tsd-signature-type">Bio</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L12">src/structures/Profile.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L15">src/structures/Profile.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,9 +183,14 @@
 					<div class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_websocket_index_.html#connect" class="tsd-signature-type">connect</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L21">src/structures/Profile.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L25">src/structures/Profile.ts:25</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Connect to this profile&#39;s websocket</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a name="discord" class="tsd-anchor"></a>
@@ -192,7 +198,7 @@
 					<div class="tsd-signature tsd-kind-icon">discord<span class="tsd-signature-symbol">:</span> <a href="_structures_user_.user.html" class="tsd-signature-type">User</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L20">src/structures/Profile.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L23">src/structures/Profile.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,7 +213,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>details<span class="tsd-signature-symbol">: </span><a href="_structures_profilesettings_.profilesettings.html" class="tsd-signature-type">ProfileSettings</a><span class="tsd-signature-symbol">; </span>discordConnections<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_structures_discordconnection_.html#discordconnection" class="tsd-signature-type">DiscordConnection</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>userConnections<span class="tsd-signature-symbol">: </span><a href="../modules/_structures_userconnections_.html#userconnections" class="tsd-signature-type">UserConnections</a><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L14">src/structures/Profile.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L17">src/structures/Profile.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -226,6 +232,32 @@
 							</li>
 							<li class="tsd-parameter">
 								<h5>user<wbr>Connections<span class="tsd-signature-symbol">: </span><a href="../modules/_structures_userconnections_.html#userconnections" class="tsd-signature-type">UserConnections</a></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="ws" class="tsd-anchor"></a>
+					<h3>ws</h3>
+					<div class="tsd-signature tsd-kind-icon">ws<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>ping<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>socket<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">WebSocket</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L26">src/structures/Profile.ts:26</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> ping<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Websocket ping</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> socket<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">WebSocket</span></h5>
 							</li>
 						</ul>
 					</div>
@@ -344,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L34">src/structures/Profile.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L45">src/structures/Profile.ts:45</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_structures_profile_.profile.html" class="tsd-signature-type">Profile</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -468,19 +500,25 @@
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"connect"</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"subscribe"</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>view_count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
-						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"totalViewing"</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>view_count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
-						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"presence"</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>activity<span class="tsd-signature-symbol">: </span><a href="_structures_activity_.activity.html" class="tsd-signature-type">Activity</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"viewCountUpdate"</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>view_count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"presenceUpdate"</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>activity<span class="tsd-signature-symbol">: </span><a href="_structures_activity_.activity.html" class="tsd-signature-type">Activity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"profileUpdate"</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>profile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>connections<span class="tsd-signature-symbol">: </span><a href="../modules/_structures_userconnections_.html#userconnections" class="tsd-signature-type">UserConnections</a><span class="tsd-signature-symbol">; </span>settings<span class="tsd-signature-symbol">: </span><a href="_structures_profilesettings_.profilesettings.html" class="tsd-signature-type">ProfileSettings</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"bannerUpdate"</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"disconnect"</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L37">src/structures/Profile.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L49">src/structures/Profile.ts:49</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Emitted when a websocket connection is established</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -508,9 +546,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L38">src/structures/Profile.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L51">src/structures/Profile.ts:51</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Emitted when the websocket successfully subscribe to the profile</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -525,10 +568,17 @@
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
+													<div class="tsd-comment tsd-typography">
+													</div>
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
 															<h5>view_count: <span class="tsd-signature-type">number</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<div class="lead">
+																	<p>The number of people viewing the profile</p>
+																</div>
+															</div>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -544,13 +594,18 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L39">src/structures/Profile.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L55">src/structures/Profile.ts:55</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Emiited when someone starts or stop viewing the profile</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>event: <span class="tsd-signature-type">"totalViewing"</span></h5>
+									<h5>event: <span class="tsd-signature-type">"viewCountUpdate"</span></h5>
 								</li>
 								<li>
 									<h5>listener: <span class="tsd-signature-symbol">(</span>view_count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
@@ -561,10 +616,17 @@
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
+													<div class="tsd-comment tsd-typography">
+													</div>
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
 															<h5>view_count: <span class="tsd-signature-type">number</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<div class="lead">
+																	<p>The number of people viewing the profile</p>
+																</div>
+															</div>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -580,27 +642,39 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L40">src/structures/Profile.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L59">src/structures/Profile.ts:59</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Emitted when the presence is updated</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>event: <span class="tsd-signature-type">"presence"</span></h5>
+									<h5>event: <span class="tsd-signature-type">"presenceUpdate"</span></h5>
 								</li>
 								<li>
-									<h5>listener: <span class="tsd-signature-symbol">(</span>activity<span class="tsd-signature-symbol">: </span><a href="_structures_activity_.activity.html" class="tsd-signature-type">Activity</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<h5>listener: <span class="tsd-signature-symbol">(</span>activity<span class="tsd-signature-symbol">: </span><a href="_structures_activity_.activity.html" class="tsd-signature-type">Activity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>activity<span class="tsd-signature-symbol">: </span><a href="_structures_activity_.activity.html" class="tsd-signature-type">Activity</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>activity<span class="tsd-signature-symbol">: </span><a href="_structures_activity_.activity.html" class="tsd-signature-type">Activity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
+													<div class="tsd-comment tsd-typography">
+													</div>
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5>activity: <a href="_structures_activity_.activity.html" class="tsd-signature-type">Activity</a></h5>
+															<h5>activity: <a href="_structures_activity_.activity.html" class="tsd-signature-type">Activity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<div class="lead">
+																	<p>The activity if there is one, or null if there isn&#39;t</p>
+																</div>
+															</div>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -616,9 +690,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L41">src/structures/Profile.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L63">src/structures/Profile.ts:63</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Emitted when the profile is updated</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -633,10 +712,15 @@
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
+													<div class="tsd-comment tsd-typography">
+													</div>
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
 															<h5>profile: <span class="tsd-signature-symbol">{ </span>connections<span class="tsd-signature-symbol">: </span><a href="../modules/_structures_userconnections_.html#userconnections" class="tsd-signature-type">UserConnections</a><span class="tsd-signature-symbol">; </span>settings<span class="tsd-signature-symbol">: </span><a href="_structures_profilesettings_.profilesettings.html" class="tsd-signature-type">ProfileSettings</a><span class="tsd-signature-symbol"> }</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>The updated profile data</p>
+															</div>
 															<ul class="tsd-parameters">
 																<li class="tsd-parameter">
 																	<h5>connections<span class="tsd-signature-symbol">: </span><a href="../modules/_structures_userconnections_.html#userconnections" class="tsd-signature-type">UserConnections</a></h5>
@@ -660,9 +744,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/9d52e1d/src/structures/Profile.ts#L42">src/structures/Profile.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L67">src/structures/Profile.ts:67</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Emitted when the profile&#39;s banner is updated</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -683,6 +772,41 @@
 															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides EventEmitter.on</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/72eaa05/src/structures/Profile.ts#L69">src/structures/Profile.ts:69</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Emitted when the websocket is closed</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">"disconnect"</span></h5>
+								</li>
+								<li>
+									<h5>listener: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 												</li>
 											</ul>
@@ -1014,6 +1138,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="_structures_profile_.profile.html#user" class="tsd-kind-icon">user</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="_structures_profile_.profile.html#ws" class="tsd-kind-icon">ws</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
 								<a href="_structures_profile_.profile.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a>

@@ -22,13 +22,6 @@ import PartialProfile from './structures/PartialProfile'
 import PartialProfileSettings from './structures/PartialProfileSettings'
 import ProfileSettings from './structures/ProfileSettings'
 import RichPresenceAssets from './structures/RichPresenceAssets'
-/*
-declare class EventEmitter<T> {
-  on<K extends keyof T>(event: K, fn: T[K], context?: any): void;
-  once<K extends keyof T>(event: K, fn: T[K], context?: any): void;
-}
-*/
-
 /**The main hub for interacting with the discord.bio API. */
 export class Bio extends EventEmitter {
   /**Fetches the api version. */
@@ -57,9 +50,11 @@ export class Bio extends EventEmitter {
    * @private
    */
   rest: RESTManager
+  /**Options of this bio instance */
+  options: typeof bioOptionsDefaults
   /**
    * @param baseURL - The API base URL
-*/
+  */
   constructor(options: typeof bioOptionsDefaults = bioOptionsDefaults) {
     super()
     this.APIVersion = APIVersion
@@ -73,6 +68,7 @@ export class Bio extends EventEmitter {
     this.bio = this
     this.rest = new RESTManager(this, options.rest)
     this.version = require('../package.json').version
+    this.options = options
   }
   on(event:'rateLimit',listener:(retry_after:number) => void):this
   on(event:string,listener:(...args:any[]) => void):this {
