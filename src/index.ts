@@ -70,7 +70,10 @@ export class Bio extends EventEmitter {
     this.version = require('../package.json').version
     this.options = options
   }
-  on(event:'rateLimit',listener:(retry_after:number) => void):this
+  /**Emitted when being rate limited */
+  on(event:'rateLimit',listener:
+  /**The number of seconds before a request can be send again */
+  (retry_after:number) => void):this
   on(event:string,listener:(...args:any[]) => void):this {
     return super.on(event,listener)
   }
