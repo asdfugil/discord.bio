@@ -18,6 +18,7 @@ class Profile extends EventEmitter {
     details: ProfileSettings
     discordConnections: Array<DiscordConnection>
     userConnections: UserConnections
+    activity:Activity | null
   }
   /**The user that this profile represents. */
   discord: User
@@ -42,7 +43,8 @@ class Profile extends EventEmitter {
     this.user = {
       details: new ProfileSettings(details),
       discordConnections: discordConnections,
-      userConnections: userConnections
+      userConnections: userConnections,
+      activity:null
     }
     this.discord = new User(data.discord)
     this.bio = bio
@@ -65,12 +67,18 @@ class Profile extends EventEmitter {
   (view_count:number) => void):this
   /**Emitted when the presence is updated */
   on(event:'presenceUpdate',listener:
-  /**@param activity The activity if there is one, or null if there isn't */
-  (activity:Activity | null) => void):this
+  /**
+   * @param oldActivity The old activity if there is one, or null if there isn't
+   * @param oldActivity The new activity if there is one, or null if there isn't
+   */
+  (oldActivity:Activity | null,newActivity:Activity | null) => void):this
   /**Emitted when the profile is updated */
   on(event:'profileUpdate',listener:
-  /**@param profile The updated profile data*/
-  (profile:{ connections:UserConnections,settings:ProfileSettings }) => void):this
+  /**
+   * @param oldProfile profile before
+   * @param newProfile profile after
+   */
+  (oldProfile:Profile,newProfile:Profile) => void):this
   /**Emitted when the profile's banner is updated */
   on(event:'bannerUpdate',listener:
   /**@param banner_exists Whether the user still has a banner */
