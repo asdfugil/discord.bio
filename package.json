@@ -1,6 +1,6 @@
 {
 	"name": "discord.bio",
-	"version": "7.0.0",
+	"version": "8.0.0-dev",
 	"description": "a node.js wrapper + cli client of the discord.bio api",
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
@@ -14,14 +14,17 @@
 	"author": "asdfugil",
 	"license": "BSD-3-Clause",
 	"dependencies": {
+		"@types/node": "^13.13.13",
 		"@types/node-fetch": "^2.5.4",
+		"@types/websocket": "^1.0.1",
 		"@types/ws": "^7.2.4",
 		"colors": "^1.4.0",
 		"commander": "^5.1.0",
 		"discord.js": "12.2.0",
 		"form-data": "^3.0.0",
 		"node-fetch": "^2.6.0",
-		"@types/node": "^13.13.10"
+		"socket.io-client": "^2.3.0",
+		"websocket": "^1.0.31"
 	},
 	"keywords": [
 		"discord.bio"

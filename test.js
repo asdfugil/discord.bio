@@ -6,15 +6,18 @@ bio.APIVersion().then(ver => console.log(`Library version:${require('./package.j
 Promise.all([
 bio.users.details('nickchan'),
 bio.users.search('v'),
-bio.users.presence('570634232465063967'),
 bio.topLikes(),
 bio.totalUsers()
 ]).then(result => { 
     console.log(result[0])
     console.log(result[1].first())
     console.log(result[2])
-    console.log(result[3])
-    console.log(`Total Users: ${result[4]}`)
+    console.log(`Total Users: ${result[3]}`)
+    result[0].connect()
+    result[0].on('raw',console.log)
+    result[0].once('connect',() => {
+      process.exit()
+    })
     const ven = result[1].first()
     console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
     console.log(`Display Avatar URL of Nick Chan#0001: ${result[0].discord.displayAvatarURL({ size:1024,dynamic:true })}`)
