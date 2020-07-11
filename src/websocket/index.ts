@@ -1,6 +1,5 @@
 import { client } from 'websocket'
 import fetch from 'node-fetch'
-import { setInterval } from "timers";
 import Profile from "../structures/Profile";
 import { Activity, UserConnections, ProfileSettings } from '..';
 import { performance } from 'perf_hooks'
