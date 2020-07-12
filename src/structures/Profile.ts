@@ -69,7 +69,7 @@ class Profile extends EventEmitter {
   on(event:'presenceUpdate',listener:
   /**
    * @param oldActivity The old activity if there is one, or null if there isn't
-   * @param oldActivity The new activity if there is one, or null if there isn't
+   * @param newActivity The new activity if there is one, or null if there isn't
    */
   (oldActivity:Activity | null,newActivity:Activity | null) => void):this
   /**Emitted when the profile is updated */
