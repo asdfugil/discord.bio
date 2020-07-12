@@ -3,18 +3,18 @@ import fetch from 'node-fetch'
 import Profile from "../structures/Profile";
 import { Activity, UserConnections, ProfileSettings } from '..';
 import { performance } from 'perf_hooks'
-import { headers } from '../util/Constants';
+import { headers,bioOptionsDefaults } from '../util/Constants';
 const socket = new client()
 /**Connect to this profile's websocket */
 async function connect(this: Profile) {
   this.ws.socket = socket
   socket.on('connectFailed', console.error)
-  const info = await fetch('https://api.discord.bio/bio_ws/?EIO=3&transport=polling', {
+  const info = await fetch(`https://${bioOptionsDefaults.ws.gateway}/?EIO=3&transport=polling`, {
     headers: {
       'user-agent': headers['user-agent'] as any,
     }
   }).then(res => res.text()).then(text => text.replace('96:0', '')).then(JSON.parse)
-  socket.connect(`wss://api.discord.bio/bio_ws/?EIO=3&transport=websocket&sid=${info.sid}`)
+  socket.connect(`wss://${bioOptionsDefaults.ws.gateway}/bio_ws/?EIO=3&transport=websocket&sid=${info.sid}`)
   socket.on('connect', connection => {
     this.emit('connect')
     this.once('viewCountUpdate', count => this.emit('subscribe', count))

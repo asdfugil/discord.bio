@@ -15,7 +15,8 @@ bio.totalUsers()
     console.log(`Total Users: ${result[3]}`)
     result[0].connect()
     result[0].on('raw',console.log)
-    result[0].once('connect',() => {
+    result[0].once('subscribe',count => {
+      console.log(`View count: ${count}`)
       process.exit()
     })
     const ven = result[1].first()
