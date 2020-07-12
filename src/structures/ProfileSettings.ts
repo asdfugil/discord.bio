@@ -32,12 +32,10 @@ class ProfileSettings {
   verified: boolean
   /**Whether the user is a discord.bio staff*/
   staff: boolean
-  /**Whether the user has applied for verification */
-  hasApplied: boolean
   /**The type of nitro the the user have. 0 for none,1 for nitro classic and 2 for nitro */
   premium_type:number
   constructor(data: any) {
-    const { slug, user_id, flags, verified, created_at, description, location, birthday, email, occupation, banner, premium, staff, likes,hasApplied,premium_type } = data
+    const { slug, user_id, flags, verified, created_at, description, location, birthday, email, occupation, banner, premium, staff, likes,premium_type } = data
     const gender: 0 | 1 | 2 | null = data.gender
     this.slug = slug
     this.user_id = user_id
@@ -53,7 +51,6 @@ class ProfileSettings {
     this.premium = premium
     this.staff = staff
     this.likes = likes
-    this.hasApplied = hasApplied
     this.premium_type = premium_type
     this.birthday = birthday ? new Date(birthday) : null
     switch (gender) {
