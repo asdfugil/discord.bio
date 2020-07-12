@@ -9,5 +9,8 @@ discord.bio is an API wrapper of the [discord.bio](https://discord.bio) [API](ht
 
 To get started, click (menu button on mobile) globals > index > Bio on the right-hand side .
 
+## Links
 
-
+- [NPM](https://npmjs.com/package/discord.bio)
+- [GitHub](https://github.com/Assfugil/discord.bio)
+- [CLI Wrapper](https://github.com/Assfugil/dbio-cli)

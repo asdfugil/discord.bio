@@ -34,5 +34,6 @@
 		"typedoc": "^0.17.7",
 		"typescript": "^3.7.5"
 	},
-	"repository": "github:Assfugil/discord.bio"
+  "repository": "github:Assfugil/discord.bio",
+  "homepage":"https://discord-bio.js.org"
 }
