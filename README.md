@@ -16,12 +16,11 @@ npm i discord.bio
 - [Changelogs](#Changelogs)
 - [Features](#Features)
 - [CLI Wrapper](#CLI-wrapper)
+- [Documentation](#Documentation)
 ## Changelogs
 
-- Updated licnese! please check it out
-- The bio constructor now accepts an object
-- A lot of internal changes
-- Bug fixes
+- Removved bio.users.presence() because that endpoint in the REST api has been removed
+- Added websocket support
 
 ## CLI wrapper
 
