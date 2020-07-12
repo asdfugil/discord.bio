@@ -56,7 +56,7 @@ class User {
      * @warn Notice: Default avatar has a fixed size and is always a .png image
      * @param options Options for the image
      */
-    displayAvatarURL(options:ImageURLOptions & { dynamic?:boolean }):string {
+    displayAvatarURL(options?:ImageURLOptions & { dynamic?:boolean }):string {
         if (this.avatarURL(options)) return this.avatarURL(options) as string
         else return this.defaultAvatarURL
     }
