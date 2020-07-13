@@ -5,8 +5,10 @@ import search from './rest/user/search'
 import APIVersion from './rest/APIVersion'
 import totalUsers from './helper_functions/totalUsers'
 import topLikes from './rest/topLikes'
+import merge from 'deepmerge'
 import UserConnections from './structures/UserConnections'
 import { UserFlags, ImageURLOptions, Collection, } from 'discord.js'
+import Presence from './structures/Presence'
 import { EventEmitter } from 'events'
 import enumerable from './util/enumerable'
 import DBioAPIError from './structures/DBioAPIError'
@@ -55,8 +57,9 @@ export class Bio extends EventEmitter {
   /**
    * @param baseURL - The API base URL
   */
-  constructor(options: typeof bioOptionsDefaults = bioOptionsDefaults) {
+  constructor(options: typeof bioOptionsDefaults | any = bioOptionsDefaults) {
     super()
+    options = merge(bioOptionsDefaults, options)
     this.APIVersion = APIVersion
     this.topLikes = topLikes
     this.totalUsers = totalUsers
@@ -71,11 +74,11 @@ export class Bio extends EventEmitter {
     this.options = options
   }
   /**Emitted when being rate limited */
-  on(event:'rateLimit',listener:
-  /**The number of seconds before a request can be send again */
-  (retry_after:number) => void):this
-  on(event:string,listener:(...args:any[]) => void):this {
-    return super.on(event,listener)
+  on(event: 'rateLimit', listener:
+    /**The number of seconds before a request can be send again */
+    (retry_after: number) => void): this
+  on(event: string, listener: (...args: any[]) => void): this {
+    return super.on(event, listener)
   }
 }
-export { User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity, Emoji, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileSettings, RichPresenceAssets }
+export { User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity, Emoji, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileSettings, RichPresenceAssets, Presence }

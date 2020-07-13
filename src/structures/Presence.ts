@@ -1,15 +1,22 @@
 import Base from './Base'
 import { ClientPresenceStatus, PresenceStatus } from 'discord.js'
 import { Bio, Activity, User } from '..'
-import Profile from './Profile'
+/**Represents a user's presence. */
 class Presence extends Base {
+  /**The devices this presence is on */
   clientStatus: {
+    /**The current presence in the web application */
     web?: ClientPresenceStatus,
+    /*The current presence in the desktop application*/
     desktop?: ClientPresenceStatus,
+    /**The current presence in the mobile application */
     mobile?: ClientPresenceStatus
   }
+  /**The activity of this presence */
   activity: Activity | null
+  /**The user of this presence */
   user: User
+  /**The status of this presence */
   status: PresenceStatus
   constructor(bio: Bio, data: any) {
     super(bio)

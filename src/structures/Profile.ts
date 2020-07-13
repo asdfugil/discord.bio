@@ -7,7 +7,7 @@ import { Bio, Activity } from '..'
 import { EventEmitter } from 'events'
 import connect from '../websocket'
 import { client as WebSocket } from 'websocket'
-import { Presence } from 'discord.js'
+import Presence from './Presence'
 /**
  * Represent a discord.bio profile 
  */

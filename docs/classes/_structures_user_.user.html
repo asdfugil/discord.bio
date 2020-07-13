@@ -80,7 +80,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">User</span>
+						<a href="_structures_base_.base.html" class="tsd-signature-type">Base</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">User</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -91,16 +96,18 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_structures_user_.user.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="_structures_user_.user.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_user_.user.html#avatar" class="tsd-kind-icon">avatar</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_structures_user_.user.html#bio" class="tsd-kind-icon">bio</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_user_.user.html#defaultavatarurl" class="tsd-kind-icon">default<wbr>AvatarURL</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_user_.user.html#discriminator" class="tsd-kind-icon">discriminator</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_user_.user.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_user_.user.html#presence" class="tsd-kind-icon">presence</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_user_.user.html#public_flags" class="tsd-kind-icon">public_<wbr>flags</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_user_.user.html#tag" class="tsd-kind-icon">tag</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_user_.user.html#username" class="tsd-kind-icon">username</a></li>
@@ -118,23 +125,27 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>User<span class="tsd-signature-symbol">(</span>rawUser<span class="tsd-signature-symbol">: </span><a href="_structures_rawuser_.rawuser.html" class="tsd-signature-type">RawUser</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_structures_user_.user.html" class="tsd-signature-type">User</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>User<span class="tsd-signature-symbol">(</span>bio<span class="tsd-signature-symbol">: </span><a href="_index_.bio.html" class="tsd-signature-type">Bio</a>, rawUser<span class="tsd-signature-symbol">: </span><a href="_structures_rawuser_.rawuser.html" class="tsd-signature-type">RawUser</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_structures_user_.user.html" class="tsd-signature-type">User</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_structures_base_.base.html">Base</a>.<a href="_structures_base_.base.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L19">src/structures/User.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L24">src/structures/User.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>bio: <a href="_index_.bio.html" class="tsd-signature-type">Bio</a></h5>
+								</li>
 								<li>
 									<h5>rawUser: <a href="_structures_rawuser_.rawuser.html" class="tsd-signature-type">RawUser</a></h5>
 									<div class="tsd-comment tsd-typography">
@@ -157,7 +168,7 @@
 					<div class="tsd-signature tsd-kind-icon">avatar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L19">src/structures/User.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L22">src/structures/User.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -166,13 +177,24 @@
 						</div>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="bio" class="tsd-anchor"></a>
+					<h3>bio</h3>
+					<div class="tsd-signature tsd-kind-icon">bio<span class="tsd-signature-symbol">:</span> <a href="_index_.bio.html" class="tsd-signature-type">Bio</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_structures_base_.base.html">Base</a>.<a href="_structures_base_.base.html#bio">bio</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/Base.ts#L7">src/structures/Base.ts:7</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a name="defaultavatarurl" class="tsd-anchor"></a>
 					<h3>default<wbr>AvatarURL</h3>
 					<div class="tsd-signature tsd-kind-icon">default<wbr>AvatarURL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L9">src/structures/User.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L12">src/structures/User.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -187,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">discriminator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L15">src/structures/User.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L18">src/structures/User.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -202,7 +224,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L17">src/structures/User.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L20">src/structures/User.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -212,12 +234,27 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="presence" class="tsd-anchor"></a>
+					<h3>presence</h3>
+					<div class="tsd-signature tsd-kind-icon">presence<span class="tsd-signature-symbol">:</span> <a href="_structures_presence_.presence.html" class="tsd-signature-type">Presence</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L24">src/structures/User.ts:24</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The presence of the user</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a name="public_flags" class="tsd-anchor"></a>
 					<h3>public_<wbr>flags</h3>
 					<div class="tsd-signature tsd-kind-icon">public_<wbr>flags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">UserFlags</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L11">src/structures/User.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L14">src/structures/User.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -232,7 +269,7 @@
 					<div class="tsd-signature tsd-kind-icon">tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L7">src/structures/User.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L10">src/structures/User.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -247,7 +284,7 @@
 					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L13">src/structures/User.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L16">src/structures/User.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -269,7 +306,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L45">src/structures/User.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L52">src/structures/User.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -300,7 +337,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/3738fb7/src/structures/User.ts#L59">src/structures/User.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/Assfugil/discord.bio/blob/5ebfae4/src/structures/User.ts#L66">src/structures/User.ts:66</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -346,11 +383,14 @@
 					<li class="current tsd-kind-class tsd-parent-kind-module tsd-is-external">
 						<a href="_structures_user_.user.html" class="tsd-kind-icon">User</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 								<a href="_structures_user_.user.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="_structures_user_.user.html#avatar" class="tsd-kind-icon">avatar</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="_structures_user_.user.html#bio" class="tsd-kind-icon">bio</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="_structures_user_.user.html#defaultavatarurl" class="tsd-kind-icon">default<wbr>AvatarURL</a>
@@ -360,6 +400,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="_structures_user_.user.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="_structures_user_.user.html#presence" class="tsd-kind-icon">presence</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="_structures_user_.user.html#public_flags" class="tsd-kind-icon">public_<wbr>flags</a>
@@ -400,6 +443,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

@@ -20,6 +20,7 @@ class User extends Base {
     id: string
     /**The hash of the user's avatar, it will be prepended with "a_" if the avatar is animated */
     avatar: string | null
+    /**The presence of the user */
     presence:Presence
     /**
      * @param rawUser Thee raw user returned by the API
