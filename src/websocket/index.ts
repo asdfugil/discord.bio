@@ -4,6 +4,7 @@ import Profile from "../structures/Profile";
 import { Activity, UserConnections, ProfileSettings } from '..';
 import { performance } from 'perf_hooks'
 import { headers,bioOptionsDefaults } from '../util/Constants';
+import Presence from '../structures/Presence';
 const socket = new client()
 /**Connect to this profile's websocket */
 async function connect(this: Profile) {
@@ -42,10 +43,11 @@ async function connect(this: Profile) {
       switch (event) {
         case 'TOTAL_VIEWING': this.emit('viewCountUpdate', data); break
         case 'PRESENCE': {
-          const newActivity = data ? new Activity(this.bio, data) : null
-          const oldActivity = this.user.activity
-          this.user.activity = newActivity
-          this.emit('presenceUpdate', oldActivity, newActivity)
+          data.user = this.discord
+          const newPresence = new Presence(this.bio,data)
+          const oldPresence = this.discord.presence
+          this.discord.presence = newPresence
+          this.emit('presenceUpdate',oldPresence,newPresence)
         }; break
         case 'PROFILE_UPDATE': {
           const { connections, settings } = data as {

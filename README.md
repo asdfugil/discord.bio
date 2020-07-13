@@ -19,8 +19,7 @@ npm i discord.bio
 - [Documentation](#Documentation)
 ## Changelogs
 
-- Removved bio.users.presence() because that endpoint in the REST api has been removed
-- Added websocket support
+- Fixed presenceUpdate event in Profile.
 
 ## CLI wrapper
 

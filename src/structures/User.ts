@@ -1,8 +1,11 @@
 import RawUser from  './RawUser'
+import Base from './Base'
 import { ImageURLOptions,UserFlags } from 'discord.js'
 import { bioOptionsDefaults } from '../util/Constants'
+import Presence from './Presence'
+import { Bio } from '..'
 /**Represent A User */
-class User {
+class User extends Base {
     /**The DiscordTag#1234 tag of the user */
     tag: string
     /**The link to the user's default avatar URL */
@@ -17,10 +20,12 @@ class User {
     id: string
     /**The hash of the user's avatar, it will be prepended with "a_" if the avatar is animated */
     avatar: string | null
+    presence:Presence
     /**
      * @param rawUser Thee raw user returned by the API
      */
-    constructor(rawUser: RawUser) {
+    constructor(bio:Bio,rawUser: RawUser) {
+      super(bio)
         const { id, username, avatar, discriminator,public_flags } = rawUser
         this.id = id
         this.username = username
@@ -28,6 +33,7 @@ class User {
         this.avatar = avatar
         this.tag = `${this.username}#${this.discriminator}`
         this.public_flags = new UserFlags(public_flags)
+        this.presence = new Presence(this.bio,{ user:this })
         const a = "https://discord.com/assets/"
         const urls = [
             "6debd47ed13483642cf09e832ed0bc1b.png", 

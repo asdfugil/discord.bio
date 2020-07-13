@@ -6,7 +6,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "lib": ["esnext"],
-    "target": "esnext",
+    "target": "es2019",
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",

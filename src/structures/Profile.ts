@@ -7,6 +7,7 @@ import { Bio, Activity } from '..'
 import { EventEmitter } from 'events'
 import connect from '../websocket'
 import { client as WebSocket } from 'websocket'
+import { Presence } from 'discord.js'
 /**
  * Represent a discord.bio profile 
  */
@@ -18,7 +19,10 @@ class Profile extends EventEmitter {
     details: ProfileSettings
     discordConnections: Array<DiscordConnection>
     userConnections: UserConnections
-    activity:Activity | null
+    /**
+     * @deprecated Use profile.user.discord.presence.activtiy instead
+     */
+    readonly activity:Activity | null
   }
   /**The user that this profile represents. */
   discord: User
@@ -46,8 +50,12 @@ class Profile extends EventEmitter {
       userConnections: userConnections,
       activity:null
     }
-    this.discord = new User(data.discord)
+    Object.defineProperty(this.user,'activity',{
+      get:() => this.discord.presence?.activity || null,
+    })
     this.bio = bio
+    this.discord = new User(this.bio,data.discord)
+
     this.ws = {}
     this.connect = connect
     if (this.bio.options.ws.autoConnect) this.connect()
@@ -68,10 +76,10 @@ class Profile extends EventEmitter {
   /**Emitted when the presence is updated */
   on(event:'presenceUpdate',listener:
   /**
-   * @param oldActivity The old activity if there is one, or null if there isn't
-   * @param newActivity The new activity if there is one, or null if there isn't
+   * @param oldPresence old presence
+   * @param newPresence new presence
    */
-  (oldActivity:Activity | null,newActivity:Activity | null) => void):this
+  (oldPresence:Presence,newPresence:Presence) => void):this
   /**Emitted when the profile is updated */
   on(event:'profileUpdate',listener:
   /**
