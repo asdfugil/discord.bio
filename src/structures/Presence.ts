@@ -26,7 +26,7 @@ class Presence extends Base {
     this.clientStatus =  {}
     this.activity = data.activity || null
     this.user = data.user
-    this.status = data.status
+    this.status = data.status || 'offline'
   }
   equals(presence: Presence): boolean {
     return this === presence ||
