@@ -60,16 +60,8 @@ async function connect(this: Profile) {
             user: oldUser,
             discord: this.discord
           }
-          const newConnections = {}
-          connections.forEach(conn => {
-            Object.defineProperty(newConnections,conn.type,{
-              value:conn.name
-            })
-          })
-          for (const oldConn of Object.keys(this.user.userConnections) as ConnectionTypes[] ) {
-            if (!connections.map(x => x.type).includes(oldConn)) delete this.user.userConnections[oldConn] 
-          }
-          this.user.userConnections = newConnections
+          this.user.userConnections = {}
+          connections.forEach(conn => this.user.userConnections[conn.type as ConnectionTypes] = conn.name)
           this.user.details = new ProfileSettings(settings)
           this.emit('profileUpdate', oldProfile, this)
         }; break
