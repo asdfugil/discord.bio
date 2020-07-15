@@ -51,7 +51,7 @@ async function connect(this: Profile) {
         }; break
         case 'PROFILE_UPDATE': {
           const { connections, settings } = data as {
-            connections: UserConnections,
+            connections: Array<any>,
             settings: any
           }
           const oldUser = Object.assign({}, this.user)
@@ -59,7 +59,13 @@ async function connect(this: Profile) {
             user: oldUser,
             discord: this.discord
           }
-          this.user.userConnections = connections
+          const newConnections = {}
+          connections.forEach(conn => {
+            Object.defineProperty(newConnections,conn.type,{
+              value:conn.name
+            })
+          })
+          this.user.userConnections = newConnections
           this.user.details = new ProfileSettings(settings)
           this.emit('profileUpdate', oldProfile, this)
         }; break
