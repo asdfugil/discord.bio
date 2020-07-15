@@ -67,7 +67,7 @@ async function connect(this: Profile) {
             })
           })
           for (const oldConn of Object.keys(this.user.userConnections) as ConnectionTypes[] ) {
-            if (connections.map(x => x.type).includes(oldConn)) delete this.user.userConnections[oldConn] 
+            if (!connections.map(x => x.type).includes(oldConn)) delete this.user.userConnections[oldConn] 
           }
           this.user.userConnections = newConnections
           this.user.details = new ProfileSettings(settings)
