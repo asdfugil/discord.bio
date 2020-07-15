@@ -1,10 +1,11 @@
 import { client } from 'websocket'
 import fetch from 'node-fetch'
 import Profile from "../structures/Profile";
-import { Activity, UserConnections, ProfileSettings } from '..';
+import { Activity, UserConnections, ProfileSettings, ConnectionTypes } from '..';
 import { performance } from 'perf_hooks'
 import { headers,bioOptionsDefaults } from '../util/Constants';
 import Presence from '../structures/Presence';
+import { runInThisContext } from 'vm';
 const socket = new client()
 /**Connect to this profile's websocket */
 async function connect(this: Profile) {
@@ -65,6 +66,9 @@ async function connect(this: Profile) {
               value:conn.name
             })
           })
+          for (const oldConn of Object.keys(this.user.userConnections) as ConnectionTypes[] ) {
+            if (connections.map(x => x.type).includes(oldConn)) delete this.user.userConnections[oldConn] 
+          }
           this.user.userConnections = newConnections
           this.user.details = new ProfileSettings(settings)
           this.emit('profileUpdate', oldProfile, this)
