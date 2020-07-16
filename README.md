@@ -19,7 +19,7 @@ npm i discord.bio
 - [Documentation](#Documentation)
 ## Changelogs
 
-- Fixed presenceUpdate event in Profile.
+- @types/node-fetch and @types/node moved to devDependencies
 
 ## CLI wrapper
 
