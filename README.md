@@ -20,6 +20,7 @@ npm i discord.bio
 ## Changelogs
 
 - @types/node-fetch and @types/node moved to devDependencies
+- Fixed broken library due to API change
 
 ## CLI wrapper
 
