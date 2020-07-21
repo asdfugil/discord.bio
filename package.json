@@ -8,8 +8,7 @@
 		"test": "node test.js",
 		"build": "tsc",
 		"prepare": "npm run build && npm run-script docgen",
-		"docgen": "typedoc --mode modules --out docs --theme themes --readme WELCOME.md src/index.ts && touch docs/.nojekyll && echo 'discord-bio.js.org' > docs/CNAME",
-		"build-bin": "npm run build && pkg . --targets node12.16.1-linux-x64,node12.16.1-macos-x64,node12.16.1-win-x64,node12.16.1-alpine-x64,node12.2.0-linux-armv7 --out-path bin"
+		"docgen": "typedoc --mode modules --out docs --theme themes --readme WELCOME.md src/index.ts && touch docs/.nojekyll && echo 'discord-bio.js.org' > docs/CNAME"
 	},
 	"author": "asdfugil",
 	"license": "BSD-3-Clause",

@@ -26,4 +26,6 @@ jobs:
     - name: Build,docgen and run test
       run: |
         npm ci --production
+        npm run-script prepare
         npm test
+
