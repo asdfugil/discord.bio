@@ -25,7 +25,7 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Build,docgen and run test
       run: |
-        npm ci --production
+        npm ci 
         npm run-script prepare
         npm test
 
