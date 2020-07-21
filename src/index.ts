@@ -2,7 +2,6 @@ import User from './structures/User'
 import RawUser from './structures/RawUser'
 import details from './rest/user/details'
 import search from './rest/user/search'
-import APIVersion from './rest/APIVersion'
 import totalUsers from './helper_functions/totalUsers'
 import topLikes from './rest/topLikes'
 import merge from 'deepmerge'
@@ -26,8 +25,11 @@ import ProfileSettings from './structures/ProfileSettings'
 import RichPresenceAssets from './structures/RichPresenceAssets'
 /**The main hub for interacting with the discord.bio API. */
 export class Bio extends EventEmitter {
-  /**Fetches the api version. */
-  APIVersion: typeof APIVersion
+  /**
+   * Fetches the api version. 
+   * @deprecated This endpoint no longer exists
+   */
+  APIVersion: () => Promise<string>
   /**Fetch the top upvoted users, sorted by upvotes.*/
   topLikes: typeof topLikes
   /**Get approximate user count, correct to the nearest 27. */
@@ -60,7 +62,7 @@ export class Bio extends EventEmitter {
   constructor(options: typeof bioOptionsDefaults | any = bioOptionsDefaults) {
     super()
     options = merge(bioOptionsDefaults, options)
-    this.APIVersion = APIVersion
+    this.APIVersion = async function() { return '1.0.4-deprecated' }
     this.topLikes = topLikes
     this.totalUsers = totalUsers
     this.users = {

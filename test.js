@@ -2,7 +2,7 @@ console.log('If it ends with Test Successful it worked.')
 // Normally it is require("discord.bio")
 const { Bio } = require('./')
 const bio = new Bio()
-bio.APIVersion().then(ver => console.log(`Library version:${require('./package.json').version}, testing against API version ${ver}`))
+console.log(`Library version:${require('./package.json').version}`)
 Promise.all([
 bio.users.details('nickchan'),
 bio.users.search('v'),
