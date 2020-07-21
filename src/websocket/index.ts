@@ -51,19 +51,9 @@ async function connect(this: Profile) {
           this.emit('presenceUpdate',oldPresence,newPresence)
         }; break
         case 'PROFILE_UPDATE': {
-          const { connections, settings } = data as {
-            connections: Array<any>,
-            settings: any
-          }
-          const oldUser = Object.assign({}, this.user)
-          const oldProfile = {
-            user: oldUser,
-            discord: this.discord
-          }
-          this.user.userConnections = {}
-          connections.forEach(conn => this.user.userConnections[conn.type as ConnectionTypes] = conn.name)
-          this.user.details = new ProfileSettings(settings)
-          this.emit('profileUpdate', oldProfile, this)
+          const oldProfile = Object.assign({},this)
+          this._patch(data)
+          this.emit('profileUpdate',oldProfile,this)
         }; break
         case 'BANNER_UPDATE': {
           if (!data) this.user.details.banner = null;

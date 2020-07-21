@@ -21,6 +21,7 @@ npm i discord.bio
 
 - @types/node-fetch and @types/node moved to devDependencies
 - Fixed broken library due to API change
+- Fixed profileUpdate event (again)
 
 ## CLI wrapper
 

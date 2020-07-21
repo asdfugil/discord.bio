@@ -63,6 +63,14 @@ class Profile extends EventEmitter {
   async fetch(): Promise<Profile> {
     return this.bio.users.details(this.discord.id)
   }
+  /**
+   * Patch this profile
+   * @param patch Data for this patch
+   * @private
+   */
+  _patch(patch:any):this {
+    return Object.assign(this,new Profile(this.bio,patch))
+  }
  /**Emitted when a websocket connection is established*/
   on(event:'connect',listener:() => void):this
   /** Emitted when the websocket successfully subscribe to the profile*/
