@@ -21,6 +21,8 @@ npm i discord.bio
 
 - Fixed profileUpdate event (again)
 - Fixed typings in DiscordConnections
+- Fixed DiscordConnections
+- Changed how DiscordConnections is represented
 
 ## CLI wrapper
 
