@@ -13,7 +13,7 @@ async function topLikes(this: Bio): Promise<LikeInfo> {
     pageTotal: result.payload.pageTotal,
     users: profileCollection
   }
-  profileCollection.forEach(profile => {
+  if (this.bio.options.enableCaching) profileCollection.forEach(profile => {
     if (!(profile.bio.profiles.get(profile.discord.id) instanceof Profile))
       this.bio.profiles.set(profile.discord.id, profile)
   })

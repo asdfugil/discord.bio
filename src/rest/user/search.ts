@@ -20,7 +20,7 @@ async function search(this: import('../../structures/Base'), query: string): Pro
     })
   const profiles = result.payload.map((profile: any) => new PartialProfile(this.bio, profile))
   const profileCollection = new Collection<Snowflake, PartialProfile>(profiles.map((entry: any) => [entry.discord.id, entry]))
-  profileCollection.forEach(profile => {
+  if (this.bio.options.enableCaching) profileCollection.forEach(profile => {
     if (!(profile.bio.profiles.get(profile.discord.id) instanceof Profile))
       this.bio.profiles.set(profile.discord.id, profile)
   })

@@ -62,14 +62,9 @@ async function connect(this: Profile) {
           if (!data) this.user.details.banner = null;
           this.emit('bannerUpdate', data)
         }; break
-        // to do
-        case 'PROFILE_LIKE':{
-
-        };break
-        case 'PROFILE_UNLIKED':{
-
-        };break
-        default: console.error(`discord.bio: Received unknown event "${event}"`)
+        case 'PROFILE_LIKE':this.emit('like',this.bio.profiles.get(data)?.discord || data);break
+        case 'PROFILE_UNLIKED':this.emit('unlike',this.bio.profiles.get(data)?.discord || data);break
+        default: console.error(`discord.bio: Received unknown event "${event}", event data follows:\n${data}`)
       }
     });
     connection.send("42" + JSON.stringify(["VIEWING", this.discord.id]))
