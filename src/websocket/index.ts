@@ -53,6 +53,8 @@ async function connect(this: Profile) {
         case 'PROFILE_UPDATE': {
           const oldProfile = Object.assign({},this)
           this._patch(data)
+console.log(oldProfile)
+console.log(this)
           this.emit('profileUpdate',oldProfile,this)
         }; break
         case 'BANNER_UPDATE': {

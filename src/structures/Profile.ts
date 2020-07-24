@@ -32,7 +32,7 @@ class Profile extends EventEmitter {
   connect:typeof connect
   /**
    * Websocket Information
-   * @example profile.ws.close()
+   * @example profile.ws.socket.close()
    * @example profile.ws.ping
    */
   ws:{
@@ -69,7 +69,10 @@ class Profile extends EventEmitter {
    * @private
    */
   _patch(patch:any):this {
-    return Object.assign(this,new Profile(this.bio,patch))
+    const { ws } = this
+    const newProfile = Object.assign(this,new Profile(this.bio,patch))
+    newProfile.ws = ws
+    return newProfile
   }
  /**Emitted when a websocket connection is established*/
   on(event:'connect',listener:() => void):this
