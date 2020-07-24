@@ -18,7 +18,7 @@ class Profile extends EventEmitter {
   /**The settings of this profile. */
   user: {
     details: ProfileSettings
-    discordConnections: Collection<string, DiscordConnection>
+    discordConnections: DiscordConnections
     userConnections: UserConnections
     /**
      * @deprecated Use profile.user.discord.presence.activtiy instead
