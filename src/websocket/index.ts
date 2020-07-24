@@ -1,11 +1,10 @@
 import { client } from 'websocket'
 import fetch from 'node-fetch'
 import Profile from "../structures/Profile";
-import { Activity, UserConnections, ProfileSettings, ConnectionTypes } from '..';
 import { performance } from 'perf_hooks'
-import { headers,bioOptionsDefaults } from '../util/Constants';
+import { headers, bioOptionsDefaults } from '../util/Constants';
 import Presence from '../structures/Presence';
-import { runInThisContext } from 'vm';
+import { EventEmitter } from 'events';
 const socket = new client()
 /**Connect to this profile's websocket */
 async function connect(this: Profile) {
@@ -45,23 +44,21 @@ async function connect(this: Profile) {
         case 'TOTAL_VIEWING': this.emit('viewCountUpdate', data); break
         case 'PRESENCE': {
           data.user = this.discord
-          const newPresence = new Presence(this.bio,data)
+          const newPresence = new Presence(this.bio, data)
           const oldPresence = this.discord.presence
           this.discord.presence = newPresence
-          this.emit('presenceUpdate',oldPresence,newPresence)
+          this.emit('presenceUpdate', oldPresence, newPresence)
         }; break
         case 'PROFILE_UPDATE': {
-          const oldProfile = Object.assign({},this)
+          const oldProfile = Object.assign(new EventEmitter(), this)
           this._patch(data)
-console.log(oldProfile)
-console.log(this)
-          this.emit('profileUpdate',oldProfile,this)
+          this.emit('profileUpdate', oldProfile, this)
         }; break
         case 'BANNER_UPDATE': {
           if (!data) this.user.details.banner = null;
           this.emit('bannerUpdate', data)
         }
-        default: console.error(`Received unknown event "${event}"`)
+        default: console.error(`discord.bio: Received unknown event "${event}"`)
       }
     });
     connection.send("42" + JSON.stringify(["VIEWING", this.discord.id]))
