@@ -61,7 +61,14 @@ async function connect(this: Profile) {
         case 'BANNER_UPDATE': {
           if (!data) this.user.details.banner = null;
           this.emit('bannerUpdate', data)
-        }
+        }; break
+        // to do
+        case 'PROFILE_LIKE':{
+
+        };break
+        case 'PROFILE_UNLIKED':{
+
+        };break
         default: console.error(`discord.bio: Received unknown event "${event}"`)
       }
     });

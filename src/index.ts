@@ -56,8 +56,10 @@ export class Bio extends EventEmitter {
   rest: RESTManager
   /**Options of this bio instance */
   options: typeof bioOptionsDefaults
+  /**Cached profiles */
+  profiles:Collection<string,Profile | PartialProfile>
   /**
-   * @param baseURL - The API base URL
+   * @param options - bio options
   */
   constructor(options: typeof bioOptionsDefaults | any = bioOptionsDefaults) {
     super()
@@ -74,6 +76,7 @@ export class Bio extends EventEmitter {
     this.rest = new RESTManager(this, options.rest)
     this.version = require('../package.json').version
     this.options = options
+    this.profiles = new Collection()
   }
   /**Emitted when being rate limited */
   on(event: 'rateLimit', listener:

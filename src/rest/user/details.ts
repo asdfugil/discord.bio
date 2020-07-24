@@ -5,8 +5,9 @@ import Profile from '../../structures/Profile'
 @example bio.users.details("nickchan")
 */
 async function details(this: Base, slugOrID: string): Promise<Profile> {
-    const profile = await this.bio.rest.api('/user/details/' + slugOrID, 'GET')
-    profile.payload = new Profile(this.bio, profile.payload)
-    return profile.payload
+  const result = await this.bio.rest.api('/user/details/' + slugOrID, 'GET')
+  const profile = new Profile(this.bio, result.payload)
+  this.bio.profiles.set(profile.discord.id, profile)
+  return profile
 }
 export = details
