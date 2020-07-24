@@ -49,7 +49,7 @@ class Profile extends EventEmitter {
     this.user = {
       details: new ProfileSettings(details),
       discordConnections: new DiscordConnections(discordConnections),
-      userConnections: userConnections,
+      userConnections: userConnections || {},
       activity: null
     }
     Object.defineProperty(this.user, 'activity', {
@@ -72,7 +72,7 @@ class Profile extends EventEmitter {
   _patch(patch: any): this {
     const { details, userConnections, discordConnections } = patch.user
     this.user.details = new ProfileSettings(details)
-    this.user.userConnections = userConnections
+    this.user.userConnections = userConnections || {}
     this.discord = patch.discord
     this.user.discordConnections = new DiscordConnections(discordConnections)
     return this

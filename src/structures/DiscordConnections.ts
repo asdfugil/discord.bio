@@ -9,7 +9,7 @@ class DiscordConnections extends Collection<string, DiscordConnection> {
   constructor(data: {
     [key: string]: RawDiscordConnection
   }[]) {
-    const DiscordConnectionsArray = data.map(conn => {
+    const DiscordConnectionsArray = (data || []).map(conn => {
       const [type,connection] = Object.entries(conn)[0]
       connection.type = type
       return [type,connection]
