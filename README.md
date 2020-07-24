@@ -19,10 +19,7 @@ npm i discord.bio
 - [Documentation](#Documentation)
 ## Changelogs
 
-- Fixed profileUpdate event (again)
-- Fixed typings in DiscordConnections
-- Fixed DiscordConnections
-- Changed how DiscordConnections is represented
+- Fixed null errors when there are no discord/user connections
 
 ## CLI wrapper
 
