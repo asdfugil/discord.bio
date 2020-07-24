@@ -50,7 +50,11 @@ async function connect(this: Profile) {
           this.emit('presenceUpdate', oldPresence, newPresence)
         }; break
         case 'PROFILE_UPDATE': {
-          const oldProfile = Object.assign(new EventEmitter(), this)
+          const oldProfile = {
+            user:Object.assign({}, this.user) ,
+            discord:this.discord
+          } 
+          Object.assign(oldProfile,new EventEmitter())
           this._patch(data)
           this.emit('profileUpdate', oldProfile, this)
         }; break
