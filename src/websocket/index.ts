@@ -62,8 +62,14 @@ async function connect(this: Profile) {
           if (!data) this.user.details.banner = null;
           this.emit('bannerUpdate', data)
         }; break
-        case 'PROFILE_LIKE':this.emit('like',this.bio.profiles.get(data)?.discord || data);break
-        case 'PROFILE_UNLIKED':this.emit('unlike',this.bio.profiles.get(data)?.discord || data);break
+        case 'PROFILE_LIKE':{
+          this.user.details.likes += 1
+          this.emit('like',this.bio.profiles.get(data)?.discord || data)
+        };break
+        case 'PROFILE_UNLIKED':{
+          this.user.details.likes -= 1
+          this.emit('unlike',this.bio.profiles.get(data)?.discord || data)
+        };break
         default: console.error(`discord.bio: Received unknown event "${event}", event data follows:\n${data}`)
       }
     });

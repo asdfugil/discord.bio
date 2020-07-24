@@ -19,7 +19,7 @@ npm i discord.bio
 - [Documentation](#Documentation)
 ## Changelogs
 
-- Fixed null errors when there are no user/discord connections
+- Added (un)like events
 
 ## CLI wrapper
 
