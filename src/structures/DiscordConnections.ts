@@ -1,22 +1,20 @@
 import { Collection } from 'discord.js'
 import DiscordConnection from './DiscordConnection'
+type RawDiscordConnection = {
+  name: string,
+  id: string,
+  type?:string
+}
 class DiscordConnections extends Collection<string, DiscordConnection> {
   constructor(data: {
-    [key: string]: {
-      name: string,
-      id: string
-    }
-  }) {
-    const DiscordConnectionsArray = Object.entries<{
-      name: string,
-      id: string,
-      type?: string
-    }>(data)
-      .map(([type, connection]) => {
-        connection.type = type
-        return [connection.id, connection]
-      }) as [string, DiscordConnection][]
-    super(DiscordConnectionsArray)
+    [key: string]: RawDiscordConnection
+  }[]) {
+    const DiscordConnectionsArray = data.map(conn => {
+      const [type,connection] = Object.entries(conn)[0]
+      connection.type = type
+      return [type,connection]
+    })
+    super(DiscordConnectionsArray as [string,DiscordConnection][])
   }
 }
 export = DiscordConnections
