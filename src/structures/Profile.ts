@@ -1,9 +1,9 @@
 import ProfileSettings from './ProfileSettings'
 import User from './User'
-import DiscordConnection from './DiscordConnection'
+import ProfileEvents from './ProfileEvents'
 import UserConnections from './UserConnections'
 import enumerable from '../util/enumerable'
-import { Bio, Activity, Collection } from '..'
+import { Bio, Activity } from '..'
 import { EventEmitter } from 'events'
 import connect from '../websocket'
 import { client as WebSocket } from 'websocket'
@@ -78,47 +78,47 @@ class Profile extends EventEmitter {
     return this
   }
   /**Emitted when a websocket connection is established*/
-  on(event: 'connect', listener: () => void): this
+  on(event: ProfileEvents.CONNECT, listener: () => void): this
   /** Emitted when the websocket successfully subscribe to the profile*/
-  on(event: 'subscribe', listener:
+  on(event: ProfileEvents.SUBSCRIBE, listener:
     /**@param view_count The number of people viewing the profile*/
     (view_count: number) => void): this
   /**Emiited when someone starts or stop viewing the profile */
-  on(event: 'viewCountUpdate', listener:
+  on(event: ProfileEvents.TOTAL_VIEWING, listener:
     /**@param view_count The number of people viewing the profile*/
     (view_count: number) => void): this
   /**Emitted when the presence is updated */
-  on(event: 'presenceUpdate', listener:
+  on(event: ProfileEvents.PRESENCE, listener:
     /**
      * @param oldPresence old presence
      * @param newPresence new presence
      */
     (oldPresence: Presence, newPresence: Presence) => void): this
   /**Emitted when the profile is updated */
-  on(event: 'profileUpdate', listener:
+  on(event: ProfileEvents.PROFILE_UPDATE, listener:
     /**
      * @param oldProfile profile before
      * @param newProfile profile after
      */
     (oldProfile: Profile, newProfile: Profile) => void): this
   /**Emitted when the profile's banner is updated */
-  on(event: 'bannerUpdate', listener:
+  on(event: ProfileEvents.BANNER_UPDATE, listener:
     /**@param banner_exists Whether the user still has a banner */
     (has_banner: boolean) => void): this
   /**Emitted when the profile is liked */
-  on(event: 'like', listener:
+  on(event: ProfileEvents.PROFILE_LIKE, listener:
     /**
      * @param liker The user that liked the profile. <br>If there are information about the user in the cache, it will be a User object, otherwise it will be an user id.
      */
     (liker: User | Snowflake) => void): this
   /**Emitted when the profile is unliked */
-  on(event: 'unlike', listener:
+  on(event: ProfileEvents.PROFILE_UNLIKE, listener:
     /**
      * @param unliker The user that unliked the profile. <br>If there are information about the user in the cache, it will be a User object, otherwise it will be an user id.
      */
     (unliker: User | Snowflake) => void): this
   /**Emitted when the websocket is closed */
-  on(event: 'close', listener: () => void): this
+  on(event: ProfileEvents.CLOSE, listener: () => void): this
   on(event: string, listener: (...args: any[]) => void): this {
     return super.on(event, listener)
   }

@@ -2,26 +2,27 @@ import { client } from 'websocket'
 import fetch from 'node-fetch'
 import Profile from "../structures/Profile";
 import { performance } from 'perf_hooks'
-import { headers, bioOptionsDefaults } from '../util/Constants';
+import { headers } from '../util/Constants';
 import Presence from '../structures/Presence';
 import { EventEmitter } from 'events';
+import ProfileEvents from '../structures/ProfileEvents'
 const socket = new client()
 /**Connect to this profile's websocket */
 async function connect(this: Profile) {
   this.ws.socket = socket
   socket.on('connectFailed', console.error)
-  const info = await fetch(`https://${bioOptionsDefaults.ws.gateway}/?EIO=3&transport=polling`, {
+  const info = await fetch(`https://${this.bio.options.ws.gateway}/?EIO=3&transport=polling`, {
     headers: {
       'user-agent': headers['user-agent'] as any,
     }
   }).then(res => res.text()).then(text => text.replace('96:0', '')).then(JSON.parse)
-  socket.connect(`wss://${bioOptionsDefaults.ws.gateway}/bio_ws/?EIO=3&transport=websocket&sid=${info.sid}`)
+  socket.connect(`wss://${this.bio.options.ws.gateway}/bio_ws/?EIO=3&transport=websocket&sid=${info.sid}`)
   socket.on('connect', connection => {
-    this.emit('connect')
-    this.once('viewCountUpdate', count => this.emit('subscribe', count))
+    this.emit(ProfileEvents.CONNECT)
+    this.once('viewCountUpdate', count => this.emit(ProfileEvents.SUBSCRIBE, count))
     connection.on('close', () => {
       this.bio.emit('debug', ' Websocket Connection Closed');
-      this.emit('close')
+      this.emit(ProfileEvents.CLOSE)
     });
     let sent2: number
     setInterval(() => {
@@ -41,13 +42,13 @@ async function connect(this: Profile) {
       this.emit('raw', msg)
       const [event, data]: [string, any] = JSON.parse(msg.substr(2))
       switch (event) {
-        case 'TOTAL_VIEWING': this.emit('viewCountUpdate', data); break
+        case 'TOTAL_VIEWING': this.emit(ProfileEvents.TOTAL_VIEWING, data); break
         case 'PRESENCE': {
           data.user = this.discord
           const newPresence = new Presence(this.bio, data)
           const oldPresence = this.discord.presence
           this.discord.presence = newPresence
-          this.emit('presenceUpdate', oldPresence, newPresence)
+          this.emit(ProfileEvents.PRESENCE, oldPresence, newPresence)
         }; break
         case 'PROFILE_UPDATE': {
           const oldProfile = {
@@ -56,24 +57,25 @@ async function connect(this: Profile) {
           }
           Object.assign(oldProfile, new EventEmitter())
           this._patch(data)
-          this.emit('profileUpdate', oldProfile, this)
+          this.emit(ProfileEvents.PROFILE_UPDATE, oldProfile, this)
         }; break
         case 'BANNER_UPDATE': {
           if (!data) this.user.details.banner = null;
-          this.emit('bannerUpdate', data)
+          else this.user.details.banner = "https://s3.eu-west-2.amazonaws.com/discord.bio/banners/" + this.discord.id
+          this.emit(ProfileEvents.BANNER_UPDATE, data)
         }; break
         //SOON tm
         case 'PROFILE_LIKE': {
           this.user.details.likes += 1
-          this.emit('like', this.bio.profiles.get(data)?.discord || data)
+          this.emit(ProfileEvents.PROFILE_LIKE, this.bio.profiles.get(data)?.discord || data)
         }; break
         case 'PROFILE_UNLIKED': {
           this.user.details.likes -= 1
-          this.emit('unlike', this.bio.profiles.get(data)?.discord || data)
+          this.emit(ProfileEvents.PROFILE_UNLIKE, this.bio.profiles.get(data)?.discord || data)
         }; break
         case 'PROFILE_UNLIKE': {
           this.user.details.likes -= 1
-          this.emit('unlike', this.bio.profiles.get(data)?.discord || data)
+          this.emit(ProfileEvents.PROFILE_UNLIKE, this.bio.profiles.get(data)?.discord || data)
         }; break
         default: console.error(`discord.bio: Received unknown event "${event}", event data follows:\n${data}`)
       }
