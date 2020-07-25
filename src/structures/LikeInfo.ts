@@ -1,5 +1,6 @@
 import { Collection,Snowflake } from 'discord.js'
 import PartialProfile from './PartialProfile'
+/**Information about the top profiles. */
 type LikeInfo = {
   /**Total number of pages */
   pageTotal:number

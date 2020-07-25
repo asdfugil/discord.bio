@@ -1,3 +1,4 @@
+/**Details of a partial profile */
 class PartialProfileSettings {
     /**The number of likes the user has got */
     likes: number

@@ -20,6 +20,7 @@ npm i discord.bio
 ## Changelogs
 
 - Added (un)like events
+- Fix discord connection keys not being an id
 
 ## CLI wrapper
 
