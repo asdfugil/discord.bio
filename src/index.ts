@@ -66,7 +66,7 @@ class Bio extends EventEmitter {
   /**
    * @param options - bio options
   */
-  constructor(options: DeepPartial<typeof bioOptionsDefaults>) {
+  constructor(options: DeepPartial<typeof bioOptionsDefaults> = {}) {
     super()
     options = merge(bioOptionsDefaults, options)
     this.APIVersion = async function () { return '1.0.4-deprecated' }
