@@ -23,8 +23,9 @@ import PartialProfile from './structures/PartialProfile'
 import PartialProfileSettings from './structures/PartialProfileSettings'
 import ProfileSettings from './structures/ProfileSettings'
 import RichPresenceAssets from './structures/RichPresenceAssets'
+import LikeInfo from './structures/LikeInfo'
 /**The main hub for interacting with the discord.bio API. */
-export class Bio extends EventEmitter {
+class Bio extends EventEmitter {
   /**
    * Fetches the api version. 
    * @deprecated This endpoint no longer exists
@@ -86,4 +87,4 @@ export class Bio extends EventEmitter {
     return super.on(event, listener)
   }
 }
-export { User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity, Emoji, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileSettings, RichPresenceAssets, Presence }
+export { Bio,User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity, Emoji, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileSettings, RichPresenceAssets, Presence,LikeInfo }
