@@ -9,6 +9,7 @@ import connect from '../websocket'
 import { client as WebSocket } from 'websocket'
 import Presence from './Presence'
 import DiscordConnections from './DiscordConnections'
+import { Snowflake } from 'discord.js'
 /**
  * Represent a discord.bio profile 
  */
@@ -104,6 +105,18 @@ class Profile extends EventEmitter {
   on(event: 'bannerUpdate', listener:
     /**@param banner_exists Whether the user still has a banner */
     (has_banner: boolean) => void): this
+  /**Emitted when the profile is liked */
+  on(event: 'like', listener:
+    /**
+     * @param liker The user that liked the profile. <br>If there are information about the user in the cache, it will be a User object, otherwise it will be an user id.
+     */
+    (liker: User | Snowflake) => void): this
+  /**Emitted when the profile is unliked */
+  on(event: 'unlike', listener:
+    /**
+     * @param unliker The user that unliked the profile. <br>If there are information about the user in the cache, it will be a User object, otherwise it will be an user id.
+     */
+    (unliker: User | Snowflake) => void): this
   /**Emitted when the websocket is closed */
   on(event: 'close', listener: () => void): this
   on(event: string, listener: (...args: any[]) => void): this {

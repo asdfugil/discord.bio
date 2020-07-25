@@ -19,7 +19,8 @@ npm i discord.bio
 - [Documentation](#Documentation)
 ## Changelogs
 
-- Fixed null errors when there are no discord/user connections
+- Added (un)like events
+- Fix discord connection keys not being an id
 
 ## CLI wrapper
 

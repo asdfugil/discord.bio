@@ -51,18 +51,31 @@ async function connect(this: Profile) {
         }; break
         case 'PROFILE_UPDATE': {
           const oldProfile = {
-            user:Object.assign({}, this.user) ,
-            discord:this.discord
-          } 
-          Object.assign(oldProfile,new EventEmitter())
+            user: Object.assign({}, this.user),
+            discord: this.discord
+          }
+          Object.assign(oldProfile, new EventEmitter())
           this._patch(data)
           this.emit('profileUpdate', oldProfile, this)
         }; break
         case 'BANNER_UPDATE': {
           if (!data) this.user.details.banner = null;
           this.emit('bannerUpdate', data)
-        }
-        default: console.error(`discord.bio: Received unknown event "${event}"`)
+        }; break
+        //SOON tm
+        case 'PROFILE_LIKE': {
+          this.user.details.likes += 1
+          this.emit('like', this.bio.profiles.get(data)?.discord || data)
+        }; break
+        case 'PROFILE_UNLIKED': {
+          this.user.details.likes -= 1
+          this.emit('unlike', this.bio.profiles.get(data)?.discord || data)
+        }; break
+        case 'PROFILE_UNLIKE': {
+          this.user.details.likes -= 1
+          this.emit('unlike', this.bio.profiles.get(data)?.discord || data)
+        }; break
+        default: console.error(`discord.bio: Received unknown event "${event}", event data follows:\n${data}`)
       }
     });
     connection.send("42" + JSON.stringify(["VIEWING", this.discord.id]))

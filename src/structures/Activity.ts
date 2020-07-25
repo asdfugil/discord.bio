@@ -4,6 +4,7 @@ import { Bio } from '../'
 import RawEmoji from './RawEmoji'
 import RichPresenceAssets from './RichPresenceAssets'
 import Base from './Base'
+/**Represent an presence activity on discord */
 class Activity extends Base {
     /**Assets for rich presence */
     assets:RichPresenceAssets | null

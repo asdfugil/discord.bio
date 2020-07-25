@@ -3,6 +3,7 @@ import Base from './Base'
 import { Bio } from '..'
 import RawEmoji from './RawEmoji';
 import { bioOptionsDefaults } from '../util/Constants'
+/**Represent an emoji */
 class Emoji extends Base {
     /**Whether the emoji is animated */
     public animated!: boolean;

@@ -56,13 +56,15 @@ export class Bio extends EventEmitter {
   rest: RESTManager
   /**Options of this bio instance */
   options: typeof bioOptionsDefaults
+  /**Cached profiles */
+  profiles: Collection<string, Profile | PartialProfile>
   /**
-   * @param baseURL - The API base URL
+   * @param options - bio options
   */
   constructor(options: typeof bioOptionsDefaults | any = bioOptionsDefaults) {
     super()
     options = merge(bioOptionsDefaults, options)
-    this.APIVersion = async function() { return '1.0.4-deprecated' }
+    this.APIVersion = async function () { return '1.0.4-deprecated' }
     this.topLikes = topLikes
     this.totalUsers = totalUsers
     this.users = {
@@ -74,6 +76,7 @@ export class Bio extends EventEmitter {
     this.rest = new RESTManager(this, options.rest)
     this.version = require('../package.json').version
     this.options = options
+    this.profiles = new Collection()
   }
   /**Emitted when being rate limited */
   on(event: 'rateLimit', listener:

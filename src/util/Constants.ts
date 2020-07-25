@@ -1,12 +1,13 @@
 export const bioOptionsDefaults = {
   rest: {
     'base_url': 'https://api.discord.bio',
-     cdn_url: 'https://cdn.discordapp.com',
+    cdn_url: 'https://cdn.discordapp.com',
   },
   ws: {
-    autoConnect:false,
+    autoConnect: false,
     'gateway': 'api.discord.bio/bio_ws'
-  }
+  },
+  enableCaching: true
 }
 export type Headers = {
   [key: string]: string | undefined
