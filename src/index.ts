@@ -57,14 +57,14 @@ export class Bio extends EventEmitter {
   /**Options of this bio instance */
   options: typeof bioOptionsDefaults
   /**Cached profiles */
-  profiles:Collection<string,Profile | PartialProfile>
+  profiles: Collection<string, Profile | PartialProfile>
   /**
    * @param options - bio options
   */
   constructor(options: typeof bioOptionsDefaults | any = bioOptionsDefaults) {
     super()
     options = merge(bioOptionsDefaults, options)
-    this.APIVersion = async function() { return '1.0.4-deprecated' }
+    this.APIVersion = async function () { return '1.0.4-deprecated' }
     this.topLikes = topLikes
     this.totalUsers = totalUsers
     this.users = {

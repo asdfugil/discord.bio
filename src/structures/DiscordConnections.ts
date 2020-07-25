@@ -12,7 +12,7 @@ class DiscordConnections extends Collection<string, DiscordConnection> {
     const DiscordConnectionsArray = (data || []).map(conn => {
       const [type,connection] = Object.entries(conn)[0]
       connection.type = type
-      return [type,connection]
+      return [connection.id,connection]
     })
     super(DiscordConnectionsArray as [string,DiscordConnection][])
   }
