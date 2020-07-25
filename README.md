@@ -21,6 +21,7 @@ npm i discord.bio
 
 - Added (un)like events
 - Fix discord connection keys not being an id
+- Typing improvements
 
 ## CLI wrapper
 
