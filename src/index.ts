@@ -23,8 +23,13 @@ import PartialProfile from './structures/PartialProfile'
 import PartialProfileSettings from './structures/PartialProfileSettings'
 import ProfileSettings from './structures/ProfileSettings'
 import RichPresenceAssets from './structures/RichPresenceAssets'
+import LikeInfo from './structures/LikeInfo'
+import deepmerge from 'deepmerge'
+type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>;
+};
 /**The main hub for interacting with the discord.bio API. */
-export class Bio extends EventEmitter {
+class Bio extends EventEmitter {
   /**
    * Fetches the api version. 
    * @deprecated This endpoint no longer exists
@@ -61,7 +66,7 @@ export class Bio extends EventEmitter {
   /**
    * @param options - bio options
   */
-  constructor(options: typeof bioOptionsDefaults | any = bioOptionsDefaults) {
+  constructor(options: DeepPartial<typeof bioOptionsDefaults>) {
     super()
     options = merge(bioOptionsDefaults, options)
     this.APIVersion = async function () { return '1.0.4-deprecated' }
@@ -73,9 +78,10 @@ export class Bio extends EventEmitter {
       search: search,
     }
     this.bio = this
-    this.rest = new RESTManager(this, options.rest)
     this.version = require('../package.json').version
-    this.options = options
+    options = deepmerge(bioOptionsDefaults,options)
+    this.options = options as typeof bioOptionsDefaults
+    this.rest = new RESTManager(this, (options  as typeof bioOptionsDefaults).rest)
     this.profiles = new Collection()
   }
   /**Emitted when being rate limited */
@@ -86,4 +92,4 @@ export class Bio extends EventEmitter {
     return super.on(event, listener)
   }
 }
-export { User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity, Emoji, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileSettings, RichPresenceAssets, Presence }
+export { Bio,User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity, Emoji, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileSettings, RichPresenceAssets, Presence,LikeInfo }
