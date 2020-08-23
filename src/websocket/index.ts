@@ -15,7 +15,9 @@ async function connect(this: Profile) {
   const socket = new WebSocket(`wss://${bioOptionsDefaults.ws.gateway}/bio_ws/?EIO=3&transport=websocket&sid=${info.sid}`)
   this.ws.socket = socket
   let sent2: number
-  socket.on('unexpected-response', console.error)
+  socket.on('unexpected-response',(req,res) => {
+    this.emit('error',req,res)
+  })
   let interval: ReturnType<typeof setInterval>
   socket.once('open', () => {
     this.emit('connect')
@@ -33,9 +35,10 @@ async function connect(this: Profile) {
       if (interval) clearInterval(interval)
     }, info.pingInterval)
   })
-  socket.on('close', () => {
+  socket.on('close', async() => {
     this.bio.emit('debug', ' Websocket Connection Closed');
-    this.emit('close')
+    this.connect()
+    this.emit('reconnect')
   });
   socket.on('message', (message) => {
     const msg = message as string

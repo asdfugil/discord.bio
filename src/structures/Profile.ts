@@ -9,6 +9,7 @@ import WebSocket from 'ws'
 import Presence from './Presence'
 import DiscordConnections from './DiscordConnections'
 import { Snowflake } from 'discord.js'
+import { ClientRequest, IncomingMessage } from 'http'
 /**
  * Represent a discord.bio profile 
  */
@@ -33,7 +34,10 @@ class Profile extends EventEmitter {
    * @example profile.ws.ping
    */
   ws: {
-    /**The websocket */
+    /**
+     * The websocket
+     * @private
+     */
     socket?: WebSocket
     /**Websocket ping */
     ping?: number
@@ -111,10 +115,16 @@ class Profile extends EventEmitter {
      * @param unliker The user that unliked the profile. <br>If there are information about the user in the cache, it will be a User object, otherwise it will be an user id.
      */
     (unliker: User | Snowflake) => void): this
-  /**Emitted when the websocket is closed */
-  on(event: 'close', listener: () => void): this
+  /**Emitted when the websocket is reconnecting */
+  on(event: 'reconnect', listener: () => void): this
+  /**Emitted when there is an error trying to (re)connect to the websocket. */
+  on(event:'error',listener:(req:ClientRequest,res:IncomingMessage) => void):this
   on(event: string, listener: (...args: any[]) => void): this {
     return super.on(event, listener)
+  }
+  close() {
+    if (! this.ws.socket || this.ws.socket?.CLOSED) throw new Error('WebSocket already closed.')
+    this.ws.socket?.close(0,'Profile#close() called.')
   }
 }
 export = Profile

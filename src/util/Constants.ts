@@ -4,8 +4,8 @@ export const bioOptionsDefaults = {
     cdn_url: 'https://cdn.discordapp.com',
   },
   ws: {
-    autoConnect: false,
-    'gateway': 'api.discord.bio/bio_ws'
+    'gateway': 'api.discord.bio/bio_ws',
+    autoConnect:false
   },
   enableCaching: true
 }
