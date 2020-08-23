@@ -104,7 +104,6 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_presence_.presence.html#activity" class="tsd-kind-icon">activity</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_structures_presence_.presence.html#bio" class="tsd-kind-icon">bio</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_presence_.presence.html#clientstatus" class="tsd-kind-icon">client<wbr>Status</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_presence_.presence.html#status" class="tsd-kind-icon">status</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_structures_presence_.presence.html#user" class="tsd-kind-icon">user</a></li>
 							</ul>
@@ -131,7 +130,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_structures_base_.base.html">Base</a>.<a href="_structures_base_.base.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/4249c93/src/structures/Presence.ts#L23">src/structures/Presence.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/50c1827/src/structures/Presence.ts#L11">src/structures/Presence.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -156,7 +155,7 @@
 					<div class="tsd-signature tsd-kind-icon">activity<span class="tsd-signature-symbol">:</span> <a href="_structures_activity_.activity.html" class="tsd-signature-type">Activity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/4249c93/src/structures/Presence.ts#L19">src/structures/Presence.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/50c1827/src/structures/Presence.ts#L7">src/structures/Presence.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -172,53 +171,9 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_structures_base_.base.html">Base</a>.<a href="_structures_base_.base.html#bio">bio</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/4249c93/src/structures/Base.ts#L7">src/structures/Base.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/50c1827/src/structures/Base.ts#L7">src/structures/Base.ts:7</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
-					<a name="clientstatus" class="tsd-anchor"></a>
-					<h3>client<wbr>Status</h3>
-					<div class="tsd-signature tsd-kind-icon">client<wbr>Status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>desktop<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ClientPresenceStatus</span><span class="tsd-signature-symbol">; </span>mobile<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ClientPresenceStatus</span><span class="tsd-signature-symbol">; </span>web<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ClientPresenceStatus</span><span class="tsd-signature-symbol"> }</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/4249c93/src/structures/Presence.ts#L10">src/structures/Presence.ts:10</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The devices this presence is on</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>deprecated</dt>
-							<dd><p>The webscoket no longer provide this information</p>
-							</dd>
-						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> desktop<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ClientPresenceStatus</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> mobile<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ClientPresenceStatus</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<div class="lead">
-										<p>The current presence in the mobile application</p>
-									</div>
-								</div>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> web<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ClientPresenceStatus</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<div class="lead">
-										<p>The current presence in the web application</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a name="status" class="tsd-anchor"></a>
@@ -226,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PresenceStatus</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/4249c93/src/structures/Presence.ts#L23">src/structures/Presence.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/50c1827/src/structures/Presence.ts#L11">src/structures/Presence.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -241,7 +196,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <a href="_structures_user_.user.html" class="tsd-signature-type">User</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/4249c93/src/structures/Presence.ts#L21">src/structures/Presence.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/50c1827/src/structures/Presence.ts#L9">src/structures/Presence.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -263,7 +218,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/4249c93/src/structures/Presence.ts#L31">src/structures/Presence.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/assfugil/discord.bio/blob/50c1827/src/structures/Presence.ts#L18">src/structures/Presence.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -304,9 +259,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 								<a href="_structures_presence_.presence.html#bio" class="tsd-kind-icon">bio</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="_structures_presence_.presence.html#clientstatus" class="tsd-kind-icon">client<wbr>Status</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="_structures_presence_.presence.html#status" class="tsd-kind-icon">status</a>
