@@ -16,6 +16,8 @@ import { ClientRequest, IncomingMessage } from 'http'
 class Profile extends EventEmitter {
   @enumerable(false)
   bio: Bio
+  /**The number of people viewing the profile */
+  view_count: number | null
   /**The settings of this profile. */
   user: {
     details: ProfileSettings
@@ -44,6 +46,7 @@ class Profile extends EventEmitter {
   }
   constructor(bio: Bio, data: any) {
     super()
+    this.view_count = null
     const { details, discordConnections, userConnections } = data.user
     this.user = {
       details: new ProfileSettings(details),
@@ -83,8 +86,11 @@ class Profile extends EventEmitter {
     (view_count: number) => void): this
   /**Emiited when someone starts or stop viewing the profile */
   on(event: 'viewCountUpdate', listener:
-    /**@param view_count The number of people viewing the profile*/
-    (view_count: number) => void): this
+    /**
+     * @param oldCount The number of people viewing the profile before
+     * @param newCount The number of people viewing the profile after
+     */
+    (oldCount: number | null, newCount: number) => void): this
   /**Emitted when the presence is updated */
   on(event: 'presenceUpdate', listener:
     /**
@@ -118,13 +124,13 @@ class Profile extends EventEmitter {
   /**Emitted when the websocket is reconnecting */
   on(event: 'reconnect', listener: () => void): this
   /**Emitted when there is an error trying to (re)connect to the websocket. */
-  on(event:'error',listener:(req:ClientRequest,res:IncomingMessage) => void):this
+  on(event: 'error', listener: (req: ClientRequest, res: IncomingMessage) => void): this
   on(event: string, listener: (...args: any[]) => void): this {
     return super.on(event, listener)
   }
   close() {
-    if (! this.ws.socket || this.ws.socket?.CLOSED) throw new Error('WebSocket already closed.')
-    this.ws.socket?.close(0,'Profile#close() called.')
+    if (!this.ws.socket || this.ws.socket?.CLOSED) throw new Error('WebSocket already closed.')
+    this.ws.socket?.close(0, 'Profile#close() called.')
   }
 }
 export = Profile

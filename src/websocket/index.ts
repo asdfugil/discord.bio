@@ -21,7 +21,10 @@ async function connect(this: Profile) {
   let interval: ReturnType<typeof setInterval>
   socket.once('open', () => {
     this.emit('connect')
-    this.once('viewCountUpdate', count => this.emit('subscribe', count))
+    this.once('viewCountUpdate', (_,count) => { 
+      this.emit('subscribe',count) 
+      this.view_count = count
+    })
   })
   let now:number
   socket.on('open',() => {
@@ -48,7 +51,11 @@ async function connect(this: Profile) {
     this.emit('raw', msg)
     const [event, data]: [string, any] = JSON.parse(msg.substr(2))
     switch (event) {
-      case 'TOTAL_VIEWING': this.emit('viewCountUpdate', data); break
+      case 'TOTAL_VIEWING': {
+        const oldCount = this.view_count
+        this.view_count = data
+        this.emit('viewCountUpdate', oldCount,data)
+      }; break
       case 'PRESENCE': {
         data.user = this.discord
         const newPresence = new Presence(this.bio, data)
