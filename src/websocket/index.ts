@@ -32,11 +32,11 @@ async function connect(this: Profile) {
     interval = setInterval(() => {
       socket.send('2')
       sent2 = performance.now()
-      if (interval) clearInterval(interval)
     }, info.pingInterval)
   })
   socket.on('close', async() => {
     this.bio.emit('debug', ' Websocket Connection Closed');
+    if (interval) clearInterval(interval)
     this.connect()
     this.emit('reconnect')
   });

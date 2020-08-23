@@ -19,7 +19,8 @@ npm i discord.bio
 - [Documentation](#Documentation)
 ## Changelogs
 
-- Fixed the bug where PartialProfileSettings#staff can be `undefined`
+- Changed some internal websocket stuff
+- Changed some websocket-related Profile events
 
 ## CLI wrapper
 
