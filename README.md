@@ -19,9 +19,7 @@ npm i discord.bio
 - [Documentation](#Documentation)
 ## Changelogs
 
-- Added (un)like events
-- Fix discord connection keys not being an id
-- Typing improvements
+- Fixed the bug where PartialProfileSettings#staff can be `undefined`
 
 ## CLI wrapper
 

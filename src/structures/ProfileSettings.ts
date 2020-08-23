@@ -40,7 +40,7 @@ class ProfileSettings {
     this.slug = slug
     this.user_id = user_id
     this.flags = new UserFlags(flags)
-    this.verified = verified
+    this.verified = Boolean(verified)
     this.createdAt = new Date(created_at)
     this.createdTimestamp = created_at
     this.description = description
@@ -48,8 +48,8 @@ class ProfileSettings {
     this.email = email
     this.occupation = occupation
     this.banner = banner
-    this.premium = premium
-    this.staff = staff
+    this.premium = Boolean(premium)
+    this.staff = Boolean(staff)
     this.likes = likes
     this.premium_type = premium_type
     this.birthday = birthday ? new Date(birthday) : null

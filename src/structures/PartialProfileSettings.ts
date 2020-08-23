@@ -17,9 +17,9 @@ class PartialProfileSettings {
         this.likes = likes
         this.description = description
         this.verified = Boolean(verified)
-        this.premium = premium
+        this.premium = Boolean(premium)
         this.slug = slug
-        this.staff = staff
+        this.staff = Boolean(staff)
     }
 }
 export = PartialProfileSettings
