@@ -1,12 +1,11 @@
 import ProfileSettings from './ProfileSettings'
 import User from './User'
-import DiscordConnection from './DiscordConnection'
 import UserConnections from './UserConnections'
 import enumerable from '../util/enumerable'
-import { Bio, Activity, Collection } from '..'
+import { Bio, Activity } from '..'
 import { EventEmitter } from 'events'
 import connect from '../websocket'
-import { client as WebSocket } from 'websocket'
+import WebSocket from 'ws'
 import Presence from './Presence'
 import DiscordConnections from './DiscordConnections'
 import { Snowflake } from 'discord.js'
@@ -21,10 +20,6 @@ class Profile extends EventEmitter {
     details: ProfileSettings
     discordConnections: DiscordConnections
     userConnections: UserConnections
-    /**
-     * @deprecated Use profile.user.discord.presence.activtiy instead
-     */
-    readonly activity: Activity | null
   }
   /**The user that this profile represents. */
   discord: User
@@ -49,8 +44,7 @@ class Profile extends EventEmitter {
     this.user = {
       details: new ProfileSettings(details),
       discordConnections: new DiscordConnections(discordConnections),
-      userConnections: userConnections || {},
-      activity: null
+      userConnections: userConnections || {}
     }
     Object.defineProperty(this.user, 'activity', {
       get: () => this.discord.presence?.activity || null,

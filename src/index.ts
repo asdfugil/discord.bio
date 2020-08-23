@@ -30,18 +30,12 @@ type DeepPartial<T> = {
 };
 /**The main hub for interacting with the discord.bio API. */
 class Bio extends EventEmitter {
-  /**
-   * Fetches the api version. 
-   * @deprecated This endpoint no longer exists
-   */
-  APIVersion: () => Promise<string>
   /**Fetch the top upvoted users, sorted by upvotes.*/
   topLikes: typeof topLikes
   /**Get approximate user count, correct to the nearest 27. */
   totalUsers: typeof totalUsers
   @enumerable(false)
   bio: this
-  //public on<K extends keyof BioEvents>(event: K, listener: (...args: BioEvents[K]) => void): this;  
   users: Base & {
     /**
      * Get user Details
@@ -69,7 +63,6 @@ class Bio extends EventEmitter {
   constructor(options: DeepPartial<typeof bioOptionsDefaults> = {}) {
     super()
     options = merge(bioOptionsDefaults, options)
-    this.APIVersion = async function () { return '1.0.4-deprecated' }
     this.topLikes = topLikes
     this.totalUsers = totalUsers
     this.users = {
