@@ -18,8 +18,11 @@ bio.totalUsers()
     console.log(`Total Users: ${result[3]}`)
     result[0].connect()
     result[0].on('raw',console.log)
-    result[0].once('subscribe',count => {
-      console.log(`View count: ${count}`)
+    result[0].once('viewCountUpdate',(oldCount,newCount) => {
+      console.log(`Old view counr: ${oldCount}`)
+      console.log(`New view count: ${newCount}`)
+    })
+    result[0].once('subscribe',() => {
       console.log('Test successful ')
       process.exit()
     })

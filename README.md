@@ -21,6 +21,7 @@ npm i discord.bio
 
 - Changed some internal websocket stuff
 - Changed some websocket-related Profile events
+- changed viewCountUpdate
 
 ## CLI wrapper
 
