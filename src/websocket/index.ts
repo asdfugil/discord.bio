@@ -52,7 +52,8 @@ async function connect(this: Profile) {
     const [event, data]: [string, any] = JSON.parse(msg.substr(2))
     switch (event) {
       case 'TOTAL_VIEWING': {
-        const oldCount = this.view_count
+        //Must be ourself starts viewing
+        const oldCount = this.view_count === null ? data - 1 : this.view_count
         this.view_count = data
         this.emit('viewCountUpdate', oldCount,data)
       }; break

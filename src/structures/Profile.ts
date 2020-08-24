@@ -90,7 +90,7 @@ class Profile extends EventEmitter {
      * @param oldCount The number of people viewing the profile before
      * @param newCount The number of people viewing the profile after
      */
-    (oldCount: number | null, newCount: number) => void): this
+    (oldCount: number, newCount: number) => void): this
   /**Emitted when the presence is updated */
   on(event: 'presenceUpdate', listener:
     /**
