@@ -1,18 +1,14 @@
 import { Collection } from 'discord.js'
 import DiscordConnection from './DiscordConnection'
-type RawDiscordConnection = {
-  name: string,
-  id: string,
-  type?:string
-}
+import DiscordConnectionsTypes from './DiscordConnectionsTypes'
+type RawDiscordConnection = { [key in DiscordConnectionsTypes]?: { name:string, id:string } }
 class DiscordConnections extends Collection<string, DiscordConnection> {
-  constructor(data: {
-    [key: string]: RawDiscordConnection
-  }[]) {
+  constructor(data: RawDiscordConnection[]) {
     const DiscordConnectionsArray = (data || []).map(conn => {
       const [type,connection] = Object.entries(conn)[0]
-      connection.type = type
-      return [connection.id,connection]
+      if (!connection) throw Error('undefined connection') // this is actually not possible to happen
+      const dconn = new DiscordConnection(type as DiscordConnectionsTypes,connection)
+      return [connection.id,dconn]
     })
     super(DiscordConnectionsArray as [string,DiscordConnection][])
   }

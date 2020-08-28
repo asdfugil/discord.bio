@@ -1,6 +1,6 @@
 {
 	"name": "discord.bio",
-	"version": "10.0.0",
+	"version": "10.1.0-dev",
 	"description": "a node.js wrapper of the discord.bio api",
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
@@ -19,6 +19,7 @@
 		"discord.js": "12.2.0",
 		"form-data": "^3.0.0",
 		"node-fetch": "^2.6.0",
+		"tslib": "^2.0.1",
 		"ws": "^7.3.1"
 	},
 	"keywords": [
