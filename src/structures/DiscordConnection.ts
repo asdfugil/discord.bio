@@ -17,8 +17,11 @@ class DiscordConnection {
     switch(this.type) {
       case "github" : return "https://github.com/" + this.name
       case "youtube" : return "https://youtube.com/channel/" + this.name
-      case "facebook" : return null
       case "reddit" : return "https://reddit.com/u/" + this.name
+      case "steam" : return "https://steamcommunity.com/profiles/" + this.id
+      case "twitch" : return "https://www.twitch.tv/" + this.name
+      case "twitter" : return "https://twitter.com/" + this.name
+      //facebook,battlenet
       default: return null
     }
   }
