@@ -23,7 +23,10 @@ import PartialProfile from './structures/PartialProfile'
 import PartialProfileSettings from './structures/PartialProfileSettings'
 import ProfileSettings from './structures/ProfileSettings'
 import RichPresenceAssets from './structures/RichPresenceAssets'
-import LikeInfo from './structures/LikeInfo'
+import TopInfo from './structures/TopInfo'
+import DiscordConnectionsTypes from './structures/DiscordConnectionsTypes'
+import DiscordConnection from './structures/DiscordConnection'
+import DiscordConnections from './structures/DiscordConnections'
 import deepmerge from 'deepmerge'
 type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;
@@ -85,4 +88,10 @@ class Bio extends EventEmitter {
     return super.on(event, listener)
   }
 }
-export { Bio,User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity, Emoji, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileSettings, RichPresenceAssets, Presence,LikeInfo }
+export { Bio,User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity, Emoji, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileSettings, RichPresenceAssets, Presence,
+  // Maintain semver
+  /**
+   * @deprecated Use DBio.TopInfo instead
+  */
+  TopInfo as LikeInfo,
+  TopInfo,DiscordConnectionsTypes,DiscordConnection,DiscordConnections }

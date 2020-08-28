@@ -1,11 +1,11 @@
 import { Bio, Profile } from '..'
 import PartialProfile from '../structures/PartialProfile'
 import { Collection, Snowflake } from 'discord.js'
-import LikeInfo from '../structures/LikeInfo'
+import TopInfo from '../structures/TopInfo'
 /**
  * Gets the most liked profile
  */
-async function topLikes(this: Bio): Promise<LikeInfo> {
+async function topLikes(this: Bio): Promise<TopInfo> {
   const result = await this.rest.api('/user/top', 'GET')
   const profiles = result.payload.users.map((profile: any) => new PartialProfile(this.bio, profile))
   let profileCollection = new Collection<Snowflake, PartialProfile>(profiles.map((entry: any) => [entry.discord.id, entry]))
