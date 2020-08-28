@@ -12,13 +12,14 @@ class DiscordConnection {
     this.name = raw.name
     this.id = raw.id
   }
-  get url():string {
+  /**URL of the connection. When it cannot be determined, it will be null. */
+  get url():string | null {
     switch(this.type) {
       case "github" : return "https://github.com/" + this.name
       case "youtube" : return "https://youtube.com/channel/" + this.name
-      case "facebook" : return "https://www.facebook.com"
+      case "facebook" : return null
       case "reddit" : return "https://reddit.com/u/" + this.name
-      default: throw new Error(`Unknown connection type "${this.type}".`)
+      default: return null
     }
   }
 }
