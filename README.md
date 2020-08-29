@@ -19,9 +19,8 @@ npm i discord.bio
 - [Documentation](#Documentation)
 ## Changelogs
 
-- Changed some internal websocket stuff
-- Changed some websocket-related Profile events
-- changed viewCountUpdate
+- Added DiscordConnection#url
+- User#tag and User#defaultAvatarURL is now a getter
 
 ## CLI wrapper
 
