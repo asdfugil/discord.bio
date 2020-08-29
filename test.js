@@ -18,6 +18,8 @@ bio.totalUsers()
     console.log(result[2])
     console.log(`Total Users: ${result[3]}`)
     result[0].connect()
+    const githubURL = result[0].user.discordConnections.find(x => x.type === 'github').url
+    console.log(`GitHub URL: ` + githubURL)
     result[0].on('raw',console.log)
     result[0].once('viewCountUpdate',(oldCount,newCount) => {
       console.log(`Old view counr: ${oldCount}`)
