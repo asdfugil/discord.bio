@@ -21,7 +21,9 @@ class DiscordConnection {
       case "steam" : return "https://steamcommunity.com/profiles/" + this.id
       case "twitch" : return "https://www.twitch.tv/" + this.name
       case "twitter" : return "https://twitter.com/" + this.name
-      //facebook,battlenet
+      case "spotify" : return "https://open.spotify.com/user/" + this.id
+      case "xbox" : return "https://account.xbox.com/en-us/Profile?GamerTag=" + this.name
+      //facebook,battlenet,xbox
       default: return null
     }
   }
