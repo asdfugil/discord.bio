@@ -1,11 +1,11 @@
 export const bioOptionsDefaults = {
   rest: {
-    'base_url': 'https://api.discord.bio',
+    'base_url': 'https://discords.com/api-bio',
     cdn_url: 'https://cdn.discordapp.com',
   },
   ws: {
-    'gateway': 'api.discord.bio/bio_ws',
-    autoConnect:false
+    'gateway': 'discords.com/api-bio/bio_ws',
+    autoConnect: false
   },
   enableCaching: true
 }

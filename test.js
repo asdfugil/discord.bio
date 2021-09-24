@@ -22,7 +22,7 @@ bio.totalUsers()
     console.log(`GitHub URL: ` + githubURL)
     result[0].on('raw',console.log)
     result[0].once('viewCountUpdate',(oldCount,newCount) => {
-      console.log(`Old view counr: ${oldCount}`)
+      console.log(`Old view count: ${oldCount}`)
       console.log(`New view count: ${newCount}`)
     })
     result[0].once('subscribe',() => {

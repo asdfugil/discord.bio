@@ -1,6 +1,6 @@
 {
 	"name": "discord.bio",
-	"version": "10.1.1",
+	"version": "10.1.2",
 	"description": "a node.js wrapper of the discord.bio api",
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
@@ -16,7 +16,7 @@
 		"@types/ws": "^7.2.6",
 		"colors": "^1.4.0",
 		"deepmerge": "^4.2.2",
-		"discord.js": "12.2.0",
+		"discord.js": "^13.1.0",
 		"form-data": "^3.0.0",
 		"node-fetch": "^2.6.0",
 		"tslib": "^2.0.1",
@@ -30,7 +30,7 @@
 		"@types/node-fetch": "^2.5.7",
 		"pkg": "^4.4.8",
 		"typedoc": "^0.17.7",
-		"typescript": "^3.7.5"
+		"typescript": "^4.4.3"
 	},
 	"repository": "github:Assfugil/discord.bio",
 	"homepage": "https://discord-bio.js.org"
