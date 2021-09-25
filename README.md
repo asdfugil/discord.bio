@@ -11,6 +11,10 @@ To install:
 ```bash
 npm i discord.bio 
 ```
+
+## Support
+Please open a issue for any bugs/feature requests and ask other questions in my [Discord Server](1https://discord.gg/ecdvF948Cj).
+
 ## Contents
 - [Contents](#Contents)
 - [Changelogs](#Changelogs)
