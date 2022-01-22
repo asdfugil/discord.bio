@@ -1,7 +1,7 @@
 {
 	"name": "discord.bio",
-	"version": "10.1.2",
-	"description": "a node.js wrapper of the discord.bio api",
+	"version": "11.0.0-dev",
+	"description": "a node.js wrapper of the discords.com website",
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
 	"scripts": {

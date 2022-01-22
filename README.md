@@ -2,7 +2,7 @@
 
 **BY USING THE LIBRARY YOU AGREE TO THE **[**TERMS OF SERVICE OF DISCORD.BIO**](https://discord.bio/terms)
 
-Node.js wrapper and CLI client for https://discord.bio
+This library scrapes the site https://discords.com/bio
 
 [![NPM](https://nodei.co/npm/discord.bio.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/discord.bio/)
 
