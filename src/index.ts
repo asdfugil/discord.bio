@@ -28,6 +28,7 @@ import DiscordConnectionsTypes from './structures/DiscordConnectionsTypes'
 import DiscordConnection from './structures/DiscordConnection'
 import DiscordConnections from './structures/DiscordConnections'
 import deepmerge from 'deepmerge'
+import scrap from './util/scrap'
 type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;
 };
@@ -60,6 +61,7 @@ class Bio extends EventEmitter {
   options: typeof bioOptionsDefaults
   /**Cached profiles */
   profiles: Collection<string, Profile | PartialProfile>
+  scrap: typeof scrap
   /**
    * @param options - bio options
   */
@@ -78,6 +80,7 @@ class Bio extends EventEmitter {
     options = deepmerge(bioOptionsDefaults,options)
     this.options = options as typeof bioOptionsDefaults
     this.rest = new RESTManager(this, (options  as typeof bioOptionsDefaults).rest)
+    this.scrap = scrap
     this.profiles = new Collection()
   }
   /**Emitted when being rate limited */

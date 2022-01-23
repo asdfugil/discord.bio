@@ -7,3 +7,4 @@ discord.bio.code-workspace
 bin/
 docs/
 .vscode
+test.json

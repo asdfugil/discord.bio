@@ -2,7 +2,6 @@ import RawUser from './RawUser'
 import Base from './Base'
 import { ImageURLOptions, UserFlags } from 'discord.js'
 import { bioOptionsDefaults } from '../util/Constants'
-import Presence from './Presence'
 import { Bio } from '..'
 /**Represent A User */
 class User extends Base {
@@ -16,20 +15,22 @@ class User extends Base {
   id: string
   /**The hash of the user's avatar, it will be prepended with "a_" if the avatar is animated */
   avatar: string | null
-  /**The presence of the user */
-  presence: Presence
+  /**
+  * The type of nitro the user has. Is always null since we did anonymous requests, and it only shows when you fetch your own profile
+  */
+  premiumType: null
   /**
    * @param rawUser Thee raw user returned by the API
    */
   constructor(bio: Bio, rawUser: RawUser) {
     super(bio)
-    const { id, username, avatar, discriminator, public_flags } = rawUser
+    const { id, username, avatar, discriminator, public_flags, premiumType } = rawUser
     this.id = id
     this.username = username
     this.discriminator = discriminator
     this.avatar = avatar
     this.public_flags = new UserFlags(public_flags)
-    this.presence = new Presence(this.bio, { user: this })
+    this.premiumType = premiumType
   }
   /**
    * The link to the user's avatar

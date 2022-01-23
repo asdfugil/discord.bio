@@ -1,5 +1,5 @@
 type Snowflake = string
-class RawUser {
+type RawUser = {
     /**The user id of the user. */
     id: Snowflake
     /**The username of the user. */
@@ -9,13 +9,11 @@ class RawUser {
     /**The discriminator of the user. */
     discriminator: string
     /**Public flags of the suer */
-    public_flags:number
-    constructor(id: Snowflake, username: string, avatar: string | null, discriminator: string,public_flags:number) {
-        this.id = id
-        this.username = username
-        this.avatar = avatar
-        this.discriminator = discriminator
-        this.public_flags = public_flags
-    }
+    public_flags: number
+    /** The type of nitro the user has.
+     * Is always null since we did anonymous requests,
+     * and it only shows when you fetch your own profile.
+     */
+    premiumType: null
 }
 export = RawUser

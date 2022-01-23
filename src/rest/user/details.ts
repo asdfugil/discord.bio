@@ -5,8 +5,19 @@ import Profile from '../../structures/Profile'
 @example bio.users.details("nickchan")
 */
 async function details(this: Base, slugOrID: string): Promise<Profile> {
-  const result = await this.bio.rest.api('/user/details/' + slugOrID, 'GET')
-  const profile = new Profile(this.bio, result.payload)
+  let result;
+  if (slugOrID.length > 16) {
+    result = await this.bio.rest.api('/user/info?id=' + encodeURIComponent(slugOrID), 'GET')
+  } else {
+    let res_text = await this.bio.scrap('/p/' + slugOrID)
+    const array = res_text.split('<script id="__NEXT_DATA__" type="application/json">')
+    array.shift()
+    const new_array = array.join('<script id="__NEXT_DATA__" type="application/json">').split('</script></body></html')
+    new_array.pop()
+    const json = JSON.parse(new_array.join('</script></body></html'))
+    result = json.props.pageProps.user
+  }
+  const profile = new Profile(this.bio, result)
   if (this.bio.options.enableCaching) this.bio.profiles.set(profile.discord.id, profile)
   return profile
 }

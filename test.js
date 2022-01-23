@@ -2,9 +2,7 @@ console.log('If it ends with Test Successful it worked.')
 // Normally it is require("discord.bio")
 const { Bio } = require('./')
 const { profile } = require('console')
-const bio = new Bio({ rest:{
-  base_url:'https://api.discord.bio'
-}})
+const bio = new Bio()
 console.log(bio.options)
 console.log(`Library version:${require('./package.json').version}`)
 Promise.all([
