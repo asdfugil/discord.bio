@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 1440
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
