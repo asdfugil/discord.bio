@@ -54,7 +54,13 @@ async function api(this:RESTManager,path:string,method:HTTPRequestMethod,headers
     let result;
     try {
      result = JSON.parse(text)
-    } catch (error) {}
+    } catch (error) {
+        if (text.length < 120 && !response.ok) {
+            throw new DBioAPIError({message: text,path,method,statusCode:response.status})
+        } else if (!response.ok) {
+            throw new DBioAPIError({message: response.statusText,path,method,statusCode:response.status})
+        }
+    }
     if (!result) {
         if (response.ok) return
         else throw new DBioAPIError({ message:response.statusText,path:path,method:method,statusCode:response.status })

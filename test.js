@@ -1,40 +1,44 @@
-console.log('If it ends with Test Successful it worked.')
-// Normally it is require("discord.bio")
-const { Bio } = require('./')
-const { profile } = require('console')
+const profile_testsubject_slug = 'v'
+let ok = 0
+let notok = 0
+
+const { Bio } = require(__dirname);
+const util = require("util");
 const bio = new Bio()
-console.log(bio.options)
-console.log(`Library version:${require('./package.json').version}`)
-Promise.all([
-bio.users.details('nickchan'),
-bio.users.search('v'),
-bio.topLikes(),
-bio.totalUsers()
-]).then(result => { 
-    console.log(result[0])
-    console.log(result[1].first())
-    console.log(result[2])
-    console.log(`Total Users: ${result[3]}`)
-    result[0].connect()
-    const githubURL = result[0].user.discordConnections.find(x => x.type === 'github').url
-    console.log(`GitHub URL: ` + githubURL)
-    result[0].on('raw',console.log)
-    result[0].once('viewCountUpdate',(oldCount,newCount) => {
-      console.log(`Old view count: ${oldCount}`)
-      console.log(`New view count: ${newCount}`)
-    })
-    result[0].once('subscribe',() => {
-      console.log('Test successful ')
-      process.exit()
-    })
-    const ven = result[1].first()
-    console.log(`Avatar URL of Nick Chan#0001: ${result[0].discord.avatarURL({ size:1024,dynamic:true })}`)
-    console.log(`Display Avatar URL of Nick Chan#0001: ${result[0].discord.displayAvatarURL({ size:1024,dynamic:true })}`)
-    console.log(`Default URL of Nick Chan#0001: ${result[0].discord.defaultAvatarURL}`)
-    console.log(`The most upvoted user that match the search term \`ven\` is ${ven.discord.tag}, with ${ven.user.likes} upvotes!`)
- })
-.catch(error => {
-    console.error("Test failed,reason:")
-    console.error(error.stack)
-    process.exit(1)
+bio.users.details(profile_testsubject_slug)
+.then(profile => {
+  console.error(util.inspect(profile, {depth:4}))
+  console.log('Profile fetching with slug: OK'); ok += 1
+  if (profile.slug === profile_testsubject_slug) {
+    console.log('Profile slug: OK');
+    ok += 1
+  } else {
+    console.log('Profile slug: NOT OK'); notok += 1
+  }
+  if (!isNaN(parseInt(profile.discriminator))) {
+    console.log('Discriminator: OK'); ok += 1
+  } else {
+    console.log('Discriminator: NOT OK'); notok += 1
+  }
+})
+.catch((e) => {
+  console.error(e);
+  console.log('Profile fetching: NOT OK: '+ e); notok += 1
+})
+.then(() => {
+  return bio.users.search('v')
+})
+.then(result => {
+  console.error(util.inspect(result, {depth:4}))
+  console.log('Profile Searching: OK'); ok += 1
+})
+.catch((e) => {
+  console.error(e);
+  console.log('Profile searching: NOT OK: '+ e); notok += 1
+})
+.then(() => {
+  // details with user id does not currently work
+  // search is still broken
+  console.log(`${ok} OK and ${notok} NOT OK.`)
+  if (notok) process.exit(1);
 })

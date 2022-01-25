@@ -7,7 +7,6 @@ import topLikes from './rest/topLikes'
 import merge from 'deepmerge'
 import UserConnections from './structures/UserConnections'
 import { UserFlags, ImageURLOptions, Collection, } from 'discord.js'
-import Presence from './structures/Presence'
 import { EventEmitter } from 'events'
 import enumerable from './util/enumerable'
 import DBioAPIError from './structures/DBioAPIError'
@@ -15,20 +14,14 @@ import ConnectionTypes from './structures/ConnectionTypes'
 import Base from './structures/Base'
 import RESTManager from './structures/RESTManager'
 import { bioOptionsDefaults } from './util/Constants'
-import Activity from './structures/Activity'
-import Emoji from './structures/Emoji'
 import HTTPRequestMethod from './structures/HTTPRequestMethod'
 import Profile from './structures/Profile'
 import PartialProfile from './structures/PartialProfile'
 import PartialProfileSettings from './structures/PartialProfileSettings'
-import ProfileSettings from './structures/ProfileSettings'
-import RichPresenceAssets from './structures/RichPresenceAssets'
 import TopInfo from './structures/TopInfo'
-import DiscordConnectionsTypes from './structures/DiscordConnectionsTypes'
-import DiscordConnection from './structures/DiscordConnection'
-import DiscordConnections from './structures/DiscordConnections'
 import deepmerge from 'deepmerge'
 import scrap from './util/scrap'
+import ProfileComment from './structures/ProfileComment'
 type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;
 };
@@ -77,9 +70,9 @@ class Bio extends EventEmitter {
     }
     this.bio = this
     this.version = require('../package.json').version
-    options = deepmerge(bioOptionsDefaults,options)
+    options = deepmerge(bioOptionsDefaults, options)
     this.options = options as typeof bioOptionsDefaults
-    this.rest = new RESTManager(this, (options  as typeof bioOptionsDefaults).rest)
+    this.rest = new RESTManager(this, (options as typeof bioOptionsDefaults).rest)
     this.scrap = scrap
     this.profiles = new Collection()
   }
@@ -91,10 +84,4 @@ class Bio extends EventEmitter {
     return super.on(event, listener)
   }
 }
-export { Bio,User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, Activity, Emoji, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileSettings, RichPresenceAssets, Presence,
-  // Maintain semver
-  /**
-   * @deprecated Use DBio.TopInfo instead
-  */
-  TopInfo as LikeInfo,
-  TopInfo,DiscordConnectionsTypes,DiscordConnection,DiscordConnections }
+export { Bio, User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileComment, TopInfo }

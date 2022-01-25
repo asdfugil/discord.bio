@@ -1,7 +1,7 @@
 {
 	"name": "discord.bio",
 	"version": "11.0.0-dev",
-	"description": "a node.js wrapper of the discords.com website",
+	"description": "a node.js wrapper of the discords.com/bio website",
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
 	"scripts": {
@@ -13,15 +13,11 @@
 	"author": "asdfugil",
 	"license": "BSD-3-Clause",
 	"dependencies": {
-		"@types/ws": "^7.2.6",
-		"colors": "^1.4.0",
 		"deepmerge": "^4.2.2",
 		"discord.js": "^13.6.0",
 		"form-data": "^3.0.0",
 		"node-fetch": "^2.6.0",
-		"node-html-parser": "^5.2.0",
-		"tslib": "^2.0.1",
-		"ws": "^7.3.1"
+		"tslib": "^2.0.1"
 	},
 	"keywords": [
 		"discord.bio"
