@@ -8,7 +8,7 @@
 		"test": "node test.js",
 		"build": "tsc",
 		"prepare": "npm run build && npm run-script docgen",
-		"docgen": "typedoc --entryPoints src/index.ts --cname discord-bio.js.org --out docs --theme themes --readme WELCOME.md src/index.ts && touch docs/.nojekyll"
+		"docgen": "typedoc --cname discord-bio.js.org --out docs --readme WELCOME.md src/index.ts && touch docs/.nojekyll"
 	},
 	"author": "asdfugil",
 	"license": "BSD-3-Clause",

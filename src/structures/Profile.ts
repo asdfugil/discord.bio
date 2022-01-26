@@ -63,7 +63,25 @@ class Profile extends EventEmitter implements Base {
   updatedTimestamp: string
   constructor(bio: Bio, data: any) {
     super()
-    const { role, rpcEnabled, commentsEnabled, searchEnabled, slug, discordID, publicFlags, verified, createdAt, updatedAt, description, location, birthday, email, occupation, banner, _count } = data
+    const {
+      role,
+      rpcEnabled,
+      commentsEnabled,
+      searchEnabled,
+      slug,
+      discordID,
+      publicFlags,
+      verified,
+      createdAt,
+      updatedAt,
+      description,
+      location,
+      birthday,
+      email,
+      occupation,
+      banner,
+      _count
+    } = data
     this.slug = slug
     this.discordID = discordID
     this.searchEnabled = searchEnabled
@@ -91,7 +109,7 @@ class Profile extends EventEmitter implements Base {
     this.discord = new User(this.bio, data.discord)
   }
   async fetch(): Promise<Profile> {
-    return this.bio.users.details(this.discord.id)
+    return this.bio.details(this.discord.id)
   }
 }
 export = Profile

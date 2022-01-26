@@ -1,13 +1,14 @@
-import Base from '../../structures/Base'
-import Profile from '../../structures/Profile'
+import Base from '../structures/Base'
+import Profile from '../structures/Profile'
 /**
 * Get user Details
-@example bio.users.details("nickchan")
+@example bio.details("nickchan")
 */
 async function details(this: Base, slugOrID: string): Promise<Profile> {
   let result;
   if (slugOrID.length > 16) {
-    result = await this.bio.rest.api('/user/info?id=' + encodeURIComponent(slugOrID), 'GET')
+    result = await this.bio.rest.api('/user/info?id=' + encodeURIComponent(slugOrID), 'GET', { cookie: this.bio.cookie })
+    result.discord.id = result.discordID
   } else {
     let res_text = await this.bio.scrap('/p/' + slugOrID)
     const array = res_text.split('<script id="__NEXT_DATA__" type="application/json">')
@@ -15,6 +16,7 @@ async function details(this: Base, slugOrID: string): Promise<Profile> {
     const new_array = array.join('<script id="__NEXT_DATA__" type="application/json">').split('</script></body></html')
     new_array.pop()
     const json = JSON.parse(new_array.join('</script></body></html'))
+    json.props.pageProps.user.discord.id = json.props.pageProps.user.discordID
     result = json.props.pageProps.user
   }
   const profile = new Profile(this.bio, result)

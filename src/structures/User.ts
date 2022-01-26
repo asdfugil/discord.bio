@@ -15,19 +15,27 @@ class User extends Base {
   id: string
   /**The hash of the user's avatar, it will be prepended with "a_" if the avatar is animated */
   avatar: string | null
+  /** The type of nitro the user has.
+   * - null = not revealed by the API
+   * - 0 = nothing
+   * - 1 = nitro classic
+   * - 2 = the nitro with boosts
+   */
+  premiumType: null | 0 | 1 | 2
   /**
-  * The type of nitro the user has. Is always null since we did anonymous requests, and it only shows when you fetch your own profile
-  */
-  premiumType: null
-  /**
-   * @param rawUser Thee raw user returned by the API
+   * @param rawUser The raw user returned by the API
    */
   constructor(bio: Bio, rawUser: RawUser) {
     super(bio)
     const { id, username, avatar, discriminator, public_flags, premiumType } = rawUser
     this.id = id
+    if (discriminator.startsWith('#')) {
+      this.discriminator = discriminator.substring(1)
+      this.username = username.substring(0, username.length - 5)
+    } else {
     this.username = username
     this.discriminator = discriminator
+    }
     this.avatar = avatar
     this.public_flags = new UserFlags(public_flags)
     this.premiumType = premiumType
@@ -58,7 +66,7 @@ class User extends Base {
   get tag() {
     return `${this.username}#${this.discriminator}`
   }
-    /**The link to the user's default avatar. */
+  /**The link to the user's default avatar. */
   get defaultAvatarURL() {
     const a = "https://discord.com/assets/"
     const urls = [

@@ -1,4 +1,4 @@
-type Snowflake = string
+import { Snowflake } from 'discord.js'
 type RawUser = {
     /**The user id of the user. */
     id: Snowflake
@@ -11,9 +11,11 @@ type RawUser = {
     /**Public flags of the suer */
     public_flags: number
     /** The type of nitro the user has.
-     * Is always null since we did anonymous requests,
-     * and it only shows when you fetch your own profile.
+     * - null = not revealed by the API
+     * - 0 = nothing
+     * - 1 = nitro classic
+     * - 2 = the nitro with boosts
      */
-    premiumType: null
+    premiumType: null | 0 | 1 | 2
 }
 export = RawUser

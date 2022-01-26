@@ -34,7 +34,7 @@ Please go to https://github.com/Assfugil/dbio-cli for details.
 
 - 100% coverage of the public discord.bio api
 
-- Rate limit handling
+- Rate limit handling (REST API only)
 
 - Easy to use, parse gender,flags... etc. for you
 

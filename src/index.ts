@@ -1,9 +1,7 @@
 import User from './structures/User'
-import RawUser from './structures/RawUser'
-import details from './rest/user/details'
-import search from './rest/user/search'
-import totalUsers from './helper_functions/totalUsers'
-import topLikes from './rest/topLikes'
+import Connection from './structures/Connection'
+import details from './rest/details'
+import { search, searchOptions } from './rest/search'
 import merge from 'deepmerge'
 import UserConnections from './structures/UserConnections'
 import { UserFlags, ImageURLOptions, Collection, } from 'discord.js'
@@ -18,7 +16,6 @@ import HTTPRequestMethod from './structures/HTTPRequestMethod'
 import Profile from './structures/Profile'
 import PartialProfile from './structures/PartialProfile'
 import PartialProfileSettings from './structures/PartialProfileSettings'
-import TopInfo from './structures/TopInfo'
 import deepmerge from 'deepmerge'
 import scrap from './util/scrap'
 import ProfileComment from './structures/ProfileComment'
@@ -26,23 +23,19 @@ type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;
 };
 /**The main hub for interacting with the discord.bio API. */
-class Bio extends EventEmitter {
-  /**Fetch the top upvoted users, sorted by upvotes.*/
-  topLikes: typeof topLikes
-  /**Get approximate user count, correct to the nearest 27. */
-  totalUsers: typeof totalUsers
+class Bio extends EventEmitter implements Base {
   @enumerable(false)
   bio: this
-  users: Base & {
+  @enumerable(false)
+  private _cookie: string | undefined
     /**
      * Get user Details
      */
-    details: typeof details,
+    details: typeof details
     /**
      * Search for profiles on discord.bio,sorted by upvotes 
      */
     search: typeof search
-  }
   /**The version of the library */
   version: string
   /**
@@ -54,6 +47,10 @@ class Bio extends EventEmitter {
   options: typeof bioOptionsDefaults
   /**Cached profiles */
   profiles: Collection<string, Profile | PartialProfile>
+  /**
+   * HTML scrapper
+   * @private
+   */
   scrap: typeof scrap
   /**
    * @param options - bio options
@@ -61,13 +58,8 @@ class Bio extends EventEmitter {
   constructor(options: DeepPartial<typeof bioOptionsDefaults> = {}) {
     super()
     options = merge(bioOptionsDefaults, options)
-    this.topLikes = topLikes
-    this.totalUsers = totalUsers
-    this.users = {
-      bio: this,
-      details: details,
-      search: search,
-    }
+    this.details = details
+    this.search = search
     this.bio = this
     this.version = require('../package.json').version
     options = deepmerge(bioOptionsDefaults, options)
@@ -75,6 +67,19 @@ class Bio extends EventEmitter {
     this.rest = new RESTManager(this, (options as typeof bioOptionsDefaults).rest)
     this.scrap = scrap
     this.profiles = new Collection()
+  }
+  /**Cookie to send requests*/
+  @enumerable(false)
+  get cookie() {
+    if (this._cookie) return this._cookie
+    else {
+      const error = new Error('Requested to use cookie, but cookie is unavailable to client.')
+      error.name = 'Discord.Bio JS Error'
+      throw error
+    }
+  }
+  set cookie(cookie) {
+    this._cookie = cookie
   }
   /**Emitted when being rate limited */
   on(event: 'rateLimit', listener:
@@ -84,4 +89,4 @@ class Bio extends EventEmitter {
     return super.on(event, listener)
   }
 }
-export { Bio, User, RawUser, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, HTTPRequestMethod, Profile, PartialProfile, PartialProfileSettings, ProfileComment, TopInfo }
+export { Bio, DeepPartial, Connection, User, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, HTTPRequestMethod, Profile, PartialProfile, searchOptions, ProfileComment }
