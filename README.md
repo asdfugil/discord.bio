@@ -13,7 +13,7 @@ npm i discord.bio
 ```
 
 ## Support
-Please open a issue for any bugs/feature requests and ask other questions in my [Discord Server](https://discord.gg/ecdvF948Cj).
+Please open a issue for any bugs/feature requests/help.
 
 ## Contents
 - [Contents](#Contents)
@@ -23,8 +23,10 @@ Please open a issue for any bugs/feature requests and ask other questions in my 
 - [Documentation](#Documentation)
 ## Changelogs
 
-- Added DiscordConnection#url
-- User#tag and User#defaultAvatarURL is now a getter
+- Fixed seaech and details functions.
+- Removed functions no longer availabile via the API.
+- Some properties changed as the upstream data also changed.
+- `.search()` and `.details()` is now methods of `Bio.prototype`
 
 ## CLI wrapper
 
