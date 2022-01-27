@@ -21,7 +21,10 @@
 		"tslib": "^2.0.1"
 	},
 	"keywords": [
-		"discord.bio"
+		"discord.bio",
+		"discord",
+		"discords.com",
+		"discords.com/bio"
 	],
 	"devDependencies": {
 		"@types/node": "^17.0.10",
