@@ -44,7 +44,9 @@ class User extends Base {
    * The link to the user's avatar
    * @param options Options for the image
    */
-  avatarURL(options: ImageURLOptions & { dynamic?: boolean } = { format: 'webp', dynamic: false }): string | null {
+  avatarURL(options: ImageURLOptions & {
+    /**Whether the URL returned should refer to an animated image, if there is one.*/
+    dynamic?: boolean } = { format: 'webp', dynamic: false }): string | null {
     options.format ? {} : options.format = 'webp'
     let url: string = `${bioOptionsDefaults.rest.cdn_url}/avatars/${this.id}/${this.avatar}`
     if (!this.avatar) return null
@@ -58,7 +60,10 @@ class User extends Base {
    * @warn Notice: Default avatar has a fixed size and is always a .png image
    * @param options Options for the image
    */
-  displayAvatarURL(options?: ImageURLOptions & { dynamic?: boolean }): string {
+  displayAvatarURL(options?: ImageURLOptions & { 
+    /**Whether the URL returned should refer to an animated image, if there is one.*/
+    dynamic?: boolean
+  }): string {
     if (this.avatarURL(options)) return this.avatarURL(options) as string
     else return this.defaultAvatarURL
   }

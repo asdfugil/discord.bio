@@ -3,7 +3,6 @@ import Connection from './structures/Connection'
 import details from './rest/details'
 import { search, searchOptions } from './rest/search'
 import merge from 'deepmerge'
-import UserConnections from './structures/UserConnections'
 import { UserFlags, ImageURLOptions, Collection, } from 'discord.js'
 import { EventEmitter } from 'events'
 import enumerable from './util/enumerable'
@@ -15,10 +14,10 @@ import { bioOptionsDefaults } from './util/Constants'
 import HTTPRequestMethod from './structures/HTTPRequestMethod'
 import Profile from './structures/Profile'
 import PartialProfile from './structures/PartialProfile'
-import PartialProfileSettings from './structures/PartialProfileSettings'
 import deepmerge from 'deepmerge'
 import scrap from './util/scrap'
 import ProfileComment from './structures/ProfileComment'
+import RawUser from './structures/RawUser'
 type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;
 };
@@ -89,4 +88,4 @@ class Bio extends EventEmitter implements Base {
     return super.on(event, listener)
   }
 }
-export { Bio, DeepPartial, Connection, User, UserFlags, ImageURLOptions, DBioAPIError, ConnectionTypes, UserConnections, Collection, Base, HTTPRequestMethod, Profile, PartialProfile, searchOptions, ProfileComment }
+export { Bio, DeepPartial, Connection, User, UserFlags, ImageURLOptions, RESTManager, DBioAPIError, ConnectionTypes, Collection, Base, HTTPRequestMethod, Profile, PartialProfile, searchOptions, ProfileComment, RawUser }

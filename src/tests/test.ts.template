@@ -1,0 +1,6 @@
+import { Test } from '../..'
+
+export const name = 'Example'
+export const execute: Test = function ({ profile,search }) {
+
+}

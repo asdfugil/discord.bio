@@ -1,14 +1,15 @@
 {
 	"name": "discord.bio",
-	"version": "11.0.0-beta.1",
+	"version": "11.0.0-beta.2",
 	"description": "a node.js wrapper of the discords.com/bio website",
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
 	"scripts": {
-		"test": "node test.js",
-		"build": "tsc",
-		"prepare": "npm run build && npm run-script docgen",
-		"docgen": "typedoc --cname discord-bio.js.org --out docs --readme WELCOME.md src/index.ts && touch docs/.nojekyll"
+		"test": "node dist/tests/index.js",
+		"build-program": "tsc",
+		"build": "npm run-script build-program && npm run-script docgen",
+		"prepare": "npm run build-program",
+		"docgen": "typedoc --cname discord-bio.js.org --includeVersion --out docs --readme WELCOME.md src/index.ts && touch docs/.nojekyll"
 	},
 	"author": "asdfugil",
 	"license": "BSD-3-Clause",

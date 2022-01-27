@@ -16,7 +16,7 @@ jobs:
     - name: Install modules
       run: npm ci
     - name : Build
-      run: npm run-script prepare
+      run: npm run-script build
     - name: Test
       run: npm test
 

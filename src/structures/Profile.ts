@@ -13,8 +13,6 @@ import Base from './Base'
 class Profile extends EventEmitter implements Base {
   @enumerable(false)
   bio: Bio
-  /**The number of people viewing the profile */
-  view_count: number | null
   /**The settings of this profile */
   connections: Connection[]
   /**The comments on the profile */
@@ -31,8 +29,6 @@ class Profile extends EventEmitter implements Base {
   createdTimestamp: number
   /**The flags on the user */
   publicFlags: UserFlags
-  /**The description of the user. */
-  description: string | null
   /**The location of the user. */
   location: string | null
   /**Gender of the user.*/
@@ -61,6 +57,8 @@ class Profile extends EventEmitter implements Base {
   updatedAt: Date
   /**Timestamp when the profile is last updated */
   updatedTimestamp: string
+  /**Profile description */
+  about: string | null
   constructor(bio: Bio, data: any) {
     super()
     const {
@@ -74,11 +72,11 @@ class Profile extends EventEmitter implements Base {
       verified,
       createdAt,
       updatedAt,
-      description,
       location,
       birthday,
       email,
       occupation,
+      about,
       banner,
       _count
     } = data
@@ -93,7 +91,7 @@ class Profile extends EventEmitter implements Base {
     this.createdTimestamp = createdAt
     this.updatedAt = new Date(updatedAt)
     this.updatedTimestamp = updatedAt
-    this.description = description
+    this.about = about
     this.location = location
     this.email = email
     this.occupation = occupation
@@ -102,7 +100,6 @@ class Profile extends EventEmitter implements Base {
     this.likes = _count.likes
     this.birthday = birthday ? new Date(birthday) : null
     this.gender = data.gender
-    this.view_count = null
     this.connections = data.connections.map((x: any) => new Connection(x))
     this.comments = data.comments.map((x: any) => new ProfileComment(bio, x))
     this.bio = bio
