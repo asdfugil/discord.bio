@@ -7,7 +7,7 @@ docs/
 
 # Tests
 src/tests/
-dists/tests
+dist/tests
 types/tests
 
 # Editors
