@@ -3,6 +3,7 @@ import PartialProfile from '../structures/PartialProfile'
 import DBioAPIError from '../structures/DBioAPIError'
 import Profile from '../structures/Profile'
 import { URLSearchParams } from 'url'
+/**Options when searching for profiles */
 export type searchOptions = {
   /**The search query. */
   search?: string

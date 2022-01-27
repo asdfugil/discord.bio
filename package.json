@@ -9,7 +9,7 @@
 		"build-program": "tsc",
 		"build": "npm run-script build-program && npm run-script docgen",
 		"prepare": "npm run build-program",
-		"docgen": "typedoc --cname discord-bio.js.org --includeVersion --out docs --readme WELCOME.md src/index.ts && touch docs/.nojekyll"
+		"docgen": "typedoc --cname discord-bio.js.org --includeVersion --out docs --readme WELCOME.md src/index.ts"
 	},
 	"author": "asdfugil",
 	"license": "BSD-3-Clause",

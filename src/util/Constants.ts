@@ -1,15 +1,20 @@
 export const bioOptionsDefaults = {
+  /**REST API options */
   rest: {
+    /**Base URL of API */
     'base_url': 'https://discords.com/bio/api',
+    /**Base URL of Discord CDN */
     cdn_url: 'https://cdn.discordapp.com',
   },
-  ws: {
-    'gateway': 'discords.com/api-bio/bio_ws',
-    autoConnect: false
-  },
   scrapper: {
+    /**discord.bio website URL */
     base_url: 'https://discords.com/bio'
   },
+  /**
+   * Whether to store (partial) profiles after fetching
+   * 
+   * Cache exposed via bio.profiles
+   */
   enableCaching: true
 }
 export type Headers = {

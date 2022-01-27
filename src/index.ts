@@ -54,7 +54,7 @@ class Bio extends EventEmitter implements Base {
   /**
    * @param options - bio options
   */
-  constructor(options: DeepPartial<typeof bioOptionsDefaults> = {}) {
+  constructor(options: DeepPartial<typeof bioOptionsDefaults> & { cookie?: string } = {}) {
     super()
     options = merge(bioOptionsDefaults, options)
     this.details = details
@@ -72,7 +72,7 @@ class Bio extends EventEmitter implements Base {
   get cookie() {
     if (this._cookie) return this._cookie
     else {
-      const error = new Error('Requested to use cookie, but cookie is unavailable to client.')
+      const error = new Error('Requested to use cookie, but cookie is unavailable to client. \n (Set bio.cookie before using)')
       error.name = 'Discord.Bio JS Error'
       throw error
     }
