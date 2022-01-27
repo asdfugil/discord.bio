@@ -27,8 +27,6 @@ class Profile extends EventEmitter implements Base {
   createdAt: Date
   /**The timestamp in ms that the profile is created */
   createdTimestamp: number
-  /**The flags on the user */
-  publicFlags: UserFlags
   /**The location of the user. */
   location: string | null
   /**Gender of the user.*/
@@ -85,7 +83,6 @@ class Profile extends EventEmitter implements Base {
     this.searchEnabled = searchEnabled
     this.commentsEnabled = commentsEnabled
     this.rpcEnabled = rpcEnabled
-    this.publicFlags = new UserFlags(publicFlags)
     this.verified = Boolean(verified)
     this.createdAt = new Date(createdAt)
     this.createdTimestamp = createdAt

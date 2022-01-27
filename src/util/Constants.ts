@@ -16,7 +16,7 @@ export const bioOptionsDefaults = {
    * 
    * Cache exposed via bio.profiles
    */
-  enableCaching: true
+  enableCaching: false
 }
 export type Headers = {
   [key: string]: string | undefined
