@@ -21,6 +21,7 @@ bio.details(profile_testsubject_slug)
         throw new Error('Profile fetching test failed. Cannot continue')
     })
     .then(async (profile) => {
+        console.log('Profile fetching: OK'); ok += 1
         return [profile, await bio.search({ search: 'v' })]
     })
     .then(([profile, search]) => {
