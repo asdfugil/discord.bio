@@ -1,3 +1,4 @@
+/**Represents a connection shown on discord.bio */
 class Connection {
     /**Name of the user on this connection */
     name: string

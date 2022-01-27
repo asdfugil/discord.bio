@@ -7,7 +7,6 @@ import { UserFlags, ImageURLOptions, Collection, } from 'discord.js'
 import { EventEmitter } from 'events'
 import enumerable from './util/enumerable'
 import DBioAPIError from './structures/DBioAPIError'
-import ConnectionTypes from './structures/ConnectionTypes'
 import Base from './structures/Base'
 import RESTManager from './structures/RESTManager'
 import { bioOptionsDefaults } from './util/Constants'
@@ -88,4 +87,4 @@ class Bio extends EventEmitter implements Base {
     return super.on(event, listener)
   }
 }
-export { Bio, DeepPartial, Connection, User, UserFlags, ImageURLOptions, RESTManager, DBioAPIError, ConnectionTypes, Collection, Base, HTTPRequestMethod, Profile, PartialProfile, searchOptions, ProfileComment, RawUser }
+export { Bio, DeepPartial, bioOptionsDefaults, Connection, User, UserFlags, ImageURLOptions, RESTManager, DBioAPIError, Collection, Base, HTTPRequestMethod, Profile, PartialProfile, searchOptions, ProfileComment, RawUser }

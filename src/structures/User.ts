@@ -3,10 +3,10 @@ import Base from './Base'
 import { ImageURLOptions, UserFlags } from 'discord.js'
 import { bioOptionsDefaults } from '../util/Constants'
 import { Bio } from '..'
-/**Represent A User */
+/**Represent a Discord User */
 class User extends Base {
   /**The flags on the user */
-  public_flags: UserFlags
+  publicFlags: UserFlags
   /**The username of the user */
   username: string
   /**This discriminator of the user */
@@ -27,7 +27,7 @@ class User extends Base {
    */
   constructor(bio: Bio, rawUser: RawUser) {
     super(bio)
-    const { id, username, avatar, discriminator, public_flags, premiumType } = rawUser
+    const { id, username, avatar, discriminator, publicFlags, premiumType } = rawUser
     this.id = id
     if (discriminator.startsWith('#')) {
       this.discriminator = discriminator.substring(1)
@@ -37,7 +37,7 @@ class User extends Base {
     this.discriminator = discriminator
     }
     this.avatar = avatar
-    this.public_flags = new UserFlags(public_flags)
+    this.publicFlags = new UserFlags(publicFlags)
     this.premiumType = premiumType
   }
   /**

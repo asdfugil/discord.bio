@@ -7,7 +7,8 @@ Welcome to the discord.bio documentation.
 ## About
 discord.bio is an API wrapper of the [discord.bio](https://discords.com/bio) [API](https://discords.com/bio/api) to make it easier to use.
 
-To get started, click (menu button on mobile) [Bio](docs/classes/Bio.html) on the right-hand side.
+To get started, click (menu button on mobile) [Bio](./classes/Bio.html) on the right-hand side.
+
 ## Notes
 In this documentation, some functions are shown as propeties due to how typedoc works.
 

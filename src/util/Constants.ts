@@ -1,3 +1,4 @@
+/**Default options for Bio */
 export const bioOptionsDefaults = {
   /**REST API options */
   rest: {

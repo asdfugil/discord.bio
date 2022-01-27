@@ -1,3 +1,4 @@
+/**Errors from discord.bio API */
 class DBioAPIError extends Error {
     /**Request path */
     path: string

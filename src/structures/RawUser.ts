@@ -1,4 +1,5 @@
 import { Snowflake } from 'discord.js'
+/**@private */
 type RawUser = {
     /**The user id of the user. */
     id: Snowflake
@@ -9,7 +10,7 @@ type RawUser = {
     /**The discriminator of the user. */
     discriminator: string
     /**Public flags of the suer */
-    public_flags: number
+    publicFlags: number
     /** The type of nitro the user has.
      * - null = not revealed by the API
      * - 0 = nothing

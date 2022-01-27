@@ -2,6 +2,7 @@ import { Bio } from '..'
 import User from './User'
 import Base from './Base'
 type Snowflake = string
+/**Represents a comment on a profile */
 class ProfileComment extends Base {
     /**Comment ID */
     id: string
@@ -15,9 +16,13 @@ class ProfileComment extends Base {
     createdAt: Date
     /**The timestamp this comment is created */
     createdTimestamp: string
+    /**Details about the discord.bio user that made the comment */
     fromUser: {
+        /**Slug of the user */
         slug: string
+        /**Discord user ID of the user */
         discordID: Snowflake
+        /**Corresponding Discord user object of the commenter*/
         discord: User
     }
     constructor(bio: Bio, comment: any) {

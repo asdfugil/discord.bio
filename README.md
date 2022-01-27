@@ -41,7 +41,23 @@ Please go to https://github.com/Assfugil/dbio-cli for details.
 - Easy to use, parse gender,flags... etc. for you
 
 ## Example
-Please refer to test.js
+```js
+const { Bio } = require('discord.bio')
+// Cookie is optional
+const bio = new Bio({ cookie: '[REDACTED]' })
+Promise.all([
+    bio.details('nickchan'),
+    bio.details('204616460797083648'), // This requires cookie to be set
+    bio.search({ page: 2 }),
+    bio.search({search: 'a',page: 1}),
+    ])
+.then(([profile, another_profile, all_profiles, search_result]) => {
+    console.log(profile) // Profile of user with slug 'nickchan'
+    console.log(another_profile) // Profile of user with ID '204616460797083648'
+    console.log(all_profile) // Page 2 of all profiles
+    console.log(search_result) // Page 1 of results of search for 'a'
+})
+```
 
 # Documentation
 
