@@ -1,7 +1,5 @@
 # discord.bio
 
-**BY USING THE LIBRARY YOU AGREE TO THE **[**TERMS OF SERVICE OF DISCORD.BIO**](https://discord.bio/terms)
-
 This library scrapes the site https://discords.com/bio
 
 [![NPM](https://nodei.co/npm/discord.bio.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/discord.bio/)
@@ -26,7 +24,7 @@ Please open a issue for any bugs/feature requests/help.
 - Fixed seaech and details functions.
 - Removed functions no longer availabile via the API.
 - Some properties changed as the upstream data also changed.
-- `.search()` and `.details()` is now methods of `Bio.prototype`
+- `.search()` and `.details()` are now methods of `Bio.prototype`
 
 ## CLI wrapper
 
