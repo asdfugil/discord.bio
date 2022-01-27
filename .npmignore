@@ -2,10 +2,18 @@ node_modules/
 *.log
 .git
 key.txt
-discord.bio.code-workspace
 .github/workflows/
-bin/
 docs/
+
+# Tests
 src/tests/
+dists/tests
+types/tests
+
+# Editors
+*.save
+discord.bio.code-workspace
 .vscode
+
+# Test API return
 test.json

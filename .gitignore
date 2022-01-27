@@ -1,10 +1,17 @@
 node_modules/
-types/
-dist/
 *.log
 .git
 key.txt
-discord.bio.code-workspace
 bin/
+
+# Generated files
+types/
+dist/
+
+# Editors
+*.save
+discord.bio.code-workspace
 .vscode
+
+# Test API return
 test.json
