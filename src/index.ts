@@ -24,8 +24,9 @@ type DeepPartial<T> = {
 class Bio extends EventEmitter implements Base {
   @enumerable(false)
   bio: this
+  /**@private*/
   @enumerable(false)
-  private _cookie: string | undefined
+  _cookie: string | undefined
     /**
      * Get user Details
      */

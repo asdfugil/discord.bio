@@ -1,10 +1,13 @@
 export const profile_testsubject_slug = 'nickchan'
+export const profile_testsubject_id = '570634232465063967'
+
 let ok = 0
 let notok = 0
 
 import { Bio, Profile, PartialProfile } from '../'
 import { Collection, Snowflake } from 'discord.js'
 import { readdirSync } from 'fs'
+import { deepStrictEqual } from 'assert'
 
 /**A function that test an item */
 export type Test = (data: { profile: Profile, search: Collection<Snowflake, PartialProfile> }) => boolean | Promise<boolean>
@@ -14,14 +17,16 @@ export const tests: Collection<string, Test> = new Collection()
 process.chdir(__dirname)
 
 export const bio = new Bio()
-bio.details(profile_testsubject_slug)
+Promise.all([bio.details(profile_testsubject_slug),bio.details(profile_testsubject_id)])
     .catch((e) => {
         console.error(e);
         console.log('Profile fetching: NOT OK: ' + e); notok += 1
         throw new Error('Profile fetching test failed. Cannot continue')
     })
-    .then(async (profile) => {
+    .then(async ([profile,p_with_id]) => {
         console.log('Profile fetching: OK'); ok += 1
+        deepStrictEqual(profile,p_with_id, 'Expected equal profiles for same user.')
+        console.log('Fetching with slug v. fetching with ID: OK'); ok += 1
         return [profile, await bio.search({ search: 'v' })]
     })
     .then(([profile, search]) => {

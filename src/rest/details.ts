@@ -7,7 +7,7 @@ import Profile from '../structures/Profile'
 async function details(this: Base, slugOrID: string): Promise<Profile> {
   let result;
   if (slugOrID.length > 16) {
-    result = await this.bio.rest.api('/user/info?id=' + encodeURIComponent(slugOrID), 'GET', { cookie: this.bio.cookie })
+    result = await this.bio.rest.api('/user/info?id=' + encodeURIComponent(slugOrID), 'GET', { cookie: this.bio._cookie ? this.bio.cookie : undefined })
     result.discord.id = result.discordID
   } else {
     let res_text = await this.bio.scrap('/p/' + slugOrID)
