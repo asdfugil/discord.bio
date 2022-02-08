@@ -1,6 +1,5 @@
 import { Collection, Snowflake } from 'discord.js'
 import PartialProfile from '../structures/PartialProfile'
-import DBioAPIError from '../structures/DBioAPIError'
 import Profile from '../structures/Profile'
 import { URLSearchParams } from 'url'
 /**Options when searching for profiles */
@@ -10,13 +9,12 @@ export type searchOptions = {
   /**
    * Filter options:
    * - all = search query is ignored
-   * - search = search query is not ignored
+   * - search = search for profile, different fields consdiered
+   * - slug-search = search for profile, only slug is considered
    * 
-   * Unless explicitly set, the library will automatically handle this based on whether the serach option is defined.
-   * 
-   * Do NOT set this unless you know what you are doing. It could lead to undefined behaviours.
+   * Set this to slug-search for slug searching, else this will default to 'all' or 'search' based on whether a query is given.
    */
-  filter?: 'all' | 'search' | string
+  filter?: 'all' | 'search' | 'slug-search' | string
   /**Page number of results to be viewed */
   page?: number | string
 }

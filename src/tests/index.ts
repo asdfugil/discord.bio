@@ -64,8 +64,6 @@ Promise.all([bio.details(profile_testsubject_slug),bio.details(profile_testsubje
         }
     })
     .then(() => {
-        // details with user id does not currently work
-        // search is still broken
         console.log(`${ok} OK and ${notok} NOT OK.`)
         if (notok) process.exit(1);
     })
